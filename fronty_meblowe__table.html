@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="./fronty_meblowe.css">
+</head>
+<body>
+  <main class="page-a4">
+    <form class="align-center" action="/some-endpoint">
+      <div class="info-by-receiver">
+        <label for="date-of-receive">Data przyjęcia:</label>
+        <input id="date-of-receive" class="control-cell bottom-dotted w-2cm" type="date">
+        <label for="date-of-receipt">Data odbioru:</label>
+        <input id="date-of-receipt" class="control-cell bottom-dotted w-2cm" type="date">
+        <label for="advance-payment">Zaliczka:</label>
+        <input id="advance-payment" class="control-cell bottom-dotted w-2cm" type="number">
+        <strong for="client-number">NR KLIENTA:</strong>
+        <input id="client-number" class="control-cell bottom-dotted w-2cm" type="number">
+      </div>
+      <h4 class="align-center">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR <input type="text" class="control-cell w-2cm bottom-dotted"></h4>
+      <table id="table-top" class="top-table col-12 border-collapse border-bold">
+        <tr>
+          <td class="w-3cm title-cell">ARTYKUŁ</td>
+          <td class="w-6cm">
+            <input class="control-cell" type="number" min="0" max="999">
+          </td>
+          <td class="w-2cm title-cell">GRUBOŚĆ</td>
+          <td colspan="2">
+            <input class="control-cell" type="number">
+          </td>
+        </tr>
+        <tr>
+          <td class="title-cell">KOLOR <i>(folia, lakier)</i></td>
+          <td>
+            <select class="control-cell">
+              <option value="folia">proszę wybrać</option>
+              <option value="folia">FOLIA</option>
+              <option value="lakier">LAKIER</option>
+            </select>
+          </td>
+          <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY 1</td>
+          <td class="w-4cm title-cell">WYSYŁKA</td>
+          <td class="w-05cm align-center">
+            <input class="form-check-input" type="radio" name="delivery" id="shipment" value="shipment">
+          </td>
+        </tr>
+        <tr>
+          <td class="title-cell">OKLEINA <i>(symbol-nr)</i></td>
+          <td><input class="control-cell" type="number" min="0" max=""></td>
+          <td class="title-cell">ODBIÓR OSOBISTY</td>
+          <td class="align-center">
+            <input class="form-check-input" type="radio" name="delivery" id="personal-collection" value="personal-collection">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="title-cell">PATYNA <i>(jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></td>
+          <td colspan="3"><select class="control-cell">
+            <option value="folia">proszę wybrać</option>
+            <option value="folia">JEDNOLITA</option>
+            <option value="lakier">STARA</option>
+            <option value="folia">JEDNOLITA CIEMNE ROGI</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="title-cell">LAKIER</td>
+          <td colspan="3"><select class="control-cell">
+            <option value="folia">proszę wybrać</option>
+            <option value="folia">MAT</option>
+            <option value="lakier">MAT STRUKTURALNY</option>
+            <option value="folia">POŁYSK</option>
+          </select></td>
+        </tr>
+      </table>
+    </form>
+  </main>
+</body>
+</html>

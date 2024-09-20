@@ -1,0 +1,16 @@
+.bordered-cell {
+  border: 1px solid #000;
+  margin-bottom: 0;
+  label, legend {
+    border-right: 2px solid #000;
+  }
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+
+  legend {
+    line-height: 2;
+  }
+}

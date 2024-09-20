@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="nofollow" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="custom.css">
 </head>
 <body>
   <main>
@@ -13,13 +14,13 @@
       <form action="/some-endpoint" class="my-3">
         <div class="row">
           <div class="col-12 col-lg-6">
-            <div class="form-group row">
+            <div class="form-group row bordered-cell">
               <label for="article" class="col-sm-4 col-md-3 col-form-label">Artykuł</label>
               <div class="col-sm-8 col-md-9">
-                <input type="number" class="form-control" id="article" placeholder="proszę podać numer artykułu">
+                <input type="number" class="form-control" id="article" placeholder="proszę podać numer artykułu" min="0" max="100">
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row bordered-cell">
               <label for="color" class="col-sm-4 col-md-3 col-form-label">Kolor</label>
               <div class="col-sm-8 col-md-9">
                 <select class="form-control" id="color">
@@ -29,37 +30,15 @@
                 </select>
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row bordered-cell">
               <label for="edge" class="col-sm-4 col-md-3 col-form-label">Okleina</label>
               <div class="col-sm-8 col-md-9">
                 <input type="number" class="form-control" id="edge">
               </div>
             </div>
-            <div class="form-group row">
-              <label for="patina" class="col-sm-4 col-md-3 col-form-label">Patyna</label>
-              <div class="col-sm-8 col-md-9">
-                <select class="form-control" id="patina">
-                  <option value="select">proszę wybrać patynę</option>
-                  <option value="uniform">jednolita</option>
-                  <option value="old">stara</option>
-                  <option value="uniform-dark">jednolita ciemne rogi</option>
-                </select>
-              </div>
-            </div>
           </div>
           <div class="col-12 col-lg-6">
-            <div class="form-group row">
-              <label for="lacquer" class="col-sm-4 col-md-3 col-form-label">Lakier</label>
-              <div class="col-sm-8 col-md-9">
-                <select class="form-control" id="lacquer">
-                  <option value="select">proszę wybrać lakier</option>
-                  <option value="mat">mat</option>
-                  <option value="mat-structural">mat strukturalny</option>
-                  <option value="gloss">połysk</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
+            <div class="form-group row bordered-cell">
               <label for="thickness" class="col-sm-4 col-md-3 col-form-label">Grubość</label>
               <div class="col-sm-8 col-md-9">
                 <select class="form-control" id="thickness">
@@ -74,9 +53,9 @@
                 </select>
               </div>
             </div>
-            <fieldset class="form-group">
-              <div class="row">
-                <legend class="col-form-label col-sm-4 col-md-3 pt-0">Sposób dostawy</legend>
+            <fieldset class="form-group mb-0">
+              <div class="row bordered-cell radio-group">
+                <legend class="col-form-label col-sm-4 col-md-3">Sposób dostawy</legend>
                 <div class="col-sm-8 col-md-9">
                   <div class="form-check">
                     <input class="form-check-input" type="radio" name="delivery" id="shipment" value="shipment">
@@ -97,7 +76,28 @@
         </div>
         <div class="row">
           <div class="col-12">
-            
+            <div class="form-group row bordered-cell">
+              <label for="patina" class="col-6 col-form-label">Patyna</label>
+              <div class="col-6">
+                <select class="form-control" id="patina">
+                  <option value="select">proszę wybrać patynę</option>
+                  <option value="uniform-dark">jednolita ciemne rogi [PJCR]</option>
+                  <option value="uniform">jednolita [PJ]</option>
+                  <option value="old">stara [PS]</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row bordered-cell">
+              <label for="lacquer" class="col-6 col-form-label">Lakier</label>
+              <div class="col-6">
+                <select class="form-control" id="lacquer">
+                  <option value="select">proszę wybrać lakier</option>
+                  <option value="mat">mat</option>
+                  <option value="mat-structural">mat strukturalny</option>
+                  <option value="gloss">połysk</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
       </form>

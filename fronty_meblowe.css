@@ -1,0 +1,113 @@
+/* GENERAL */
+
+.page-a4 {
+  margin: 0 auto;
+  padding: 0 2.5cm;
+  width: 21cm;
+  text-align: center;
+
+  border-left: 1px dotted #333;
+  border-right: 1px dotted #333;
+}
+
+.info-by-receiver {
+  font-size: 11px;
+  margin-top: 1rem;
+  align-items: end;
+  input {
+    max-height: 1rem;
+    padding: 0.1rem;
+  }
+}
+
+#table-top {
+  margin: 0;
+  width: 16cm;
+  border-collapse: collapse;
+  border-spacing: 0 !important;
+  td {
+    border: 1px solid #333;
+    border-spacing: 0 !important;
+  }
+  td.no-border {
+    border: none;
+    padding: 0;
+  }
+}
+
+table.border-collapse {
+  border-collapse: collapse;
+}
+
+.control-cell {
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
+  margin: 0;
+  border: 0;
+  background-color: #eef;
+}
+
+select.control-cell {
+  width: 100%;
+}
+
+.title-cell {
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: .5rem;
+}
+
+.title-cell i {
+  font-weight: normal;
+  font-size: 11px;
+}
+
+/* CUSTOM ELEMENTS STYLES */
+/* UTILS */
+.border-bold {
+  border: 2px solid #333;
+}
+.align-center {
+  text-align: center;
+}
+.h-full {
+  height: 100%;
+}
+.col-4 {
+  width: 33.33333333%;
+}
+.col-6 {
+  width: 50%;
+}
+.col-8 {
+  width: 66.66666667%;
+}
+.col-12 {
+  width: 100%;
+}
+
+.w-05cm {
+  width: 0.5cm;
+}
+.w-1cm {
+  width: 1cm;
+}
+.w-2cm {
+  width: 2cm;
+}
+.w-3cm {
+  width: 3cm;
+}
+.w-4cm {
+  width: 4cm;
+}
+.w-5cm {
+  width: 5cm;
+}
+.w-6cm {
+  width: 6cm;
+}
+
+.bottom-dotted {
+  border-bottom: 2px dotted #333;
+}
