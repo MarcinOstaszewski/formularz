@@ -4,39 +4,53 @@
   margin: 0 auto;
   padding: 0 2.5cm;
   width: 21cm;
-  text-align: center;
-
   border-left: 1px dotted #333;
   border-right: 1px dotted #333;
 }
 
 .info-by-receiver {
   font-size: 11px;
-  margin-top: 1rem;
-  align-items: end;
-  input {
-    max-height: 1rem;
-    padding: 0.1rem;
-  }
+  margin-top: 1cm;
+  text-align: center;
+}
+.info-by-receiver input {
+  max-height: 1rem;
+  padding: 0.1rem;
+}
+.order-heading {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0.5rem auto;
 }
 
-#table-top {
-  margin: 0;
-  width: 16cm;
+#table-top, #table-bottom {
   border-collapse: collapse;
   border-spacing: 0 !important;
-  td {
-    border: 1px solid #333;
-    border-spacing: 0 !important;
-  }
-  td.no-border {
-    border: none;
-    padding: 0;
-  }
+}
+#table-top {
+  margin: 0 auto 1rem auto;
+  width: 16cm;
+}
+#table-bottom {
+  width: 8.5cm;
+  margin: 0;
 }
 
-table.border-collapse {
-  border-collapse: collapse;
+td,
+th {
+  border: 1px solid #333;
+  border-spacing: 0 !important;
+}
+td.boder-none,
+th.border-none {
+  border: none;
+}
+
+.bottom-container {
+  width: 20cm;
+  margin: 0;
+  text-align: left;
 }
 
 .control-cell {
@@ -54,7 +68,7 @@ select.control-cell {
 .title-cell {
   font-size: 12px;
   font-weight: bold;
-  padding-left: .5rem;
+  padding-left: .1rem;
 }
 
 .title-cell i {
@@ -64,9 +78,6 @@ select.control-cell {
 
 /* CUSTOM ELEMENTS STYLES */
 /* UTILS */
-.border-bold {
-  border: 2px solid #333;
-}
 .align-center {
   text-align: center;
 }
@@ -85,6 +96,14 @@ select.control-cell {
 .col-12 {
   width: 100%;
 }
+
+/* WIDTHS */
+.w-5mm { width: 5mm;}
+.w-6mm { width: 6mm;}
+.w-8mm { width: 8mm;}
+.w-9mm { width: 9mm;}
+.w-12mm { width: 12mm;}
+.w-16mm { width: 16mm;}
 
 .w-05cm {
   width: 0.5cm;
@@ -108,6 +127,12 @@ select.control-cell {
   width: 6cm;
 }
 
+.border-bold {
+  border: 2px solid #333;
+}
+.border-none {
+  border: none;
+}
 .bottom-dotted {
   border-bottom: 2px dotted #333;
 }

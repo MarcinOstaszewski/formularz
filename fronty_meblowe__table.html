@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="./normalize.css">
-  <link rel="stylesheet" href="./fronty_meblowe.css">
+  <link rel="stylesheet" href="./fronty_meblowe__table.css">
 </head>
 <body>
   <main class="page-a4">
-    <form class="align-center" action="/some-endpoint">
+    <form action="/some-endpoint">
       <div class="info-by-receiver">
         <label for="date-of-receive">Data przyjęcia:</label>
         <input id="date-of-receive" class="control-cell bottom-dotted w-2cm" type="date">
@@ -20,8 +20,12 @@
         <strong for="client-number">NR KLIENTA:</strong>
         <input id="client-number" class="control-cell bottom-dotted w-2cm" type="number">
       </div>
-      <h4 class="align-center">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR <input type="text" class="control-cell w-2cm bottom-dotted"></h4>
-      <table id="table-top" class="top-table col-12 border-collapse border-bold">
+
+      <h4 class="order-heading">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR 
+        <input type="text" class="control-cell w-2cm bottom-dotted">
+      </h4>
+
+      <table id="table-top" class="top-table col-12 border-bold">
         <tr>
           <td class="w-3cm title-cell">ARTYKUŁ</td>
           <td class="w-6cm">
@@ -57,12 +61,14 @@
         </tr>
         <tr>
           <td colspan="2" class="title-cell">PATYNA <i>(jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></td>
-          <td colspan="3"><select class="control-cell">
-            <option value="folia">proszę wybrać</option>
-            <option value="folia">JEDNOLITA</option>
-            <option value="lakier">STARA</option>
-            <option value="folia">JEDNOLITA CIEMNE ROGI</option>
-          </select></td>
+          <td colspan="3">
+            <select class="control-cell">
+              <option value="folia">proszę wybrać</option>
+              <option value="folia">JEDNOLITA</option>
+              <option value="lakier">STARA</option>
+              <option value="folia">JEDNOLITA CIEMNE ROGI</option>
+            </select>
+          </td>
         </tr>
         <tr>
           <td colspan="2" class="title-cell">LAKIER</td>
@@ -74,6 +80,94 @@
           </select></td>
         </tr>
       </table>
+
+      <div class="bottom-container">
+        <table id="table-bottom" width="8.2cm">
+          <thead>
+            <tr>
+              <td class="boder-none" colspan="8">
+                <small class="">Wymiary proszę podawać w mm<br />
+                W rubryce rodzaj należy wpisać czy jest to witryna, pilaster, blenda, kowbojki, winiarka, listwa wieńcząca, szuflada</small>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th colspan="6" class="boder-none"></th>
+              <th colspan="2" class="title-cell">USŁOJENIE</th>
+            </tr>
+            <tr class="title-cell">
+              <th class="w-5mm" width="5mm">Lp.</th>
+              <th class="w-16mm" width="16mm">WYSOKOŚĆ</th>
+              <th class="w-16mm" width="16mm">SZEROKOŚĆ</th>
+              <th class="w-6mm" width="6mm">SZT.</th>
+              <th class="w-12mm" width="12mm">RODZAJ</th>
+              <th class="w-9mm" width="9mm"><small>RODZAJ WITRYNY</small></th>
+              <th class="w-8mm" width="8mm">PION</th>
+              <th class="w-8mm" width="8mm">POZIOM</th>
+            </tr>
+            
+            <tr>
+              <td>1.</td>
+              <td><input type="number" min="1" max="1200"></td>
+              <td><input type="number" min="1" max="1200"></td>
+              <td><input type="number" min="1" max="500"></td>
+              <td max-width="12mm">
+                <select name="kind" id="kind1">
+                  <option value="unselected">proszę wybrać</option>
+                  <option value="witryna">witryna</option>
+                  <option value="pilaster">pilaster</option>
+                  <option value="blenda">blenda</option>
+                  <option value="kowbojki">kowbojki</option>
+                  <option value="winiarka">winiarka</option>
+                  <option value="listwa">listwa</option>
+                  <option value="szuflada">szuflada</option>
+                </select>
+              </td>
+              <td>
+                <select class="control-cell">
+                  <option value="unselected">proszę wybrać</option>
+                  <option value="pusta">pusta</option>
+                  <option value="folia1">SZ1F</option>
+                  <option value="lakier1">SZ1L</option>
+                  <option value="folia2">SZ2F</option>
+                  <option value="lakier2">SZ2L</option>
+                  <option value="folia3">SZ3F</option>
+                  <option value="lakier3">SZ3L</option>
+                  <option value="folia4">SZ4F</option>
+                  <option value="lakier4">SZ4L</option>
+                  <option value="folia5">SZ5F</option>
+                  <option value="lakier5">SZ5L</option>
+                  <option value="folia6">SZ6F</option>
+                  <option value="lakier6">SZ6L</option>
+                  <option value="folia7">SZ7F</option>
+                  <option value="lakier7">SZ7L</option>
+                  <option value="folia8">SZ8F</option>
+                  <option value="lakier8">SZ8L</option>
+                  <option value="folia9">SZ9F</option>
+                  <option value="lakier9">SZ9L</option>
+                  <option value="folia10">SZ10F</option>
+                  <option value="lakier10">SZ10L</option>
+                  <option value="folia11">SZ11F</option>
+                  <option value="lakier11">SZ11L</option>
+                  <option value="folia12">SZ12F</option>
+                  <option value="lakier12">SZ12L</option>
+                  <option value="folia13">SZ13F</option>
+                  <option value="lakier13">SZ13L</option>
+                  <option value="folia14">SZ14F</option>
+                  <option value="lakier14">SZ14L</option>
+                  <option value="folia15">SZ15F</option>
+                  <option value="lakier15">SZ15L</option>
+                  <option value="folia16">SZ16F</option>
+                  <option value="lakier16">SZ16L</option>
+                </select>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </form>
   </main>
 </body>
