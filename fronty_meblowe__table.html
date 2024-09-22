@@ -95,6 +95,65 @@
 
         <div id="bottom-tables-container"></div>
 
+        <table class="orderer text-sm">
+          <tr>
+            <td colspan="4" class="align-center">ZAMAWIAJĄCY</td>
+          </tr>
+          <tr>
+            <td rowspan="2" class="w-18mm h-14mm">Nazwa<br />Imię i nazwisko</td>
+            <td rowspan="2" class="w-70mm p-0">
+              <textarea class="control-cell" type="text" required aria-required rows="5"></textarea>
+            </td>
+            <td class="w-18mm h-7mm">NIP</td>
+            <td class="w-70mm">
+              <input class="control-cell" type="text" required aria-required>
+            </td>
+          </tr>
+          <tr>
+            <td class="h-7mm">E-mail</td>
+            <td>
+              <input class="control-cell" type="email" required aria-required>
+            </td>
+          </tr>
+          <tr>
+            <td rowspan="2" class="h-14mm">Adres</td>
+            <td rowspan="2">
+              <textarea class="control-cell" type="text" required aria-required rows="5"></textarea>
+            </td>
+            <td class="h-7mm">Nr tel.</td>
+            <td>
+              <input class="control-cell" type="tel" required aria-required>
+            </td>
+          </tr>
+          <tr>
+            <td class="h-7mm"></td>
+            <td></td>
+          </tr>
+        </table>
+
+        <div class="signatures">
+          <div class="flex-column align-center">
+            <input id="orderer-signature" class="control-cell bottom-dotted w-40mm" type="text">
+            <small>(podpis zamawiającego)</small>
+          </div>
+          <div class="flex-column align-center">
+            <input id="receipient-signature" class="control-cell bottom-dotted w-40mm" type="text">
+            <small>(podpis zamawiającego)</small>
+          </div>
+        </div>
+        <div class="footnotes">
+          <div>
+            <small>Za błędne wypełnienie formularza odpowiedzialność ponosi zamawiający</small><br />
+            <div class="display-flex justify-between">
+              <small>Złożenie zamówienia jest równoznaczne z zapoznaniem się z warunkami gwarancji i reklamacji firmy KOBAX</small>
+              <small>*pola obowiązkowe do uzupełnienia</small>
+            </div>
+          </div>
+          <div class="align-right pt-02">
+            <small>Zakład Handlowo-Produkcyjny „KOBAX” Pająk Krzysztof | Zebrzydowice 289A, 34-130 Kalwaria Zebrzydowska</small><br />
+            <small>NIP 551-000-42-29 | <a href="mailto:zakupy@kobax.pl" >zakupy@kobax.pl</a> , <a href="www.kobax.pl">www.kobax.pl</a> | tel. +48 33 876 70 83, +48 604 152 240</small>
+          </div>
+        </div>
       </div>
     </form>
   </main>
@@ -194,6 +253,25 @@
         <input type="radio" id="row1-horizontal" name="row1-direction" value="row1-horizontal">
       </td>
     </tr>
+  </template>
+
+  <template id="notes-textarea">
+    <tr>
+      <td colspan="8" class="h-70mm">
+        <table class="col-12">
+          <tbody>
+            <tr>
+              <td class="border-none text-sm align-center p-03">MIEJSCE NA DODATKOWE INFORMACJE</td>
+            </tr>
+            <tr class="textarea">
+              <td colspan="8" class="border-none p-0">
+                <label for="notes" class="hidden">Dodatkowe informacje</label>
+                <textarea class="control-cell h-full" rows="11" name="notes" id="notes"></textarea>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
   </template>
 
   <script src="./index.js"></script>

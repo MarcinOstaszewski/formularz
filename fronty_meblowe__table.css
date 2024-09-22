@@ -69,7 +69,7 @@ th.border-none {
 
 .bottom-container {
   width: 20cm;
-  margin: 0 0 2rem 0;
+  margin: 0 auto 2rem;
   text-align: left;
 }
 
@@ -98,6 +98,14 @@ select.control-cell {
   padding: 0.3rem 0;
 }
 
+textarea.control-cell {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  resize: none;
+  border: none;
+}
+
 .title-cell {
   font-size: 12px;
   font-weight: bold;
@@ -106,6 +114,18 @@ select.control-cell {
 .title-cell i {
   font-weight: normal;
   font-size: 11px;
+}
+
+.signatures {
+  width: 16cm;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footnotes {
+  font-size: 11px;
+  margin-top: 1rem;
 }
 
 /* CUSTOM ELEMENTS STYLES */
@@ -117,8 +137,23 @@ select.control-cell {
   text-align: center;
 }
 
+.orderer {
+  margin: 1.5rem auto 0.5rem;
+  border-collapse: collapse;
+}
+.orderer textarea {
+  padding: 0.1rem;
+  width: calc(100% - 0.2rem);
+  height: 14mm;
+  border: none;
+}
 
 /* PADDINGS */
+.p-0 { padding: 0; }
+.p-01 { padding: 0.1rem; }
+.p-02 { padding: 0.2rem; }
+.p-03 { padding: 0.3rem; }
+.pt-02 { padding-top: 0.2rem; }
 .pl-1 { padding-left: 0.1rem; }
 .pl-2 { padding-left: 0.2rem; }
 
@@ -126,12 +161,15 @@ select.control-cell {
 .text-sm { font-size: 10px; }
 .text-xs { font-size: 8px; }
 
-.align-center {
-  text-align: center;
-}
-.h-full {
-  height: 100%;
-}
+.align-center { text-align: center; }
+.align-right { text-align: right; }
+.display-flex { display: flex; }
+.justify-between { justify-content: space-between; }
+.flex-column { display: flex; flex-direction: column; }
+.h-full { height: 100%; }
+.h-7mm { height: 7mm; }
+.h-14mm { height: 14mm; }
+.h-70mm { height: 70mm; }
 
 /* WIDTHS */
 .col-6 { width: 50%; }
@@ -146,11 +184,13 @@ select.control-cell {
 .w-10mm { width: 10mm; }
 .w-12mm { width: 12mm; }
 .w-16mm { width: 16mm; }
+.w-18mm { width: 18mm; }
 .w-20mm { width: 20mm; }
 .w-30mm { width: 30mm; }
 .w-40mm { width: 40mm; }
 .w-50mm { width: 50mm; }
 .w-60mm { width: 60mm; }
+.w-70mm { width: 70mm; }
 
 /* BORDERS */
 .border-bold {
@@ -162,6 +202,4 @@ select.control-cell {
 .bottom-dotted {
   border-bottom: 2px dotted var(--border-color);
 }
-.hidden {
-  display: none;
-}
+.hidden { display: none; }

@@ -1,34 +1,36 @@
 function createBottomTable() {
-    const tablesContainer = document.getElementById('bottom-tables-container');
+  
+  function appendTableHeader(tableId) {
     const headerTemplate = document.getElementById('bottom-table-header');
+    const tablesContainer = document.getElementById('bottom-tables-container');
+    const tableHeader = headerTemplate.content.cloneNode(true);
+    tableHeader.querySelector('.bottom-table').id = tableId;
+    tablesContainer.appendChild(tableHeader);
+  }
+  
+  function createTableRows(tableId, startNumber, rowsNumber, addNotes) {
     const rowTemplate = document.getElementById('bottom-table-row');
-
-    function appendTableHeader(tableId) {
-      const tableHeader = headerTemplate.content.cloneNode(true);
-      tableHeader.querySelector('.bottom-table').id = tableId;
-      tablesContainer.appendChild(tableHeader);
+    const tableBottom = document.getElementById(tableId);
+    for (let i = startNumber; i < startNumber + rowsNumber; i++) {
+      const row = rowTemplate.content.cloneNode(true);
+      row.querySelector('.row-number-cell').textContent = i + ".";
+      tableBottom.appendChild(row);
     }
-    
-    function createTableRows(tableId, rowsNumber, addNotes) {
-      const tableBottom = document.getElementById(tableId);
-      for (let i = 1; i <= rowsNumber; i++) {
-        const row = rowTemplate.content.cloneNode(true);
-        row.querySelector('.row-number-cell').textContent = i + ".";
-        tableBottom.appendChild(row);
-      }
-      if (addNotes) {
-        console.log('Adding notes');
-      }
+    if (addNotes) {
+      const notesTextareaTemplate = document.getElementById('notes-textarea');
+      const notesTextarea = notesTextareaTemplate.content.cloneNode(true);
+      tableBottom.appendChild(notesTextarea);
+      console.log('Adding notes');
     }
+  }
 
-    function createTable(tableId, rowsNumber, addNotes) {
-      appendTableHeader(tableId);
-      createTableRows(tableId, rowsNumber, addNotes);
-    }
+  function createTable(tableId, startNumber, rowsNumber, addNotes) {
+    appendTableHeader(tableId);
+    createTableRows(tableId, startNumber, rowsNumber, addNotes);
+  }
 
-    createTable('bottom-table-left', 15, false);
-    createTable('bottom-table-right', 5, true);
-    
+  createTable('bottom-table-left', 1, 15, false);
+  createTable('bottom-table-right', 16, 5, true);
 }
 
 if ("content" in document.createElement("template")) {
