@@ -1,4 +1,8 @@
 /* GENERAL */
+td, th {
+  box-sizing: border-box;
+  overflow: auto;
+}
 
 .page-a4 {
   margin: 0 auto;
@@ -17,6 +21,14 @@
   max-height: 1rem;
   padding: 0.1rem;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .order-heading {
   font-size: 14px;
   font-weight: bold;
@@ -24,17 +36,18 @@
   margin: 0.5rem auto;
 }
 
-#table-top, #table-bottom {
+.table-top, .table-bottom {
   border-collapse: collapse;
   border-spacing: 0 !important;
 }
-#table-top {
+.table-top {
   margin: 0 auto 1rem auto;
   width: 16cm;
 }
-#table-bottom {
+.table-bottom {
   width: 8.5cm;
   margin: 0;
+  display: inline;
 }
 
 td,
@@ -42,7 +55,7 @@ th {
   border: 1px solid #333;
   border-spacing: 0 !important;
 }
-td.boder-none,
+td.border-none,
 th.border-none {
   border: none;
 }
@@ -70,13 +83,22 @@ select.control-cell {
   font-weight: bold;
   padding-left: .1rem;
 }
-
+.title-cell.text-sm {
+  font-size: 10px;
+}
+.title-cell.text-sm small {
+  font-size: 8px;
+}
 .title-cell i {
   font-weight: normal;
   font-size: 11px;
 }
 
 /* CUSTOM ELEMENTS STYLES */
+
+.bottom-table-legend {
+  margin: 1.5rem 0 1rem 0;
+}
 /* UTILS */
 .align-center {
   text-align: center;
