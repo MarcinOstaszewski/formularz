@@ -1,3 +1,11 @@
+/* COLORS */
+:root {
+  --text-color: #333;
+  --border-color: #333;
+  --bg-color: #fff;
+  --bg-control-color: #eef;
+}
+  
 /* GENERAL */
 td, th {
   box-sizing: border-box;
@@ -5,11 +13,10 @@ td, th {
 }
 
 .page-a4 {
+  color: var(--text-color);
   margin: 0 auto;
-  padding: 0 2.5cm;
+  padding: 0;
   width: 21cm;
-  border-left: 1px dotted #333;
-  border-right: 1px dotted #333;
 }
 
 .info-by-receiver {
@@ -29,6 +36,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
 .order-heading {
   font-size: 14px;
   font-weight: bold;
@@ -36,23 +44,22 @@ input[type=number] {
   margin: 0.5rem auto;
 }
 
-.table-top, .table-bottom {
+.top-table, .bottom-table {
   border-collapse: collapse;
   border-spacing: 0 !important;
 }
-.table-top {
+.top-table {
   margin: 0 auto 1rem auto;
-  width: 16cm;
+  max-width: 18cm;
 }
-.table-bottom {
-  width: 8.5cm;
-  margin: 0;
+.bottom-table {
+  margin: 0 3mm 0 0;
   display: inline;
 }
 
 td,
 th {
-  border: 1px solid #333;
+  border: 1px solid var(--border-color);
   border-spacing: 0 !important;
 }
 td.border-none,
@@ -62,7 +69,7 @@ th.border-none {
 
 .bottom-container {
   width: 20cm;
-  margin: 0;
+  margin: 0 0 2rem 0;
   text-align: left;
 }
 
@@ -71,11 +78,24 @@ th.border-none {
   padding: 0.5rem;
   margin: 0;
   border: 0;
-  background-color: #eef;
+  background-color: var(--bg-control-color);
 }
 
 select.control-cell {
   width: 100%;
+}
+
+.bottom-table .control-cell {
+  width: calc(100% - 0.2rem);
+  padding: 0.1rem;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.bottom-table select.control-cell {
+  width: 100%;
+  line-height: 24px;
+  padding: 0.3rem 0;
 }
 
 .title-cell {
@@ -83,78 +103,65 @@ select.control-cell {
   font-weight: bold;
   padding-left: .1rem;
 }
-.title-cell.text-sm {
-  font-size: 10px;
-}
-.title-cell.text-sm small {
-  font-size: 8px;
-}
 .title-cell i {
   font-weight: normal;
   font-size: 11px;
 }
 
 /* CUSTOM ELEMENTS STYLES */
-
 .bottom-table-legend {
   margin: 1.5rem 0 1rem 0;
 }
+.row-number-cell {
+  height: 7mm;
+  text-align: center;
+}
+
+
+/* PADDINGS */
+.pl-1 { padding-left: 0.1rem; }
+.pl-2 { padding-left: 0.2rem; }
+
 /* UTILS */
+.text-sm { font-size: 10px; }
+.text-xs { font-size: 8px; }
+
 .align-center {
   text-align: center;
 }
 .h-full {
   height: 100%;
 }
-.col-4 {
-  width: 33.33333333%;
-}
-.col-6 {
-  width: 50%;
-}
-.col-8 {
-  width: 66.66666667%;
-}
-.col-12 {
-  width: 100%;
-}
 
 /* WIDTHS */
-.w-5mm { width: 5mm;}
-.w-6mm { width: 6mm;}
-.w-8mm { width: 8mm;}
-.w-9mm { width: 9mm;}
-.w-12mm { width: 12mm;}
-.w-16mm { width: 16mm;}
+.col-6 { width: 50%; }
+.col-4 { width: 33.33333333%; }
+.col-8 { width: 66.66666667%; }
+.col-12 { width: 100%; }
 
-.w-05cm {
-  width: 0.5cm;
-}
-.w-1cm {
-  width: 1cm;
-}
-.w-2cm {
-  width: 2cm;
-}
-.w-3cm {
-  width: 3cm;
-}
-.w-4cm {
-  width: 4cm;
-}
-.w-5cm {
-  width: 5cm;
-}
-.w-6cm {
-  width: 6cm;
-}
+.w-5mm { width: 5mm; }
+.w-6mm { width: 6mm; }
+.w-8mm { width: 8mm; }
+.w-9mm { width: 9mm; }
+.w-10mm { width: 10mm; }
+.w-12mm { width: 12mm; }
+.w-16mm { width: 16mm; }
+.w-20mm { width: 20mm; }
+.w-30mm { width: 30mm; }
+.w-40mm { width: 40mm; }
+.w-50mm { width: 50mm; }
+.w-60mm { width: 60mm; }
 
+/* BORDERS */
 .border-bold {
-  border: 2px solid #333;
+  border: 2px solid var(--border-color);
 }
 .border-none {
   border: none;
 }
 .bottom-dotted {
-  border-bottom: 2px dotted #333;
+  border-bottom: 2px dotted var(--border-color);
+}
+.hidden {
+  display: none;
 }

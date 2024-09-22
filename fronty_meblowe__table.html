@@ -3,66 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE</title>
   <link rel="stylesheet" href="./normalize.css">
   <link rel="stylesheet" href="./fronty_meblowe__table.css">
 </head>
 <body>
   <main class="page-a4">
-    <form action="/some-endpoint">
+    <form class="">
       <div class="info-by-receiver">
         <label for="date-of-receive">Data przyjęcia:</label>
-        <input id="date-of-receive" class="control-cell bottom-dotted w-2cm" type="date">
+        <input id="date-of-receive" class="control-cell bottom-dotted w-20mm" type="date">
         <label for="date-of-receipt">Data odbioru:</label>
-        <input id="date-of-receipt" class="control-cell bottom-dotted w-2cm" type="date">
+        <input id="date-of-receipt" class="control-cell bottom-dotted w-20mm" type="date">
         <label for="advance-payment">Zaliczka:</label>
-        <input id="advance-payment" class="control-cell bottom-dotted w-2cm" type="number">
+        <input id="advance-payment" class="control-cell bottom-dotted w-20mm" type="number">
         <strong for="client-number">NR KLIENTA:</strong>
-        <input id="client-number" class="control-cell bottom-dotted w-2cm" type="number">
+        <input id="client-number" class="control-cell bottom-dotted w-20mm" type="number">
       </div>
 
       <h4 class="order-heading">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR 
-        <input type="text" class="control-cell w-2cm bottom-dotted">
+        <input type="text" class="control-cell w-20mm bottom-dotted">
       </h4>
 
-      <table class="table-top col-12 border-bold">
+      <table class="top-table col-12 border-bold">
         <tr>
-          <td class="w-3cm title-cell">ARTYKUŁ</td>
-          <td class="w-6cm">
-            <input class="control-cell" type="number" min="0" max="999">
+          <td class="w-30mm title-cell">ARTYKUŁ</td>
+          <td class="w-60mm">
+            <input class="control-cell" type="number" min="0" max="999" required aria-required>
           </td>
-          <td class="w-2cm title-cell">GRUBOŚĆ</td>
+          <td class="w-20mm title-cell">GRUBOŚĆ</td>
           <td colspan="2">
-            <input class="control-cell" type="number">
+            <input class="control-cell" type="number" required aria-required>
           </td>
         </tr>
         <tr>
           <td class="title-cell">KOLOR <i>(folia, lakier)</i></td>
           <td>
-            <select class="control-cell">
+            <select class="control-cell" required aria-required>
               <option value="folia">proszę wybrać</option>
               <option value="folia">FOLIA</option>
               <option value="lakier">LAKIER</option>
             </select>
           </td>
-          <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY 1</td>
-          <td class="w-4cm title-cell">WYSYŁKA</td>
-          <td class="w-05cm align-center">
-            <input class="form-check-input" type="radio" name="delivery" id="shipment" value="shipment">
+          <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY</td>
+          <td class="w-40mm title-cell">WYSYŁKA</td>
+          <td class="w-5mm align-center">
+            <input class="form-check-input" type="radio" name="delivery" id="shipment" value="shipment" required aria-required>
           </td>
         </tr>
         <tr>
           <td class="title-cell">OKLEINA <i>(symbol-nr)</i></td>
-          <td><input class="control-cell" type="number" min="0" max=""></td>
+          <td>
+            <input class="control-cell" type="number" required>
+          </td>
           <td class="title-cell">ODBIÓR OSOBISTY</td>
           <td class="align-center">
-            <input class="form-check-input" type="radio" name="delivery" id="personal-collection" value="personal-collection">
+            <input class="form-check-input" type="radio" name="delivery" id="personal-collection" value="personal-collection" required>
           </td>
         </tr>
         <tr>
           <td colspan="2" class="title-cell">PATYNA <i>(jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></td>
           <td colspan="3">
-            <select class="control-cell">
+            <select class="control-cell" required>
               <option value="folia">proszę wybrać</option>
               <option value="folia">JEDNOLITA</option>
               <option value="lakier">STARA</option>
@@ -72,12 +74,14 @@
         </tr>
         <tr>
           <td colspan="2" class="title-cell">LAKIER</td>
-          <td colspan="3"><select class="control-cell">
-            <option value="folia">proszę wybrać</option>
-            <option value="folia">MAT</option>
-            <option value="lakier">MAT STRUKTURALNY</option>
-            <option value="folia">POŁYSK</option>
-          </select></td>
+          <td colspan="3">
+            <select class="control-cell" required>
+              <option value="folia">proszę wybrać</option>
+              <option value="folia">MAT</option>
+              <option value="lakier">MAT STRUKTURALNY</option>
+              <option value="folia">POŁYSK</option>
+            </select>
+          </td>
         </tr>
       </table>
 
@@ -89,98 +93,15 @@
           </small>
         </div>
 
-        <div class="inline-container">
-          <table class="table-bottom">
-            <tbody>
-              <tr>
-                <th colspan="6" class="border-none"></th>
-                <th colspan="2" class="title-cell">USŁOJENIE</th>
-              </tr>
-              <tr class="title-cell text-sm">
-                <th class="w-5mm" rowspan="2">Lp.</th>
-                <th class="w-16mm" rowspan="2">WYSOKOŚĆ</th>
-                <th class="w-16mm" rowspan="2">SZEROKOŚĆ</th>
-                <th class="w-6mm" rowspan="2">SZT.</th>
-                <th class="w-12mm" rowspan="2">RODZAJ</th>
-                <th class="w-9mm" rowspan="2"><small>RODZAJ WITRYNY</small></th>
-                <th class="align-center">&#11004;</th>
-                <th class="align-center">&#9776;</th>
-              </tr>
-              <tr class="title-cell text-sm">
-                <th class="w-8mm"><small>PION</small></th>
-                <th class="w-8mm"><small>POZIOM</small></th>
-              </tr>
-              
-              <tr>
-                <td>1.</td>
-                <td><input class="control-cell" type="number" min="0" max="1200"></td>
-                <td><input class="control-cell" type="number" min="0" max="1200"></td>
-                <td><input class="control-cell" type="number" min="0" max="500"></td>
-                <td max-width="12mm">
-                  <select class="control-cell" name="kind1" id="kind1">
-                    <option value="unselected"></option>
-                    <option value="witryna">witryna</option>
-                    <option value="pilaster">pilaster</option>
-                    <option value="blenda">blenda</option>
-                    <option value="kowbojki">kowbojki</option>
-                    <option value="winiarka">winiarka</option>
-                    <option value="listwa">listwa</option>
-                    <option value="szuflada">szuflada</option>
-                  </select>
-                </td>
-                <td>
-                  <select class="control-cell" name="kind2" id="kind2">
-                    <option value="unselected"></option>
-                    <option value="pusta">pusta</option>
-                    <option value="folia1">SZ1F</option>
-                    <option value="lakier1">SZ1L</option>
-                    <option value="folia2">SZ2F</option>
-                    <option value="lakier2">SZ2L</option>
-                    <option value="folia3">SZ3F</option>
-                    <option value="lakier3">SZ3L</option>
-                    <option value="folia4">SZ4F</option>
-                    <option value="lakier4">SZ4L</option>
-                    <option value="folia5">SZ5F</option>
-                    <option value="lakier5">SZ5L</option>
-                    <option value="folia6">SZ6F</option>
-                    <option value="lakier6">SZ6L</option>
-                    <option value="folia7">SZ7F</option>
-                    <option value="lakier7">SZ7L</option>
-                    <option value="folia8">SZ8F</option>
-                    <option value="lakier8">SZ8L</option>
-                    <option value="folia9">SZ9F</option>
-                    <option value="lakier9">SZ9L</option>
-                    <option value="folia10">SZ10F</option>
-                    <option value="lakier10">SZ10L</option>
-                    <option value="folia11">SZ11F</option>
-                    <option value="lakier11">SZ11L</option>
-                    <option value="folia12">SZ12F</option>
-                    <option value="lakier12">SZ12L</option>
-                    <option value="folia13">SZ13F</option>
-                    <option value="lakier13">SZ13L</option>
-                    <option value="folia14">SZ14F</option>
-                    <option value="lakier14">SZ14L</option>
-                    <option value="folia15">SZ15F</option>
-                    <option value="lakier15">SZ15L</option>
-                    <option value="folia16">SZ16F</option>
-                    <option value="lakier16">SZ16L</option>
-                  </select>
-                </td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+        <div id="bottom-tables-container"></div>
 
-          
-          
-        </div>
       </div>
     </form>
   </main>
+  
 
-  <template id="bottom-table-header">
-    <table class="table-bottom">
+  <template id="bottom-table-header" class="hidden">
+    <table class="bottom-table">
       <tbody>
         <tr>
           <th colspan="6" class="border-none"></th>
@@ -188,29 +109,34 @@
         </tr>
         <tr class="title-cell text-sm">
           <th class="w-5mm" rowspan="2">Lp.</th>
-          <th class="w-16mm" rowspan="2">WYSOKOŚĆ</th>
-          <th class="w-16mm" rowspan="2">SZEROKOŚĆ</th>
-          <th class="w-6mm" rowspan="2">SZT.</th>
+          <th class="w-20mm" rowspan="2">WYSOKOŚĆ</th>
+          <th class="w-20mm" rowspan="2">SZEROKOŚĆ</th>
+          <th class="w-8mm" rowspan="2">SZT.</th>
           <th class="w-12mm" rowspan="2">RODZAJ</th>
-          <th class="w-9mm" rowspan="2"><small>RODZAJ WITRYNY</small></th>
+          <th class="w-9mm text-xs" rowspan="2">RODZAJ WITRYNY</th>
           <th class="align-center">&#11004;</th>
           <th class="align-center">&#9776;</th>
         </tr>
-        <tr class="title-cell text-sm">
-          <th class="w-8mm"><small>PION</small></th>
-          <th class="w-8mm"><small>POZIOM</small></th>
+        <tr class="title-cell">
+          <th class="w-8mm text-xs">PION</th>
+          <th class="w-8mm text-xs">POZIOM</th>
         </tr>
-
       </tbody>
     </table>
   </template>
 
   <template id="bottom-table-row">
     <tr>
-      <td>1.</td>
-      <td><input class="control-cell" type="number" min="0" max="1200"></td>
-      <td><input class="control-cell" type="number" min="0" max="1200"></td>
-      <td><input class="control-cell" type="number" min="0" max="500"></td>
+      <td class="row-number-cell"></td>
+      <td>
+        <label for="height" class="hidden">Wysokość</label>
+        <input name="height" class="control-cell" type="number" min="0" max="1200" aria-describedby="height">
+      </td>
+      <td>
+        <label for="width" class="hidden">Szerokość</label>
+        <input name="width" class="control-cell" type="number" min="0" max="1200">
+      </td>
+      <td><input name="pieces" class="control-cell" type="number" min="0" max="500"></td>
       <td max-width="12mm">
         <select class="control-cell" name="kind1" id="kind1">
           <option value="unselected"></option>
@@ -224,7 +150,7 @@
         </select>
       </td>
       <td>
-        <select class="control-cell" name="kind2" id="kind2">
+        <select class="control-cell" name="row1-kind2" id="row1-kind2">
           <option value="unselected"></option>
           <option value="pusta">pusta</option>
           <option value="folia1">SZ1F</option>
@@ -261,8 +187,12 @@
           <option value="lakier16">SZ16L</option>
         </select>
       </td>
-      <td></td>
-      <td></td>
+      <td class="align-center">
+        <input type="radio" id="row1-vertical" name="row1-direction" value="row1-vertical">
+      </td>
+      <td class="align-center">
+        <input type="radio" id="row1-horizontal" name="row1-direction" value="row1-horizontal">
+      </td>
     </tr>
   </template>
 
