@@ -101,27 +101,27 @@
             <td colspan="4" class="align-center">ZAMAWIAJĄCY</td>
           </tr>
           <tr>
-            <td rowspan="2" class="w-18mm h-12mm">Nazwa<br />Imię i nazwisko</td>
+            <td rowspan="2" class="w-20mm h-12mm">Nazwa<br />Imię i nazwisko<sup>*</sup></td>
             <td rowspan="2" class="w-70mm p-0 h-12mm">
               <textarea class="control-cell" type="text" required aria-required rows="5"></textarea>
             </td>
-            <td class="w-18mm h-6mm">NIP</td>
+            <td class="w-18mm h-6mm">NIP<sup>*</sup></td>
             <td class="w-70mm">
               <input class="control-cell" type="text" required aria-required>
             </td>
           </tr>
           <tr>
-            <td class="h-6mm">E-mail</td>
+            <td class="h-6mm">E-mail<sup>*</sup></td>
             <td>
               <input class="control-cell" type="email" required aria-required>
             </td>
           </tr>
           <tr>
-            <td rowspan="2" class="h-12mm">Adres</td>
+            <td rowspan="2" class="h-12mm">Adres<sup>*</sup></td>
             <td rowspan="2">
               <textarea class="control-cell" type="text" required aria-required rows="5"></textarea>
             </td>
-            <td class="h-6mm">Nr tel.</td>
+            <td class="h-6mm">Nr tel.<sup>*</sup></td>
             <td>
               <input class="control-cell" type="tel" required aria-required>
             </td>
@@ -152,10 +152,17 @@
           </div>
           <div class="align-right pt-02">
             <small>Zakład Handlowo-Produkcyjny „KOBAX” Pająk Krzysztof | Zebrzydowice 289A, 34-130 Kalwaria Zebrzydowska</small><br />
-            <small>NIP 551-000-42-29 | <a href="mailto:zakupy@kobax.pl" >zakupy@kobax.pl</a> , <a href="www.kobax.pl">www.kobax.pl</a> | tel. +48 33 876 70 83, +48 604 152 240</small>
+            <small>NIP 551-000-42-29 | <a href="mailto:zakupy@kobax.pl" >zakupy@kobax.pl</a> | <a href="www.kobax.pl">www.kobax.pl</a> | tel. +48 33 876 70 83, +48 604 152 240</small>
           </div>
         </div>
       </div>
+      <label id="height-label" class="hidden">Wysokość</label>
+      <label id="width-label" class="hidden">Szerokość</label>
+      <label id="quantity-label" class="hidden">Ilość</label>
+      <label id="kind-label" class="hidden">Rodzaj</label>
+      <label id="display-label" class="hidden">Rodzaj witryny</label>
+      <label id="vertical-label" class="hidden">Pion</label>
+      <label id="hirizontal-label" class="hidden">Poziom</label>
     </form>
   </main>
   
@@ -197,16 +204,16 @@
     <tr>
       <td class="row-number-cell text-bold text-sm align-center h-7mm"></td>
       <td>
-        <label for="height" class="hidden">Wysokość</label>
-        <input name="height" class="control-cell" type="number" min="0" max="1200" aria-describedby="height">
+        <input id="height-column" class="control-cell" type="number" min="0" max="1200" aria-describedby="height-label">
       </td>
       <td>
-        <label for="width" class="hidden">Szerokość</label>
-        <input name="width" class="control-cell" type="number" min="0" max="1200">
+        <input id="width-column" class="control-cell" type="number" min="0" max="1200" aria-describedby="width-label">
       </td>
-      <td><input name="pieces" class="control-cell" type="number" min="0" max="500"></td>
       <td>
-        <select class="control-cell kind-selector" name="kind1" id="kind1">
+        <input id="quantity-column" class="control-cell" type="number" min="0" max="500" aria-describedby="quantity-label">
+      </td>
+      <td>
+        <select id="kind-column" class="control-cell narrow-selector">
           <option value="unselected"></option>
           <option value="witryna">witryna</option>
           <option value="pilaster">pilaster</option>
@@ -218,7 +225,7 @@
         </select>
       </td>
       <td>
-        <select class="control-cell kind-selector" name="row1-kind2" id="row1-kind2">
+        <select id="display-column" class="control-cell narrow-selector">
           <option value="unselected"></option>
           <option value="pusta">pusta</option>
           <option value="folia1">SZ1F</option>
@@ -256,10 +263,10 @@
         </select>
       </td>
       <td class="align-center">
-        <input type="radio" id="row1-vertical" name="row1-direction" value="row1-vertical">
+        <input type="radio" id="vertical-column" value="vertical">
       </td>
       <td class="align-center">
-        <input type="radio" id="row1-horizontal" name="row1-direction" value="row1-horizontal">
+        <input type="radio" id="horizontal-column" value="horizontal">
       </td>
     </tr>
   </template>

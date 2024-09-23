@@ -93,7 +93,7 @@ select.control-cell {
   line-height: 24px;
 }
 
-.bottom-table .control-cell.kind-selector {
+.bottom-table .control-cell.narrow-selector {
   font-size: 9px;
   padding: 0.1rem;
   width: 100%;
