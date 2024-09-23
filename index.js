@@ -3,11 +3,25 @@ function printForm(e) {
   window.print();
 }
 
-function validateAndSubmitForm(e) {
+function validateForm(data) {
+  const requiredEntries = ["name-surname", "email", "nip", "address", "phone", 
+    "article", "thickness", "color", "delivery", "patine", "veneer", "lacquer"];
+  const isValid = requiredEntries.find(entry => data.get(entry) === '') || [];
+  
+  return isValid.length === 0;
+}
+
+function submitForm(e) {
   e.preventDefault();
-  const form = document.getElementById("furniture-fronts-order");
-  console.log(form);
-  console.log(new FormData(form));
+  const form = document.querySelector("form");
+  const data = new FormData(form);
+  const entries = {};
+  data.entries().forEach(entry => entries[entry[0]] = entry[1]); 
+  console.log('entries', entries);
+  
+  const isValid = validateForm(data);
+  console.log('isValid', isValid);
+  
 }
 
 function createBottomTable() {
@@ -87,4 +101,4 @@ const printPageButton = document.getElementById("print-page");
 printPageButton.addEventListener("click", printForm);
 
 const sendOrderButton = document.getElementById("send-order");
-sendOrderButton.addEventListener("click", validateAndSubmitForm);
+sendOrderButton.addEventListener("click", submitForm);

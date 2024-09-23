@@ -13,60 +13,61 @@
     <form id="furniture-fronts-order">
       <div class="info-by-receiver">
         <label for="date-of-receive">Data przyjęcia:</label>
-        <input id="date-of-receive" class="control-cell bottom-dotted w-20mm" type="date">
+        <input id="date-of-receive" name="date-of-receive" class="control-cell bottom-dotted w-20mm" type="date">
         <label for="date-of-receipt">Data odbioru:</label>
-        <input id="date-of-receipt" class="control-cell bottom-dotted w-20mm" type="date">
+        <input id="date-of-receipt" name="date-of-receipt" class="control-cell bottom-dotted w-20mm" type="date">
         <label for="advance-payment">Zaliczka:</label>
-        <input id="advance-payment" class="control-cell bottom-dotted w-20mm" type="number">
-        <strong for="client-number">NR KLIENTA:</strong>
-        <input id="client-number" class="control-cell bottom-dotted w-20mm" type="number">
+        <input id="advance-payment" name="advance-payment" class="control-cell bottom-dotted w-20mm" type="number">
+        <label for="client-number"><strong>NR KLIENTA:</strong></label>
+        <input id="client-number" name="client-number" class="control-cell bottom-dotted w-20mm" type="number">
       </div>
 
-      <h4 class="order-heading">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR 
-        <input id="order-number" type="text" class="control-cell w-20mm bottom-dotted">
+      <h4 class="order-heading">
+        <label for="order-number">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR</label>
+        <input id="order-number" name="order-number" type="text" class="control-cell w-20mm bottom-dotted">
       </h4>
 
       <table class="top-table col-12 border-bold">
         <tr>
-          <td class="w-30mm title-cell">ARTYKUŁ</td>
+          <td class="w-30mm title-cell"><label for="article">ARTYKUŁ</label></td>
           <td class="w-60mm">
-            <input id="article" class="control-cell" type="number" min="0" max="999" required aria-required>
+            <input id="article" name="article" class="control-cell" type="number" min="0" max="999" required aria-required>
           </td>
-          <td class="w-20mm title-cell">GRUBOŚĆ</td>
+          <td class="w-20mm title-cell"><label for="thickness">GRUBOŚĆ</label></td>
           <td colspan="2">
-            <input id="thickness" class="control-cell" type="number" required aria-required>
+            <input id="thickness" name="thickness" class="control-cell" type="number" required aria-required>
           </td>
         </tr>
         <tr>
-          <td class="title-cell">KOLOR <i>(folia, lakier)</i></td>
+          <td class="title-cell"><label for="color">KOLOR <i>(folia, lakier)</i></label></td>
           <td>
-            <select id="color" class="control-cell" required aria-required>
-              <option value="unselected">proszę wybrać</option>
+            <select id="color" name="color" class="control-cell" required aria-required>
+              <option value="">proszę wybrać</option>
               <option value="foil">FOLIA</option>
               <option value="lacquer">LAKIER</option>
             </select>
           </td>
           <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY</td>
-          <td class="w-40mm title-cell">WYSYŁKA</td>
+          <td class="w-40mm title-cell"><label for="shipment">WYSYŁKA</label></td>
           <td class="w-5mm align-center">
-            <input class="form-check-input" type="radio" name="delivery" id="shipment" value="shipment" required aria-required>
+            <input id="shipment" name="delivery" class="form-check-input" type="radio" value="shipment" required aria-required>
           </td>
         </tr>
         <tr>
-          <td class="title-cell">OKLEINA <i>(symbol-nr)</i></td>
+          <td class="title-cell"><label for="veneer">OKLEINA <i>(symbol-nr)</i></label></td>
           <td>
-            <input class="control-cell" type="number" required>
+            <input id="veneer" name="veneer" class="control-cell" type="number" required>
           </td>
-          <td class="title-cell">ODBIÓR OSOBISTY</td>
+          <td class="title-cell"><label for="personal-collection">ODBIÓR OSOBISTY</label></td>
           <td class="align-center">
-            <input class="form-check-input" type="radio" name="delivery" id="personal-collection" value="personal-collection" required>
+            <input id="personal-collection" name="delivery" class="form-check-input" type="radio" value="personal-collection" required aria-required>
           </td>
         </tr>
         <tr>
-          <td colspan="2" class="title-cell">PATYNA <i>(brak, jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></td>
+          <td colspan="2" class="title-cell"><label for="patine">PATYNA <i>(brak, jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></label></td>
           <td colspan="3">
-            <select class="control-cell" required>
-              <option value="unselected">proszę wybrać</option>
+            <select id="patine" name="patine" class="control-cell" required>
+              <option value="">proszę wybrać</option>
               <option value="none">BRAK</option>
               <option value="uniform">JEDNOLITA</option>
               <option value="old">STARA</option>
@@ -75,10 +76,10 @@
           </td>
         </tr>
         <tr>
-          <td colspan="2" class="title-cell">LAKIER</td>
+          <td colspan="2" class="title-cell"><label for="lacquer">LAKIER</label></td>
           <td colspan="3">
-            <select class="control-cell" required>
-              <option value="unselected">proszę wybrać</option>
+            <select id="lacquer" name="lacquer" class="control-cell" required>
+              <option value="">proszę wybrać</option>
               <option value="mat">MAT</option>
               <option value="structural-mat">MAT STRUKTURALNY</option>
               <option value="gloss">POŁYSK</option>
@@ -102,29 +103,29 @@
             <td colspan="4" class="align-center">ZAMAWIAJĄCY</td>
           </tr>
           <tr>
-            <td rowspan="2" class="w-20mm h-12mm">Nazwa<br />Imię i nazwisko<sup>*</sup></td>
+            <td rowspan="2" class="w-20mm h-12mm"><label for="name-surname">Nazwa<br />Imię i nazwisko<sup>*</sup></label></td>
             <td rowspan="2" class="w-70mm p-0 h-12mm">
-              <textarea id="name-surname" class="control-cell" type="text" required aria-required rows="5"></textarea>
+              <textarea id="name-surname" name="name-surname"class="control-cell" type="text" required aria-required rows="5"></textarea>
             </td>
-            <td class="w-18mm h-6mm">NIP<sup>*</sup></td>
+            <td class="w-18mm h-6mm"><label for="nip">NIP<sup>*</sup></label></td>
             <td class="w-70mm">
-              <input id="nip" class="control-cell" type="text" required aria-required>
+              <input id="nip" name="nip" class="control-cell" type="number" required aria-required>
             </td>
           </tr>
           <tr>
-            <td class="h-6mm">E-mail<sup>*</sup></td>
+            <td class="h-6mm"><label for="email">E-mail<sup>*</sup></label></td>
             <td>
-              <input id="email" class="control-cell" type="email" required aria-required>
+              <input id="email" name="email" class="control-cell" type="email" required aria-required>
             </td>
           </tr>
           <tr>
-            <td rowspan="2" class="h-12mm">Adres<sup>*</sup></td>
+            <td rowspan="2" class="h-12mm"><label for="address">Adres<sup>*</sup></label></td>
             <td rowspan="2">
-              <textarea id="address" class="control-cell" type="text" required aria-required rows="5"></textarea>
+              <textarea id="address" name="address" class="control-cell" type="text" required aria-required rows="5"></textarea>
             </td>
-            <td class="h-6mm">Nr tel.<sup>*</sup></td>
+            <td class="h-6mm"><label for="phone">Nr tel.<sup>*</sup></label></td>
             <td>
-              <input id="phone" class="control-cell" type="tel" required aria-required>
+              <input id="phone" name="phone" class="control-cell" type="number" required aria-required>
             </td>
           </tr>
           <tr>
@@ -135,13 +136,13 @@
 
         <div class="signatures">
           <div class="flex-column align-center">
-            <input id="orderer-signature" class="control-cell bottom-dotted w-40mm" type="text">
+            <input id="orderer-signature" name="orderer-signature" class="control-cell bottom-dotted w-40mm" type="text">
             <small>(podpis zamawiającego)</small>
           </div>
-          <button class="bottom-button" id="print-page">WYDRUKUJ</button>
-          <button class="bottom-button" id="send-order" type="submit">WYŚLIJ</button>
+          <button id="print-page" name="print-page" class="bottom-button no-print">WYDRUKUJ</button>
+          <button id="send-order" name="send-order" class="bottom-button no-print hidden" type="submit">WYŚLIJ</button>
           <div class="flex-column align-center">
-            <input id="receipient-signature" class="control-cell bottom-dotted w-40mm" type="text">
+            <input id="receipient-signature" name="receipient-signature" class="control-cell bottom-dotted w-40mm" type="text">
             <small>(podpis przyjmującego)</small>
           </div>
         </div>
@@ -217,7 +218,7 @@
       </td>
       <td>
         <select id="kind-column" class="control-cell narrow-selector">
-          <option value="unselected"></option>
+          <option value=""></option>
           <option value="witryna">witryna</option>
           <option value="pilaster">pilaster</option>
           <option value="blenda">blenda</option>
@@ -229,7 +230,7 @@
       </td>
       <td>
         <select id="display-column" class="control-cell narrow-selector">
-          <option value="unselected"></option>
+          <option value=""></option>
           <option value="pusta">pusta</option>
           <option value="SZ1F">SZ1F</option>
           <option value="SZ1L">SZ1L</option>
@@ -280,11 +281,13 @@
         <table class="col-12">
           <tbody>
             <tr>
-              <td class="border-none text-sm align-center p-03">MIEJSCE NA DODATKOWE INFORMACJE</td>
+              <td class="border-none text-sm align-center p-02">
+                <label for="notes" class="display-block">MIEJSCE NA DODATKOWE INFORMACJE</label>
+              </td>
             </tr>
             <tr class="textarea">
               <td colspan="8" class="border-none p-0">
-                <label for="notes" class="hidden">Dodatkowe informacje</label>
+                </label>
                 <textarea class="control-cell h-full" rows="11" name="notes" id="notes"></textarea>
               </td>
             </tr>
