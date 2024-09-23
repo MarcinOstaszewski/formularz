@@ -10,7 +10,7 @@
 </head>
 <body>
   <main class="page-a4">
-    <form class="">
+    <form id="furniture-fronts-order">
       <div class="info-by-receiver">
         <label for="date-of-receive">Data przyjęcia:</label>
         <input id="date-of-receive" class="control-cell bottom-dotted w-20mm" type="date">
@@ -23,27 +23,27 @@
       </div>
 
       <h4 class="order-heading">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR 
-        <input type="text" class="control-cell w-20mm bottom-dotted">
+        <input id="order-number" type="text" class="control-cell w-20mm bottom-dotted">
       </h4>
 
       <table class="top-table col-12 border-bold">
         <tr>
           <td class="w-30mm title-cell">ARTYKUŁ</td>
           <td class="w-60mm">
-            <input class="control-cell" type="number" min="0" max="999" required aria-required>
+            <input id="article" class="control-cell" type="number" min="0" max="999" required aria-required>
           </td>
           <td class="w-20mm title-cell">GRUBOŚĆ</td>
           <td colspan="2">
-            <input class="control-cell" type="number" required aria-required>
+            <input id="thickness" class="control-cell" type="number" required aria-required>
           </td>
         </tr>
         <tr>
           <td class="title-cell">KOLOR <i>(folia, lakier)</i></td>
           <td>
-            <select class="control-cell" required aria-required>
-              <option value="folia">proszę wybrać</option>
-              <option value="folia">FOLIA</option>
-              <option value="lakier">LAKIER</option>
+            <select id="color" class="control-cell" required aria-required>
+              <option value="unselected">proszę wybrać</option>
+              <option value="foil">FOLIA</option>
+              <option value="lacquer">LAKIER</option>
             </select>
           </td>
           <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY</td>
@@ -66,11 +66,11 @@
           <td colspan="2" class="title-cell">PATYNA <i>(brak, jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></td>
           <td colspan="3">
             <select class="control-cell" required>
-              <option value="folia">proszę wybrać</option>
-              <option value="folia">BRAK</option>
-              <option value="folia">JEDNOLITA</option>
-              <option value="lakier">STARA</option>
-              <option value="folia">JEDNOLITA CIEMNE ROGI</option>
+              <option value="unselected">proszę wybrać</option>
+              <option value="none">BRAK</option>
+              <option value="uniform">JEDNOLITA</option>
+              <option value="old">STARA</option>
+              <option value="uniform-dark-corners">JEDNOLITA CIEMNE ROGI</option>
             </select>
           </td>
         </tr>
@@ -78,10 +78,10 @@
           <td colspan="2" class="title-cell">LAKIER</td>
           <td colspan="3">
             <select class="control-cell" required>
-              <option value="folia">proszę wybrać</option>
-              <option value="folia">MAT</option>
-              <option value="lakier">MAT STRUKTURALNY</option>
-              <option value="folia">POŁYSK</option>
+              <option value="unselected">proszę wybrać</option>
+              <option value="mat">MAT</option>
+              <option value="structural-mat">MAT STRUKTURALNY</option>
+              <option value="gloss">POŁYSK</option>
             </select>
           </td>
         </tr>
@@ -104,27 +104,27 @@
           <tr>
             <td rowspan="2" class="w-20mm h-12mm">Nazwa<br />Imię i nazwisko<sup>*</sup></td>
             <td rowspan="2" class="w-70mm p-0 h-12mm">
-              <textarea class="control-cell" type="text" required aria-required rows="5"></textarea>
+              <textarea id="name-surname" class="control-cell" type="text" required aria-required rows="5"></textarea>
             </td>
             <td class="w-18mm h-6mm">NIP<sup>*</sup></td>
             <td class="w-70mm">
-              <input class="control-cell" type="text" required aria-required>
+              <input id="nip" class="control-cell" type="text" required aria-required>
             </td>
           </tr>
           <tr>
             <td class="h-6mm">E-mail<sup>*</sup></td>
             <td>
-              <input class="control-cell" type="email" required aria-required>
+              <input id="email" class="control-cell" type="email" required aria-required>
             </td>
           </tr>
           <tr>
             <td rowspan="2" class="h-12mm">Adres<sup>*</sup></td>
             <td rowspan="2">
-              <textarea class="control-cell" type="text" required aria-required rows="5"></textarea>
+              <textarea id="address" class="control-cell" type="text" required aria-required rows="5"></textarea>
             </td>
             <td class="h-6mm">Nr tel.<sup>*</sup></td>
             <td>
-              <input class="control-cell" type="tel" required aria-required>
+              <input id="phone" class="control-cell" type="tel" required aria-required>
             </td>
           </tr>
           <tr>
@@ -138,9 +138,11 @@
             <input id="orderer-signature" class="control-cell bottom-dotted w-40mm" type="text">
             <small>(podpis zamawiającego)</small>
           </div>
+          <button class="bottom-button" id="print-page">WYDRUKUJ</button>
+          <button class="bottom-button" id="send-order" type="submit">WYŚLIJ</button>
           <div class="flex-column align-center">
             <input id="receipient-signature" class="control-cell bottom-dotted w-40mm" type="text">
-            <small>(podpis zamawiającego)</small>
+            <small>(podpis przyjmującego)</small>
           </div>
         </div>
         <div class="footnotes">
@@ -229,45 +231,45 @@
         <select id="display-column" class="control-cell narrow-selector">
           <option value="unselected"></option>
           <option value="pusta">pusta</option>
-          <option value="folia1">SZ1F</option>
-          <option value="lakier1">SZ1L</option>
-          <option value="folia2">SZ2F</option>
-          <option value="lakier2">SZ2L</option>
-          <option value="folia3">SZ3F</option>
-          <option value="lakier3">SZ3L</option>
-          <option value="folia4">SZ4F</option>
-          <option value="lakier4">SZ4L</option>
-          <option value="folia5">SZ5F</option>
-          <option value="lakier5">SZ5L</option>
-          <option value="folia6">SZ6F</option>
-          <option value="lakier6">SZ6L</option>
-          <option value="folia7">SZ7F</option>
-          <option value="lakier7">SZ7L</option>
-          <option value="folia8">SZ8F</option>
-          <option value="lakier8">SZ8L</option>
-          <option value="folia9">SZ9F</option>
-          <option value="lakier9">SZ9L</option>
-          <option value="folia10">SZ10F</option>
-          <option value="lakier10">SZ10L</option>
-          <option value="folia11">SZ11F</option>
-          <option value="lakier11">SZ11L</option>
-          <option value="folia12">SZ12F</option>
-          <option value="lakier12">SZ12L</option>
-          <option value="folia13">SZ13F</option>
-          <option value="lakier13">SZ13L</option>
-          <option value="folia14">SZ14F</option>
-          <option value="lakier14">SZ14L</option>
-          <option value="folia15">SZ15F</option>
-          <option value="lakier15">SZ15L</option>
-          <option value="folia16">SZ16F</option>
-          <option value="lakier16">SZ16L</option>
+          <option value="SZ1F">SZ1F</option>
+          <option value="SZ1L">SZ1L</option>
+          <option value="SZ2F">SZ2F</option>
+          <option value="SZ2L">SZ2L</option>
+          <option value="SZ3F">SZ3F</option>
+          <option value="SZ3L">SZ3L</option>
+          <option value="SZ4F">SZ4F</option>
+          <option value="SZ4L">SZ4L</option>
+          <option value="SZ5F">SZ5F</option>
+          <option value="SZ5L">SZ5L</option>
+          <option value="SZ6F">SZ6F</option>
+          <option value="SZ6L">SZ6L</option>
+          <option value="SZ7F">SZ7F</option>
+          <option value="SZ7L">SZ7L</option>
+          <option value="SZ8F">SZ8F</option>
+          <option value="SZ8L">SZ8L</option>
+          <option value="SZ9F">SZ9F</option>
+          <option value="SZ9L">SZ9L</option>
+          <option value="SZ10F">SZ10F</option>
+          <option value="SZ10L">SZ10L</option>
+          <option value="SZ11F">SZ11F</option>
+          <option value="SZ11L">SZ11L</option>
+          <option value="SZ12F">SZ12F</option>
+          <option value="SZ12L">SZ12L</option>
+          <option value="SZ13F">SZ13F</option>
+          <option value="SZ13L">SZ13L</option>
+          <option value="SZ14F">SZ14F</option>
+          <option value="SZ14L">SZ14L</option>
+          <option value="SZ15F">SZ15F</option>
+          <option value="SZ15L">SZ15L</option>
+          <option value="SZ16F">SZ16F</option>
+          <option value="SZ16L">SZ16L</option>
         </select>
       </td>
       <td class="align-center">
-        <input type="radio" id="vertical-column" value="vertical">
+        <input id="vertical-column" type="radio" value="vertical">
       </td>
       <td class="align-center">
-        <input type="radio" id="horizontal-column" value="horizontal">
+        <input id="horizontal-column" type="radio" value="horizontal">
       </td>
     </tr>
   </template>
@@ -290,8 +292,6 @@
         </table>
       </td>
   </template>
-
-  <template>&#8803; &#8422; &#8210; &#8214; &#9776; &#10996; &#11004;</template>
 
   <script src="./index.js"></script>
 </body>

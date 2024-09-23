@@ -1,5 +1,17 @@
+function printForm(e) {
+  e.preventDefault();
+  window.print();
+}
+
+function validateAndSubmitForm(e) {
+  e.preventDefault();
+  const form = document.getElementById("furniture-fronts-order");
+  console.log(form);
+  console.log(new FormData(form));
+}
+
 function createBottomTable() {
-  
+
   function appendTableHeader(tableId, addNotes) {
     const headerTemplate = document.getElementById("bottom-table-header");
     const tablesContainer = document.getElementById("bottom-tables-container");
@@ -70,3 +82,9 @@ if ("content" in document.createElement("template")) {
 } else {
   console.error("Your browser does not support templates");
 }
+
+const printPageButton = document.getElementById("print-page");
+printPageButton.addEventListener("click", printForm);
+
+const sendOrderButton = document.getElementById("send-order");
+sendOrderButton.addEventListener("click", validateAndSubmitForm);

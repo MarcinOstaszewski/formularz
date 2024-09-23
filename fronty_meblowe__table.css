@@ -75,8 +75,8 @@ th.border-none {
 }
 
 .control-cell {
-  width: calc(100% - 1rem);
-  padding: 0.5rem;
+  width: calc(100% - 0.5rem);
+  padding: 0.25rem;
   margin: 0;
   border: 0;
   background-color: var(--bg-control-color);
@@ -128,9 +128,17 @@ textarea.control-cell {
 
 .signatures {
   width: 16cm;
+  height: 1.5cm;
   margin: 0 auto 1rem auto;
   display: flex;
   justify-content: space-between;
+}
+
+.bottom-button {
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  margin: auto 0 0 0;
+  background-color: var(--bg-color);
 }
 
 .footnotes {
@@ -144,7 +152,7 @@ textarea.control-cell {
 }
 
 .orderer {
-  margin: 1.5rem auto 0.5rem;
+  margin: 0.75rem auto 0.5rem;
   border-collapse: collapse;
 }
 .orderer textarea {
