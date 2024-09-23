@@ -1,10 +1,15 @@
 function createBottomTable() {
   
-  function appendTableHeader(tableId) {
+  function appendTableHeader(tableId, addNotes) {
     const headerTemplate = document.getElementById('bottom-table-header');
     const tablesContainer = document.getElementById('bottom-tables-container');
     const tableHeader = headerTemplate.content.cloneNode(true);
     tableHeader.querySelector('.bottom-table').id = tableId;
+    if (addNotes) {
+      const warningTextCell = tableHeader.getElementById('warning-text');
+      console.log(warningTextCell);
+      warningTextCell.innerHTML = '';
+    }
     tablesContainer.appendChild(tableHeader);
   }
   
@@ -20,12 +25,11 @@ function createBottomTable() {
       const notesTextareaTemplate = document.getElementById('notes-textarea');
       const notesTextarea = notesTextareaTemplate.content.cloneNode(true);
       tableBottom.appendChild(notesTextarea);
-      console.log('Adding notes');
     }
   }
 
   function createTable(tableId, startNumber, rowsNumber, addNotes) {
-    appendTableHeader(tableId);
+    appendTableHeader(tableId, addNotes);
     createTableRows(tableId, startNumber, rowsNumber, addNotes);
   }
 

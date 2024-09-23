@@ -62,10 +62,11 @@
           </td>
         </tr>
         <tr>
-          <td colspan="2" class="title-cell">PATYNA <i>(jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></td>
+          <td colspan="2" class="title-cell">PATYNA <i>(brak, jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></td>
           <td colspan="3">
             <select class="control-cell" required>
               <option value="folia">proszę wybrać</option>
+              <option value="folia">BRAK</option>
               <option value="folia">JEDNOLITA</option>
               <option value="lakier">STARA</option>
               <option value="folia">JEDNOLITA CIEMNE ROGI</option>
@@ -86,7 +87,7 @@
       </table>
 
       <div class="bottom-container">
-        <div class="bottom-table-legend">
+        <div class="bottom-table-legend text-sm p-02">
           <small class="">
             Wymiary proszę podawać w milimetrach [mm]<br />
             W rubryce rodzaj należy wpisać czy jest to witryna, pilaster, blenda, kowbojki, winiarka, listwa wieńcząca, szuflada.
@@ -100,33 +101,33 @@
             <td colspan="4" class="align-center">ZAMAWIAJĄCY</td>
           </tr>
           <tr>
-            <td rowspan="2" class="w-18mm h-14mm">Nazwa<br />Imię i nazwisko</td>
-            <td rowspan="2" class="w-70mm p-0">
+            <td rowspan="2" class="w-18mm h-12mm">Nazwa<br />Imię i nazwisko</td>
+            <td rowspan="2" class="w-70mm p-0 h-12mm">
               <textarea class="control-cell" type="text" required aria-required rows="5"></textarea>
             </td>
-            <td class="w-18mm h-7mm">NIP</td>
+            <td class="w-18mm h-6mm">NIP</td>
             <td class="w-70mm">
               <input class="control-cell" type="text" required aria-required>
             </td>
           </tr>
           <tr>
-            <td class="h-7mm">E-mail</td>
+            <td class="h-6mm">E-mail</td>
             <td>
               <input class="control-cell" type="email" required aria-required>
             </td>
           </tr>
           <tr>
-            <td rowspan="2" class="h-14mm">Adres</td>
+            <td rowspan="2" class="h-12mm">Adres</td>
             <td rowspan="2">
               <textarea class="control-cell" type="text" required aria-required rows="5"></textarea>
             </td>
-            <td class="h-7mm">Nr tel.</td>
+            <td class="h-6mm">Nr tel.</td>
             <td>
               <input class="control-cell" type="tel" required aria-required>
             </td>
           </tr>
           <tr>
-            <td class="h-7mm"></td>
+            <td class="h-6mm"></td>
             <td></td>
           </tr>
         </table>
@@ -163,8 +164,16 @@
     <table class="bottom-table">
       <tbody>
         <tr>
-          <th colspan="6" class="border-none"></th>
-          <th colspan="2" class="title-cell">USŁOJENIE</th>
+          <th colspan="6" rowspan="2" class="border-none text-warning p-02" id="warning-text">
+            <div class="text-sm">!!UWAGA!!</div>
+            <div class="text-xs">W przypadku braku zaznaczenia kierunku ułożenia usłojenia,</div>
+            <div class="text-xs">zostanie ono wykonane wzdłuż wysokości (po pierwszym wymiarze),</div>
+            <div class="text-xs">wówczas maksymalna szerokość wynosi 1200 mm.</div>
+          </th>
+          <th class="border-none h-7mm"></th>
+        </tr>
+        <tr>
+          <th colspan="2" class="title-cell h-7mm">USŁOJENIE</th>
         </tr>
         <tr class="title-cell text-sm">
           <th class="w-5mm" rowspan="2">Lp.</th>
@@ -186,7 +195,7 @@
 
   <template id="bottom-table-row">
     <tr>
-      <td class="row-number-cell"></td>
+      <td class="row-number-cell text-bold text-sm align-center h-7mm"></td>
       <td>
         <label for="height" class="hidden">Wysokość</label>
         <input name="height" class="control-cell" type="number" min="0" max="1200" aria-describedby="height">
@@ -196,8 +205,8 @@
         <input name="width" class="control-cell" type="number" min="0" max="1200">
       </td>
       <td><input name="pieces" class="control-cell" type="number" min="0" max="500"></td>
-      <td max-width="12mm">
-        <select class="control-cell" name="kind1" id="kind1">
+      <td>
+        <select class="control-cell kind-selector" name="kind1" id="kind1">
           <option value="unselected"></option>
           <option value="witryna">witryna</option>
           <option value="pilaster">pilaster</option>
@@ -209,7 +218,7 @@
         </select>
       </td>
       <td>
-        <select class="control-cell" name="row1-kind2" id="row1-kind2">
+        <select class="control-cell kind-selector" name="row1-kind2" id="row1-kind2">
           <option value="unselected"></option>
           <option value="pusta">pusta</option>
           <option value="folia1">SZ1F</option>
@@ -273,6 +282,8 @@
         </table>
       </td>
   </template>
+
+  <template>&#8803; &#8422; &#8210; &#8214; &#9776; &#10996; &#11004;</template>
 
   <script src="./index.js"></script>
 </body>
