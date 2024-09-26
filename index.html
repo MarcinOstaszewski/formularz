@@ -10,8 +10,8 @@
 </head>
 <body>
   <main class="page-a4">
-    <header class="pointer-events-none">
-      <div class="info-by-receiver">
+    <header>
+      <div class="info-by-receiver pointer-events-none">
         <label for="date-of-receive">Data przyjęcia:</label>
         <input id="date-of-receive" name="date-of-receive" class="control-cell bottom-dotted w-20mm" type="date">
         <label for="date-of-receipt">Data odbioru:</label>
@@ -24,9 +24,10 @@
       <div class="align-center flex-column">
         <h4 class="order-heading">
           <label for="order-number">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR</label>
-          <input id="order-number" name="order-number" type="text" class="control-cell w-20mm bottom-dotted">
+          <input id="order-number" name="order-number" type="text" class="control-cell w-20mm bottom-dotted pointer-events-none">
+          <div class="display-inline ml-1"><button id="zoom-in" class="form-button mr-05">Powiększ (+)</button><button id="zoom-out" class="form-button">Pomniejsz (-)</button></div>
+          <div class="text-sm">( wypełnia przyjmujący zamówienie )</div>
         </h4>
-        <div class="text-sm">( wypełnia przyjmujący zamówienie )</div>
       </div>
     </header>
 

@@ -230,6 +230,20 @@
     }
   }
 
+  function addZoomButtons() {
+    document.body.style.zoom = localStorage.getItem("zoom") || "1";
+    document.getElementById("zoom-in").addEventListener("click", function() {
+      const zoomLevel = (parseFloat(document.body.style.zoom) + 0.1).toString();
+      localStorage.setItem("zoom", zoomLevel);
+      document.body.style.zoom = zoomLevel;
+    });
+    document.getElementById("zoom-out").addEventListener("click", function() {
+      const zoomLevel = (parseFloat(document.body.style.zoom) - 0.1).toString();
+      localStorage.setItem("zoom", zoomLevel);
+      document.body.style.zoom = zoomLevel;
+    });
+  }
+
   function setEventListeners() {
     requiredFieldIds.forEach(function(entry) {
       const element = document.querySelector("[name=" + entry + "]");
@@ -246,6 +260,8 @@
     form.addEventListener("change", saveFormInLocalStorage);
     const confirmResetFormButton = document.getElementById("confirm-form-reset");
     confirmResetFormButton.addEventListener("click", resetForm);
+
+    addZoomButtons();
   }
 
   function start() {
