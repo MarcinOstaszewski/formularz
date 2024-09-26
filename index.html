@@ -10,7 +10,7 @@
 </head>
 <body>
   <main class="page-a4">
-    <header>
+    <header class="pointer-events-none">
       <div class="info-by-receiver">
         <label for="date-of-receive">Data przyjęcia:</label>
         <input id="date-of-receive" name="date-of-receive" class="control-cell bottom-dotted w-20mm" type="date">
@@ -21,11 +21,13 @@
         <label for="client-number"><strong>NR KLIENTA:</strong></label>
         <input id="client-number" name="client-number" class="control-cell bottom-dotted w-20mm" type="number">
       </div>
-
-      <h4 class="order-heading">
-        <label for="order-number">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR</label>
-        <input id="order-number" name="order-number" type="text" class="control-cell w-20mm bottom-dotted">
-      </h4>
+      <div class="align-center flex-column">
+        <h4 class="order-heading">
+          <label for="order-number">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR</label>
+          <input id="order-number" name="order-number" type="text" class="control-cell w-20mm bottom-dotted">
+        </h4>
+        <div class="text-sm">( wypełnia przyjmujący zamówienie )</div>
+      </div>
     </header>
 
     <form id="furniture-fronts-order">
@@ -33,26 +35,27 @@
         <tr>
           <td class="w-30mm title-cell"><label for="article">ARTYKUŁ</label></td>
           <td class="w-60mm">
-            <input id="article" name="article" class="control-cell" type="number" min="0" max="999" required aria-required>
+            <input id="article" name="article" class="control-cell" type="number" min="0" max="999" required>
           </td>
           <td class="w-20mm title-cell"><label for="thickness">GRUBOŚĆ</label></td>
           <td colspan="2">
-            <input id="thickness" name="thickness" class="control-cell" type="number" required aria-required>
+            <input id="thickness" name="thickness" class="control-cell" type="number" required>
           </td>
         </tr>
         <tr>
           <td class="title-cell"><label for="color">KOLOR <i>(folia, lakier)</i></label></td>
-          <td>
-            <select id="color" name="color" class="control-cell" required aria-required>
+          <td class="display-flex">
+            <select id="color" name="color" class="control-cell col-8 border-right" required>
               <option value="">proszę wybrać</option>
               <option value="foil">FOLIA</option>
               <option value="lacquer">LAKIER</option>
             </select>
+            <input id="color-symbol" name="color-symbol" class="control-cell col-4  border-left" type="number" required>
           </td>
           <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY</td>
           <td class="w-40mm title-cell"><label for="shipment">WYSYŁKA</label></td>
           <td class="w-5mm align-center">
-            <input id="shipment" name="delivery" class="form-check-input" type="radio" value="shipment" required aria-required>
+            <input id="shipment" name="delivery" class="form-check-input" type="radio" value="shipment" required>
           </td>
         </tr>
         <tr>
@@ -62,7 +65,7 @@
           </td>
           <td class="title-cell"><label for="personal-collection">ODBIÓR OSOBISTY</label></td>
           <td class="align-center">
-            <input id="personal-collection" name="delivery" class="form-check-input" type="radio" value="personal-collection" required aria-required>
+            <input id="personal-collection" name="delivery" class="form-check-input" type="radio" value="personal-collection" required>
           </td>
         </tr>
         <tr>
@@ -107,27 +110,27 @@
           <tr>
             <td rowspan="2" class="w-20mm h-12mm"><label for="name-surname">Nazwa<br />Imię i nazwisko<sup>*</sup></label></td>
             <td rowspan="2" class="w-70mm p-0 h-12mm">
-              <textarea id="name-surname" name="name-surname"class="control-cell" type="text" required aria-required rows="5"></textarea>
+              <textarea id="name-surname" name="name-surname"class="control-cell" type="text" required rows="5"></textarea>
             </td>
             <td class="w-18mm h-6mm"><label for="nip">NIP<sup>*</sup></label></td>
             <td class="w-70mm">
-              <input id="nip" name="nip" class="control-cell" type="number" required aria-required>
+              <input id="nip" name="nip" class="control-cell" type="number" required>
             </td>
           </tr>
           <tr>
             <td class="h-6mm"><label for="email">E-mail<sup>*</sup></label></td>
             <td>
-              <input id="email" name="email" class="control-cell" type="email" required aria-required>
+              <input id="email" name="email" class="control-cell" type="email" required>
             </td>
           </tr>
           <tr>
             <td rowspan="2" class="h-12mm"><label for="address">Adres<sup>*</sup></label></td>
             <td rowspan="2">
-              <textarea id="address" name="address" class="control-cell" type="text" required aria-required rows="5"></textarea>
+              <textarea id="address" name="address" class="control-cell" type="text" required rows="5"></textarea>
             </td>
             <td class="h-6mm"><label for="phone">Nr tel.<sup>*</sup></label></td>
             <td>
-              <input id="phone" name="phone" class="control-cell" type="number" required aria-required>
+              <input id="phone" name="phone" class="control-cell" type="number" required>
             </td>
           </tr>
           <tr>
@@ -152,10 +155,10 @@
           <input id="orderer-signature" name="orderer-signature" class="control-cell bottom-dotted w-40mm" type="text">
           <small>(podpis zamawiającego)</small>
         </div>
-        <button id="print-page" name="print-page" class="bottom-button no-print">WYDRUKUJ</button>
-        <button id="send-order" name="send-order" class="bottom-button no-print" type="submit">WYŚLIJ</button>
+        <button id="print-page" name="print-page" class="form-button no-print">WYDRUKUJ</button>
+        <button id="send-order" name="send-order" class="form-button no-print" type="submit">WYŚLIJ</button>
         <div class="flex-column align-center">
-          <input id="receipient-signature" name="receipient-signature" class="control-cell bottom-dotted w-40mm" type="text">
+          <input id="receipient-signature" name="receipient-signature" class="control-cell bottom-dotted w-40mm pointer-events-none" type="text">
           <small>(podpis przyjmującego)</small>
         </div>
       </div>
@@ -305,6 +308,15 @@
     <div class="dialog-content align-center">
       <strong class="dialog-info">Prosimy o wypełnienie wszystkich wymaganych pól.</strong>
       <p>Pola wymagane zostały zaznaczone kolorem czerwonym.</p>
+      <button class="form-button">OK</button>
+    </div>
+  </dialog>
+
+  <dialog class="warning-dialog" id="reset-form-warning">
+    <div class="dialog-content align-center flex-column">
+      <div class="display-flex justify-end">&times;</div>
+      <strong class="dialog-info">Wyczyścić wszystkie pola formularza?</strong>
+      <button id="confirm-form-reset" class="form-button reset-button ">WYCZYŚĆ</button>
     </div>
   </dialog>
 

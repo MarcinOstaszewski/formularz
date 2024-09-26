@@ -1,7 +1,8 @@
 (function init() {
   
-  const requiredFieldIds = ["name-surname", "email", "nip", "address", "phone", 
-    "article", "thickness", "color", "delivery", "patine", "veneer", "lacquer"];
+  const DELIVERY = "delivery";
+  const requiredFieldIds = ["name-surname", "email", "address", "phone", 
+    "article", "thickness", "color", DELIVERY, "patine", "color-symbol", "veneer", "lacquer"];
 
   function removeWarningOnClick(e) {
     const element = e.target;
@@ -9,31 +10,56 @@
   }
 
   function getFormData() {
-    const form = document.querySelector("form");
+    const form = getFormElement();
     const data = new FormData(form);
     return data;
   }
   
   function getFormEntries(data) {
     const entries = {};
-    Array.from(data.entries()).forEach(entry => entries[entry[0]] = entry[1]);
+    Array.from(data.entries()).forEach(function(entry) { entries[entry[0]] = entry[1] });
     return entries;
   }
 
   function getMissingRequiredFieldsList(data) {
-    const missingFieldsList = requiredFieldIds.filter(entry => {
-      return data.get(entry) === "";
+    const missingFieldsList = requiredFieldIds.filter(function(entry) {
+      return (data.get(entry) === "" || data.get(entry) === null);
     }) || [];
     return missingFieldsList;
   }
 
+  function removeRadiosErrorWarning() {
+    const deliveryRadioButtons = document.querySelectorAll("[name=delivery]");
+    deliveryRadioButtons.forEach(function(radio) {
+      radio.classList.remove("required-field-error");
+    });
+  }
+
   function validateForm(data) {
     const missingFieldsList = getMissingRequiredFieldsList(data);
-    missingFieldsList.forEach(field => {
-      const fieldElement = document.getElementById(field);
-      fieldElement.classList.add("required-field-error");
+    missingFieldsList.forEach(function(field) {
+      if (field === DELIVERY) {
+        const deliveryRadioButtons = document.querySelectorAll('[name="' + DELIVERY + '"]');
+        deliveryRadioButtons.forEach(function(radio) {
+          radio.classList.add("required-field-error");
+          radio.addEventListener("click", function() {
+            removeRadiosErrorWarning();
+          });
+        });
+      } else {
+        const fieldElement = document.querySelector("[name=" + field + "]");
+        fieldElement.classList.add("required-field-error");
+      }
     });
     return missingFieldsList.length === 0;
+  }
+
+  function showModal(id) {
+    document.getElementById(id).showModal();
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).close();
   }
 
   function printForm(e) {
@@ -42,7 +68,7 @@
     if (validateForm(data)) {
       window.print();
     } else {
-      document.getElementById("invalid-form-warning").showModal();
+      showModal("invalid-form-warning");
     }
   }
 
@@ -57,24 +83,32 @@
           queriesString += entry + "=" + entries[entry] + "&";
         }
       }
-      window.location.href = "mailto:marketing@kobex.[pl]?subject=zlecenie&body=" + window.location.href + queriesString;
+      window.location.href = "mailto:marketing@kobex.pl?subject=zlecenie&body=" + window.location.href + queriesString;
       console.log(window.location.href + queriesString);
       console.log(queriesString);
     } else {
-      document.getElementById("invalid-form-warning").showModal();
+      showModal("invalid-form-warning");
     }
   }
 
   function deselectSameRowCheckbox(checkbox) {
     const row = checkbox.closest("tr");
     const checkboxes = row.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach((cb) => {
+    checkboxes.forEach(function(cb) {
       if (cb !== checkbox) {
         cb.checked = false;
       }
     });
   }
 
+  function resetForm() {
+    const form = getFormElement();
+    form.reset();
+    localStorage.removeItem("form");
+    closeModal("reset-form-warning");
+  }
+
+  
   function createBottomTable() {
 
     function appendTableHeader(tableId, addNotes) {
@@ -85,7 +119,11 @@
 
       if (addNotes) {
         const warningTextCell = tableHeader.getElementById("warning-text");
-        warningTextCell.innerHTML = '<small class="visible-when-locked">! FORMULARZ ZABLOKOWANY DO EDYCJI !</small>';
+        warningTextCell.innerHTML = '<button class="form-button reset-button">WYCZYŚC FORMULARZ</button>';
+        warningTextCell.querySelector(".reset-button").addEventListener("click", function(e) {
+          e.preventDefault();
+          showModal("reset-form-warning")
+        });
       }
       tablesContainer.appendChild(tableHeader);
     }
@@ -97,7 +135,7 @@
       for (let i = startNumber; i < startNumber + rowsNumber; i++) {
         const row = rowTemplate.content.cloneNode(true);
         row.querySelector(".row-number-cell").textContent = i + ".";
-        ["height", "width", "quantity", "kind", "display"].forEach((name) => {
+        ["height", "width", "quantity", "kind", "display"].forEach(function(name) {
           const cell = row.querySelector("#" + name + "-column");
           cell.id = "row" + i + "-" + name;
           cell.name = "row" + i + "-" + name;
@@ -111,8 +149,8 @@
         radioVertical.name = "row" + i + "-direction";
         radioHorizontal.name = "row" + i + "-direction";
 
-        radioHorizontal.addEventListener("change", () => deselectSameRowCheckbox(radioHorizontal));
-        radioVertical.addEventListener("change", () => deselectSameRowCheckbox(radioVertical));
+        radioHorizontal.addEventListener("change", function() {deselectSameRowCheckbox(radioHorizontal)});
+        radioVertical.addEventListener("change", function() {deselectSameRowCheckbox(radioVertical)});
 
         tableBottom.appendChild(row);
       }
@@ -132,11 +170,24 @@
     createTable("bottom-table-right", 16, 5, true);
   }
 
-  function recoverQueriesParams() {
+  function getFormElement() {
+    return document.querySelector("form");
+  }
+
+  function switchToLockedForm(form) {
+    form.classList.add("locked");
+    const warningTextCell = document.querySelectorAll(".text-warning")[1];
+    warningTextCell.innerHTML = '<small class="visible-when-locked">! FORMULARZ ZABLOKOWANY DO EDYCJI !</small>';
+    document.querySelectorAll(".pointer-events-none").forEach(function(el) {
+      el.classList.remove("pointer-events-none");
+    });
+  }
+
+  function recoverQueryParams() {
     const queries = new URLSearchParams(window.location.search);
     if (queries.size) {
-      const form = document.querySelector("form");
-      queries.forEach((value, key) => {
+      const form = getFormElement();
+      queries.forEach(function(value, key) {
         const element = form.querySelector("[name=" + key + "]");
         if (element) {
           if (element.type === "checkbox") {
@@ -146,12 +197,41 @@
           }
         }
       });
-      document.querySelector("form").classList.add("locked");
+      switchToLockedForm(form);
+    }
+  }
+
+  function saveFormInLocalStorage() {
+    const data = getFormData();
+    const entries = getFormEntries(data);
+    const notEmptyEntries = {};
+    for (entry in entries) {
+      if (entries[entry] !== "") {
+        notEmptyEntries[entry] = entries[entry];
+      }
+    }
+    localStorage.setItem("form", JSON.stringify(notEmptyEntries));
+  }
+
+  function checkForDataInLocalStorage() {
+    const entries = JSON.parse(localStorage.getItem("form"));
+    if (entries) {
+      const form = getFormElement();
+      for (entry in entries) {
+        const element = form.querySelector("[name=" + entry + "]");
+        if (element) {
+          if (element.type === "checkbox") {
+            element.checked = true;
+          } else {
+            element.value = entries[entry];
+          }
+        }
+      }
     }
   }
 
   function setEventListeners() {
-    requiredFieldIds.forEach(entry => {
+    requiredFieldIds.forEach(function(entry) {
       const element = document.querySelector("[name=" + entry + "]");
       element.addEventListener("click", removeWarningOnClick);
     });
@@ -159,13 +239,19 @@
     printPageButton.addEventListener("click", printForm);
     const sendOrderButton = document.getElementById("send-order");
     sendOrderButton.addEventListener("click", submitForm);
-    const dialog = document.getElementById("invalid-form-warning");
-    dialog.addEventListener("click", () => dialog.close());
+    document.querySelectorAll("dialog").forEach(function(dialog) {
+      dialog.addEventListener("click", function() { closeModal(dialog.id) });
+    });
+    const form = getFormElement();
+    form.addEventListener("change", saveFormInLocalStorage);
+    const confirmResetFormButton = document.getElementById("confirm-form-reset");
+    confirmResetFormButton.addEventListener("click", resetForm);
   }
 
   function start() {
     createBottomTable();
-    recoverQueriesParams();
+    recoverQueryParams();
+    checkForDataInLocalStorage();
     setEventListeners();
   }
 
