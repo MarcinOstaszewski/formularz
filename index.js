@@ -83,7 +83,7 @@
           queriesString += entry + "=" + entries[entry] + "&";
         }
       }
-      window.location.href = "mailto:marketing@kobex.pl?subject=zlecenie&body=" + window.location.href + queriesString;
+      window.location.href = "mailto:marketing@kobax.pl?subject=zlecenie&body=" + window.location.href + queriesString;
       console.log(window.location.href + queriesString);
       console.log(queriesString);
     } else {
