@@ -41,9 +41,8 @@ select::-ms-expand {
 
 .page-a4 {
   color: var(--text-color);
-  margin-left: 2rem;
-  padding: 0;
-  width: 20.5cm;
+  padding: 1rem;
+  width: 21cm;
 }
 
 header {

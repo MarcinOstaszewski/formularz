@@ -243,20 +243,25 @@
   }
 
   function saveScreenshot() {
-    document.querySelectorAll(".form-button").forEach(function(button) {
-      button.classList.add("hidden");
-    });
-    html2canvas(document.body).then(function(canvas) {
-      const imageURL = canvas.toDataURL("image/png");
-      const a = document.createElement("a");
-      a.href = imageURL;
-      a.download = "Formularz.png";
-      a.click();
-    }).then(function() {
+    const data = getFormData();
+    if (validateForm(data)) {
       document.querySelectorAll(".form-button").forEach(function(button) {
-        button.classList.remove("hidden");
+        button.classList.add("hidden");
       });
-    });
+      html2canvas(document.querySelector(".page-a4")).then(function(canvas) {
+        const imageURL = canvas.toDataURL("image/png");
+        const a = document.createElement("a");
+        a.href = imageURL;
+        a.download = "Formularz.png";
+        a.click();
+      }).then(function() {
+        document.querySelectorAll(".form-button").forEach(function(button) {
+          button.classList.remove("hidden");
+        });
+      });
+    } else {
+      showModal("invalid-form-warning");
+    }
   };
 
   function setEventListeners() {
