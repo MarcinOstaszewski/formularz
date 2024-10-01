@@ -2,7 +2,7 @@
   
   const DELIVERY = "delivery";
   const requiredFieldIds = ["name-surname", "email", "address", "phone", 
-    "article", "thickness", "color", DELIVERY, "patine", "color-symbol", "veneer", "lacquer"];
+    "article", "thickness", "color", DELIVERY, "color-symbol", "lacquer"];
 
   function removeWarningOnClick(e) {
     const element = e.target;
@@ -84,8 +84,6 @@
         }
       }
       window.location.href = "mailto:marketing@kobax.pl?subject=zlecenie&body=" + window.location.href + queriesString;
-      console.log(window.location.href + queriesString);
-      console.log(queriesString);
     } else {
       showModal("invalid-form-warning");
     }
@@ -258,7 +256,7 @@
       document.querySelectorAll(".form-button").forEach(function(button) {
         button.classList.remove("hidden");
       });
-    })
+    });
   };
 
   function setEventListeners() {
