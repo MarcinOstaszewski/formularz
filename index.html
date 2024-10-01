@@ -7,6 +7,7 @@
   <link rel="icon" href="./favicon.ico">
   <link rel="stylesheet" href="./normalize.css">
   <link rel="stylesheet" href="./fronty_meblowe__table.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 </head>
 <body>
   <main class="page-a4">
@@ -25,7 +26,10 @@
         <h4 class="order-heading">
           <label for="order-number">ZAMÓWIENIE NA FRONTY MEBLOWE PROSTE NR</label>
           <input id="order-number" name="order-number" type="text" class="control-cell w-20mm bottom-dotted pointer-events-none">
-          <div class="display-inline ml-1"><button id="zoom-in" class="form-button mr-05">Powiększ (+)</button><button id="zoom-out" class="form-button">Pomniejsz (-)</button></div>
+          <div class="display-inline no-print ml-1">
+            <button id="zoom-in" class="form-button text-xs mr-05">Powiększ (+)</button>
+            <button id="zoom-out" class="form-button text-xs"no-print >Pomniejsz (-)</button>
+          </div>
           <div class="text-sm">( wypełnia przyjmujący zamówienie )</div>
         </h4>
       </div>
@@ -38,7 +42,7 @@
           <td class="w-60mm">
             <input id="article" name="article" class="control-cell" type="number" min="0" max="999" required>
           </td>
-          <td class="w-20mm title-cell"><label for="thickness">GRUBOŚĆ</label></td>
+          <td class="w-20mm title-cell"><label for="thickness">GRUBOŚĆ<i class="text-xs">(mm)</i></label></td>
           <td colspan="2">
             <input id="thickness" name="thickness" class="control-cell" type="number" required>
           </td>
@@ -113,7 +117,7 @@
             <td rowspan="2" class="w-70mm p-0 h-12mm">
               <textarea id="name-surname" name="name-surname"class="control-cell" type="text" required rows="5"></textarea>
             </td>
-            <td class="w-18mm h-6mm"><label for="nip">NIP<sup>*</sup></label></td>
+            <td class="w-18mm h-6mm"><label for="nip">NIP</label></td>
             <td class="w-70mm">
               <input id="nip" name="nip" class="control-cell" type="number" required>
             </td>
@@ -154,13 +158,14 @@
       <div class="signatures">
         <div class="flex-column align-center">
           <input id="orderer-signature" name="orderer-signature" class="control-cell bottom-dotted w-40mm" type="text">
-          <small>(podpis zamawiającego)</small>
+          <small>( podpis zamawiającego )</small>
         </div>
         <button id="print-page" name="print-page" class="form-button no-print">WYDRUKUJ</button>
+        <button id="capture" class="form-button no-print" type="button">OBRAZEK</button>
         <button id="send-order" name="send-order" class="form-button no-print" type="submit">WYŚLIJ</button>
         <div class="flex-column align-center">
           <input id="receipient-signature" name="receipient-signature" class="control-cell bottom-dotted w-40mm pointer-events-none" type="text">
-          <small>(podpis przyjmującego)</small>
+          <small>( podpis przyjmującego )</small>
         </div>
       </div>
       <div class="footnotes">
@@ -168,7 +173,7 @@
           <small>Za błędne wypełnienie formularza odpowiedzialność ponosi zamawiający</small><br />
           <div class="display-flex justify-between">
             <small>Złożenie zamówienia jest równoznaczne z zapoznaniem się z warunkami gwarancji i reklamacji firmy KOBAX</small>
-            <small>*pola obowiązkowe do uzupełnienia</small>
+            <small><sup>*</sup>pola obowiązkowe do uzupełnienia</small>
           </div>
         </div>
         <div class="align-right pt-02">

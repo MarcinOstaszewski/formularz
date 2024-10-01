@@ -119,7 +119,7 @@
 
       if (addNotes) {
         const warningTextCell = tableHeader.getElementById("warning-text");
-        warningTextCell.innerHTML = '<button class="form-button reset-button">WYCZYŚC FORMULARZ</button>';
+        warningTextCell.innerHTML = '<button class="form-button no-print reset-button">WYCZYŚC FORMULARZ</button>';
         warningTextCell.querySelector(".reset-button").addEventListener("click", function(e) {
           e.preventDefault();
           showModal("reset-form-warning")
@@ -244,6 +244,23 @@
     });
   }
 
+  function saveScreenshot() {
+    document.querySelectorAll(".form-button").forEach(function(button) {
+      button.classList.add("hidden");
+    });
+    html2canvas(document.body).then(function(canvas) {
+      const imageURL = canvas.toDataURL("image/png");
+      const a = document.createElement("a");
+      a.href = imageURL;
+      a.download = "Formularz.png";
+      a.click();
+    }).then(function() {
+      document.querySelectorAll(".form-button").forEach(function(button) {
+        button.classList.remove("hidden");
+      });
+    })
+  };
+
   function setEventListeners() {
     requiredFieldIds.forEach(function(entry) {
       const element = document.querySelector("[name=" + entry + "]");
@@ -251,6 +268,8 @@
     });
     const printPageButton = document.getElementById("print-page");
     printPageButton.addEventListener("click", printForm);
+    const captureScreenshotButton = document.getElementById("capture");
+    captureScreenshotButton.addEventListener("click", saveScreenshot);
     const sendOrderButton = document.getElementById("send-order");
     sendOrderButton.addEventListener("click", submitForm);
     document.querySelectorAll("dialog").forEach(function(dialog) {

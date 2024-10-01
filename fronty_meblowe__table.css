@@ -226,8 +226,13 @@ textarea.control-cell {
   font-size: 11px;
 }
 
+.orderer td sup {
+  font-size: 10px;
+  color: var(--text-color-warning)
+}
+
 .signatures {
-  width: 16cm;
+  width: 18cm;
   height: 1.5cm;
   margin: 0 auto 1rem auto;
   display: flex;
@@ -248,7 +253,7 @@ textarea.control-cell {
 
 .footnotes {
   font-size: 11px;
-  margin-top: 1rem;
+  margin: 1rem 0;
 }
 
 .warning-dialog {
