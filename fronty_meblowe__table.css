@@ -41,7 +41,7 @@ select::-ms-expand {
 
 .page-a4 {
   color: var(--text-color);
-  padding: 1rem;
+  padding: 0.5rem;
   width: 21cm;
 }
 
@@ -232,14 +232,15 @@ textarea.control-cell {
 
 .signatures {
   width: 18cm;
-  height: 1.5cm;
-  margin: 0 auto 1rem auto;
+  height: 1.1cm;
+  margin: 0 auto 1rem;
   display: flex;
   justify-content: space-between;
 }
 
 .form-button {
-  padding: 0.25rem 0.75rem;
+  font-size: 14px;
+  padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   margin: auto 0 0 0;
   background-color: var(--bg-color);
