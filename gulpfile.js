@@ -5,17 +5,18 @@ var gulp = require("gulp"),
   terser = require("gulp-terser");
 
 function minifyCSS() {
-  return gulp.src("src/*.css")
+  return gulp.src("src/FrontyMebloweProste/*.css")
     .pipe(cleanCSS())
     .pipe(rename({suffix: ".min"}))
-    .pipe(gulp.dest("./dist/css"));
+    .pipe(gulp.dest("./dist/FrontyMebloweProste/"));
 }
 
 function minifyJS() {
-  return gulp.src("src/*.js")
+  return gulp.src("src/FrontyMebloweProste/*.js")
     .pipe(terser())
+    .pipe(uglify())
     .pipe(rename({suffix: ".min"}))
-    .pipe(gulp.dest("./dist/js"));
+    .pipe(gulp.dest("./dist/FrontyMebloweProste/"));
 }
 
 exports.default = gulp.parallel(minifyCSS, minifyJS);
