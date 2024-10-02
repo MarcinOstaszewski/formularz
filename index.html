@@ -10,7 +10,7 @@
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 </head>
 <body>
-  <main class="page-a4">
+  <section class="page-a4">
     <header>
       <div class="info-by-receiver pointer-events-none">
         <label for="date-of-receive">Data przyjęcia:</label>
@@ -35,124 +35,126 @@
       </div>
     </header>
 
-    <form id="furniture-fronts-order">
-      <table id="top-table" class="top-table e col-12 border-bold">
-        <tr>
-          <td class="w-30mm title-cell"><label for="article">ARTYKUŁ</label></td>
-          <td class="w-60mm">
-            <input id="article" name="article" class="control-cell" type="number" min="0" max="999" required>
-          </td>
-          <td class="w-20mm title-cell"><label for="thickness">GRUBOŚĆ<i class="text-xs">(mm)</i></label></td>
-          <td colspan="2">
-            <input id="thickness" name="thickness" class="control-cell" type="number" required>
-          </td>
-        </tr>
-        <tr>
-          <td class="title-cell"><label for="color">KOLOR <i>(folia, lakier)</i></label></td>
-          <td class="display-flex">
-            <select id="color" name="color" class="control-cell col-8 border-right" required>
-              <option value="">proszę wybrać</option>
-              <option value="foil">FOLIA</option>
-              <option value="lacquer">LAKIER</option>
-            </select>
-            <input id="color-symbol" name="color-symbol" class="control-cell col-4  border-left" type="number" required>
-          </td>
-          <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY</td>
-          <td class="w-40mm title-cell"><label for="shipment">WYSYŁKA</label></td>
-          <td class="w-5mm align-center">
-            <input id="shipment" name="delivery" class="form-check-input" type="radio" value="shipment" required>
-          </td>
-        </tr>
-        <tr>
-          <td class="title-cell"><label for="veneer">OKLEINA <i>(symbol-nr)</i></label></td>
-          <td>
-            <input id="veneer" name="veneer" class="control-cell" type="number" required>
-          </td>
-          <td class="title-cell"><label for="personal-collection">ODBIÓR OSOBISTY</label></td>
-          <td class="align-center">
-            <input id="personal-collection" name="delivery" class="form-check-input" type="radio" value="personal-collection" required>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" class="title-cell"><label for="patine">PATYNA <i>(brak, jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></label></td>
-          <td colspan="3">
-            <select id="patine" name="patine" class="control-cell" required>
-              <option value="">proszę wybrać</option>
-              <option value="none">BRAK</option>
-              <option value="uniform">JEDNOLITA</option>
-              <option value="old">STARA</option>
-              <option value="uniform-dark-corners">JEDNOLITA CIEMNE ROGI</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" class="title-cell"><label for="lacquer">LAKIER</label></td>
-          <td colspan="3">
-            <select id="lacquer" name="lacquer" class="control-cell" required>
-              <option value="">proszę wybrać</option>
-              <option value="mat">MAT</option>
-              <option value="structural-mat">MAT STRUKTURALNY</option>
-              <option value="gloss">POŁYSK</option>
-            </select>
-          </td>
-        </tr>
-      </table>
-
-      <div class="bottom-container">
-        <div class="bottom-table-legend text-sm p-02">
-          <small class="">
-            Wymiary proszę podawać w milimetrach [mm]<br />
-            W rubryce rodzaj należy wpisać czy jest to witryna, pilaster, blenda, kowbojki, winiarka, listwa wieńcząca, szuflada.
-          </small>
-        </div>
-
-        <div id="bottom-tables-container"></div>
-
-        <table id="orderer-table" class="orderer text-sm">
+    <main>
+      <form id="furniture-fronts-order">
+        <table id="top-table" class="top-table e col-12 border-bold">
           <tr>
-            <td colspan="4" class="align-center">ZAMAWIAJĄCY</td>
-          </tr>
-          <tr>
-            <td rowspan="2" class="w-20mm h-12mm"><label for="name-surname">Nazwa<br />Imię i nazwisko<sup>*</sup></label></td>
-            <td rowspan="2" class="w-70mm p-0 h-12mm">
-              <textarea id="name-surname" name="name-surname"class="control-cell" type="text" required rows="5"></textarea>
+            <td class="w-30mm title-cell"><label for="article">ARTYKUŁ</label></td>
+            <td class="w-60mm">
+              <input id="article" name="article" class="control-cell" type="number" min="0" max="999" required>
             </td>
-            <td class="w-18mm h-6mm"><label for="nip">NIP</label></td>
-            <td class="w-70mm">
-              <input id="nip" name="nip" class="control-cell" type="number" required>
+            <td class="w-20mm title-cell"><label for="thickness">GRUBOŚĆ<i class="text-xs">(mm)</i></label></td>
+            <td colspan="2">
+              <input id="thickness" name="thickness" class="control-cell" type="number" required>
             </td>
           </tr>
           <tr>
-            <td class="h-6mm"><label for="email">E-mail<sup>*</sup></label></td>
+            <td class="title-cell"><label for="color">KOLOR <i>(folia, lakier)</i></label></td>
+            <td class="display-flex">
+              <select id="color" name="color" class="control-cell col-8 border-right" required>
+                <option value="">proszę wybrać</option>
+                <option value="foil">FOLIA</option>
+                <option value="lacquer">LAKIER</option>
+              </select>
+              <input id="color-symbol" name="color-symbol" class="control-cell col-4  border-left" type="number" required>
+            </td>
+            <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY</td>
+            <td class="w-40mm title-cell"><label for="shipment">WYSYŁKA</label></td>
+            <td class="w-5mm align-center">
+              <input id="shipment" name="delivery" class="form-check-input" type="radio" value="shipment" required>
+            </td>
+          </tr>
+          <tr>
+            <td class="title-cell"><label for="veneer">OKLEINA <i>(symbol-nr)</i></label></td>
             <td>
-              <input id="email" name="email" class="control-cell" type="email" required>
+              <input id="veneer" name="veneer" class="control-cell" type="number" required>
+            </td>
+            <td class="title-cell"><label for="personal-collection">ODBIÓR OSOBISTY</label></td>
+            <td class="align-center">
+              <input id="personal-collection" name="delivery" class="form-check-input" type="radio" value="personal-collection" required>
             </td>
           </tr>
           <tr>
-            <td rowspan="2" class="h-12mm"><label for="address">Adres<sup>*</sup></label></td>
-            <td rowspan="2">
-              <textarea id="address" name="address" class="control-cell" type="text" required rows="5"></textarea>
-            </td>
-            <td class="h-6mm"><label for="phone">Nr tel.<sup>*</sup></label></td>
-            <td>
-              <input id="phone" name="phone" class="control-cell" type="number" required>
+            <td colspan="2" class="title-cell"><label for="patine">PATYNA <i>(brak, jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></label></td>
+            <td colspan="3">
+              <select id="patine" name="patine" class="control-cell" required>
+                <option value="">proszę wybrać</option>
+                <option value="none">BRAK</option>
+                <option value="uniform">JEDNOLITA</option>
+                <option value="old">STARA</option>
+                <option value="uniform-dark-corners">JEDNOLITA CIEMNE ROGI</option>
+              </select>
             </td>
           </tr>
           <tr>
-            <td class="h-6mm"></td>
-            <td></td>
+            <td colspan="2" class="title-cell"><label for="lacquer">LAKIER</label></td>
+            <td colspan="3">
+              <select id="lacquer" name="lacquer" class="control-cell" required>
+                <option value="">proszę wybrać</option>
+                <option value="mat">MAT</option>
+                <option value="structural-mat">MAT STRUKTURALNY</option>
+                <option value="gloss">POŁYSK</option>
+              </select>
+            </td>
           </tr>
         </table>
-      </div>
-       
-      <label id="height-label" class="hidden">Wysokość</label>
-      <label id="width-label" class="hidden">Szerokość</label>
-      <label id="quantity-label" class="hidden">Ilość</label>
-      <label id="kind-label" class="hidden">Rodzaj</label>
-      <label id="display-label" class="hidden">Rodzaj witryny</label>
-      <label id="vertical-label" class="hidden">Pion</label>
-      <label id="hirizontal-label" class="hidden">Poziom</label>
-    </form>
+
+        <div class="bottom-container">
+          <div class="bottom-table-legend text-sm p-02">
+            <small class="">
+              Wymiary proszę podawać w milimetrach [mm]<br />
+              W rubryce rodzaj należy wpisać czy jest to witryna, pilaster, blenda, kowbojki, winiarka, listwa wieńcząca, szuflada.
+            </small>
+          </div>
+
+          <div id="bottom-tables-container"></div>
+
+          <table id="orderer-table" class="orderer text-sm">
+            <tr>
+              <td colspan="4" class="align-center">ZAMAWIAJĄCY</td>
+            </tr>
+            <tr>
+              <td rowspan="2" class="w-20mm h-12mm"><label for="name-surname">Nazwa<br />Imię i nazwisko<sup>*</sup></label></td>
+              <td rowspan="2" class="w-70mm p-0 h-12mm">
+                <textarea id="name-surname" name="name-surname"class="control-cell" type="text" required rows="5"></textarea>
+              </td>
+              <td class="w-18mm h-6mm"><label for="nip">NIP</label></td>
+              <td class="w-70mm">
+                <input id="nip" name="nip" class="control-cell" type="number" required>
+              </td>
+            </tr>
+            <tr>
+              <td class="h-6mm"><label for="email">E-mail<sup>*</sup></label></td>
+              <td>
+                <input id="email" name="email" class="control-cell" type="email" required>
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="2" class="h-12mm"><label for="address">Adres<sup>*</sup></label></td>
+              <td rowspan="2">
+                <textarea id="address" name="address" class="control-cell" type="text" required rows="5"></textarea>
+              </td>
+              <td class="h-6mm"><label for="phone">Nr tel.<sup>*</sup></label></td>
+              <td>
+                <input id="phone" name="phone" class="control-cell" type="number" required>
+              </td>
+            </tr>
+            <tr>
+              <td class="h-6mm"></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        
+        <label id="height-label" class="hidden">Wysokość</label>
+        <label id="width-label" class="hidden">Szerokość</label>
+        <label id="quantity-label" class="hidden">Ilość</label>
+        <label id="kind-label" class="hidden">Rodzaj</label>
+        <label id="display-label" class="hidden">Rodzaj witryny</label>
+        <label id="vertical-label" class="hidden">Pion</label>
+        <label id="hirizontal-label" class="hidden">Poziom</label>
+      </form>
+    </main>
 
     <footer>
       <div class="signatures">
@@ -182,7 +184,7 @@
         </div>
       </div>
     </footer>
-  </main>
+  </section>
   
 
   <template id="bottom-table-header" class="hidden">
