@@ -41,11 +41,11 @@
           <tr>
             <td class="w-30mm title-cell"><label for="article">ARTYKUŁ</label></td>
             <td class="w-60mm">
-              <input id="article" name="article" class="control-cell" type="number" min="0" max="999" required>
+              <input id="article" name="article" class="control-cell" type="text" min="0" max="999" required>
             </td>
             <td class="w-20mm title-cell"><label for="thickness">GRUBOŚĆ<i class="text-xs">(mm)</i></label></td>
             <td colspan="2">
-              <input id="thickness" name="thickness" class="control-cell" type="number" required>
+              <input id="thickness" name="thickness" class="control-cell" type="text" required>
             </td>
           </tr>
           <tr>
@@ -56,7 +56,7 @@
                 <option value="folia">FOLIA</option>
                 <option value="lakier">LAKIER</option>
               </select>
-              <input id="color-symbol" name="color-symbol" class="control-cell col-6  border-left" type="text" required>
+              <input id="color-symbol" name="color-symbol" class="control-cell col-6 text-md border-left" type="text" required>
             </td>
             <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY</td>
             <td class="w-40mm title-cell"><label for="shipment">WYSYŁKA</label></td>
@@ -67,7 +67,7 @@
           <tr>
             <td class="title-cell"><label for="veneer">OKLEINA <i>(symbol-nr)</i></label></td>
             <td>
-              <input id="veneer" name="veneer" class="control-cell" type="number" required>
+              <input id="veneer" name="veneer" class="control-cell" type="text" required>
             </td>
             <td class="title-cell"><label for="personal-collection">ODBIÓR OSOBISTY</label></td>
             <td class="align-center">

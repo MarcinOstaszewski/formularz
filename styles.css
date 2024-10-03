@@ -314,6 +314,7 @@ textarea.control-cell {
 .mr-05 { margin-right: 0.5rem; }
 .ml-1 { margin-left: 1rem; }
 .border-right { border-right: 1px solid var(--border-color); }
+.text-md { font-size: 15px; }
 .text-sm { font-size: 10px; }
 .text-xs { font-size: 8px; }
 .text-bold { font-weight: bold; }
