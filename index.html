@@ -51,12 +51,12 @@
           <tr>
             <td class="title-cell"><label for="color">KOLOR <i>(folia, lakier)</i></label></td>
             <td class="display-flex">
-              <select id="color" name="color" class="control-cell col-8 border-right" required>
+              <select id="color" name="color" class="control-cell col-6 border-right" required>
                 <option value="">proszę wybrać</option>
-                <option value="foil">FOLIA</option>
-                <option value="lacquer">LAKIER</option>
+                <option value="folia">FOLIA</option>
+                <option value="lakier">LAKIER</option>
               </select>
-              <input id="color-symbol" name="color-symbol" class="control-cell col-4  border-left" type="number" required>
+              <input id="color-symbol" name="color-symbol" class="control-cell col-6  border-left" type="text" required>
             </td>
             <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY</td>
             <td class="w-40mm title-cell"><label for="shipment">WYSYŁKA</label></td>
@@ -75,25 +75,38 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="title-cell"><label for="patine">PATYNA <i>(brak, jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></label></td>
+            <td colspan="2" class="title-cell">
+              <label for="patine">PATYNA <i>(brak, jednolita[PJ], stara[PS], jednolita ciemne rogi [PJCR])</i></label>
+            </td>
             <td colspan="3">
-              <select id="patine" name="patine" class="control-cell" required>
-                <option value="">proszę wybrać</option>
-                <option value="none">BRAK</option>
-                <option value="uniform">JEDNOLITA</option>
-                <option value="old">STARA</option>
-                <option value="uniform-dark-corners">JEDNOLITA CIEMNE ROGI</option>
-              </select>
+              <div class="display-flex">
+                <select id="patine" name="patine" class="control-cell border-right col-8" required>
+                  <option value="brak">BRAK</option>
+                  <option value="jednolita">JEDNOLITA</option>
+                  <option value="stara">STARA</option>
+                  <option value="jednolita-ciemne-rogi">JEDNOLITA CIEMNE ROGI</option>
+                </select>
+                <select id="patine-color" name="patine-color" class="control-cell col-4">
+                  <option value=""> </option>
+                  <option value="bialy">bialy</option>
+                  <option value="czarny">czarny</option>
+                  <option value="brazowy">brązowy</option>
+                  <option value="popielaty">popielaty</option>
+                  <option value="zloty">złoty</option>
+                  <option value="srebrny">srebrny</option>
+                  <option value="miedziany">miedziany</option>
+                </select>
+              </div>
             </td>
           </tr>
           <tr>
             <td colspan="2" class="title-cell"><label for="lacquer">LAKIER</label></td>
             <td colspan="3">
               <select id="lacquer" name="lacquer" class="control-cell" required>
-                <option value="">proszę wybrać</option>
+                <option value="brak">BRAK</option>
                 <option value="mat">MAT</option>
-                <option value="structural-mat">MAT STRUKTURALNY</option>
-                <option value="gloss">POŁYSK</option>
+                <option value="mat-strukturalny">MAT STRUKTURALNY</option>
+                <option value="polysk">POŁYSK</option>
               </select>
             </td>
           </tr>

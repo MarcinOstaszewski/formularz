@@ -2,7 +2,7 @@
   
   const DELIVERY = "delivery";
   const requiredFieldIds = ["name-surname", "email", "address", "phone", 
-    "article", "thickness", "color", DELIVERY, "color-symbol", "lacquer"];
+    "article", "thickness", "color", DELIVERY, "color-symbol"];
 
   function removeWarningOnClick(e) {
     const element = e.target;

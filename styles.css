@@ -142,10 +142,6 @@ input, select {
   cursor: pointer;
 }
 
-select.control-cell {
-  width: 100%;
-}
-
 .bottom-table {
   display: inline;
 }
@@ -182,7 +178,6 @@ select.control-cell {
 }
 
 .bottom-table select.control-cell {
-  width: 100%;
   line-height: 24px;
   padding: 0.3rem 0;
 }
