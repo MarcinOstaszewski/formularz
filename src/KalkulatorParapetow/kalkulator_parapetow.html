@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Parapetów</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section class="top-section">
+    <p><label>Dostępność:</label><strong>Produkt na zamówienie od 6 do 14 dni roboczych</strong></p>
+    <p><label>Wysyłka w:</label><strong>3 do 7 dni roboczych (łączny czas produkcji i dostawy)</strong></p>
+  </section>
+  <section class="display-section mt-md">
+    <p><label for="powierzchnia">Powierzchnia:</label><strong id="powierzchnia"></strong></p>
+    <p><label>Cena:</label><strong id="cena"></strong></p>
+    <p><small>( 1 m² = <span id="cena-m2">730,00</span> )</small> <small class="text-gray">zawiera 23.00% VAT, bez kosztów dostawy</small></p>
+    <p><label>Cena netto:</label><strong id="cena-netto"></strong></p>
+    <p><small>( 1 m² = <span id="cena-m2-netto">593,50</span> )</small> <small class="text-gray">bez 23.00% VAT i kosztów dostawy</small></p>
+  </section>
+  <form id="kalkulatorForm" class="calculator-form mt-md">
+    <div class="form-group">
+      <label for="rodzajParapetu">Rodzaj parapetu:</label>
+      <select id="rodzajParapetu" name="rodzajParapetu">
+        <option value="standard">Standard</option>
+        <option value="wilgoc">Wilgocioodporny</option>
+      </select>
+    </div>
+    <div class="form-group" id="grubosci-standard">
+      <label for="grubosc-standard">Grubość:</label>
+      <select id="grubosc-standard" name="grubosc-standard">
+        <option value="1">18mm</option>
+        <option value="1.2">22mm</option>
+        <option value="1.4">28mm</option>
+      </select>
+    </div>
+    <div class="form-group hidden" id="grubosci-wilgoc">
+      <label for="grubosc-wilgoc">Grubość:</label>
+      <select id="grubosc-wilgoc" name="grubosc-wilgoc">
+        <option value="1.1">19mm</option>
+        <option value="1.3">25mm</option>
+        <option value="1.5">30mm</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Wykończenie:</label>
+      <div class="radio-group">
+        <label><input type="radio" name="wykonczenie" value="1.2" checked>Folia pvc</label>
+        <label><input type="radio" name="wykonczenie" value="1">Lakierowanie</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="szerokosc">Szerokość (cm):</label>
+      <input type="number" id="szerokosc" name="szerokosc">
+    </div>
+    <div class="form-group">
+      <label for="dlugosc">Długość (cm):</label>
+      <input type="number" id="dlugosc" name="dlugosc">
+    </div>
+    <div class="form-group">
+      <label for="naroznik">Narożnik</label>
+      <div id="naroznik" class="radio-group radios-with-imgs">
+        <label>
+          <input type="radio" name="naroznik" value="R6">
+          <div>
+            <div class="corner-img corner-r6"></div>
+            <p>Narożnik R6</p>
+          </div>
+        </label>
+        <label>
+          <input type="radio" name="naroznik" value="R15">
+          <div>
+            <div class="corner-img corner-r15"></div>
+            <p>Narożnik R15</p>
+          </div>
+        </label>
+        <label>
+          <input type="radio" name="naroznik" value="R25">
+          <div>
+            <div class="corner-img corner-r25"></div>
+            <p>Narożnik R25</p>
+          </div>
+        </label>
+        <label>
+          <input type="radio" name="naroznik" value="R50">
+          <div>
+            <div class="corner-img corner-r50"></div>
+            <p>Narożnik R50</p>
+          </div>
+        </label>
+        <label>
+          <input type="radio" name="naroznik" value="STONE">
+          <div>
+            <div class="corner-img corner-stone"></div>
+            <p>Narożnik STONE</p>
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="wykonczenieKrawedzi">Krawędzie</label>
+      <div id="wykonczenieKrawedzi" class="radio-group radios-with-imgs">
+        <label>
+          <input type="radio" name="wykonczenieKrawedzi" value="R3">
+          <div>
+            <div class="border-img border-r3"></div>
+            <p>Krawędź R3</p>
+          </div>
+        </label>
+        <label>
+          <input type="radio" name="wykonczenieKrawedzi" value="R6">
+          <div>
+            <div class="border-img border-r6"></div>
+            <p>Krawędź R6</p>
+          </div>
+        </label>
+        <label>
+          <input type="radio" name="wykonczenieKrawedzi" value="R12">
+          <div>
+            <div class="border-img border-r12"></div>
+            <p>Krawędź R12</p>
+          </div>
+        </label>
+        <label>
+          <input type="radio" name="wykonczenieKrawedzi" value="faza">
+          <div>
+            <div class="border-img border-faza"></div>
+            <p>Krawędź faza</p>
+          </div>
+        </label>
+        <label>
+          <input type="radio" name="wykonczenieKrawedzi" value="R20">
+          <div>
+            <div class="border-img border-r20"></div>
+            <p>Krawędź R20</p>
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="ilosc">Ilość sztuk:</label>
+      <input type="number" id="ilosc" name="ilosc" value="1">
+    </div>
+    <button type="button" onclick="obliczCene()">Do koszyka</button>
+  </form>
+
+  <script>
+    const cenaZaCm2Standard = 0.05935;
+    const cenaZaCm2Wilgoc = 0.06935;
+    let cenaZaCm2 = cenaZaCm2Standard;
+    const grubosciStandard = document.getElementById('grubosci-standard');
+    const grubosciWilgoc = document.getElementById('grubosci-wilgoc');
+    const gruboscSelectWilgoc = document.getElementById('grubosc-wilgoc');
+    const gruboscSelectStandard = document.getElementById('grubosc-standard');
+    let gruboscSelect = gruboscSelectStandard;
+
+    function updatePriceFor1m2() {
+      document.getElementById('cena-m2').innerText = cenaZaCm2 * 10000 * 1.23 + ' zł';
+      document.getElementById('cena-m2-netto').innerText = cenaZaCm2 * 10000 + ' zł';
+    }
+    function setTextWhenNoSizes() {
+      document.getElementById('cena').innerText = "Wprowadź wymiary";
+      document.getElementById('powierzchnia').innerText = "Wprowadź wymiary";
+      document.getElementById('cena-netto').innerText = "Wprowadź wymiary";
+      updatePriceFor1m2();
+    }
+    function obliczCene() {
+      const szerokosc = parseFloat(document.getElementById('szerokosc').value);
+      const dlugosc = parseFloat(document.getElementById('dlugosc').value);
+      const ilosc = parseInt(document.getElementById('ilosc').value);
+      const powierzchnia = szerokosc * dlugosc;
+      const cena = powierzchnia * cenaZaCm2 * gruboscSelect.value * ilosc;
+
+      if (isNaN(szerokosc) || isNaN(dlugosc)) {
+        setTextWhenNoSizes();
+      } else {
+        document.getElementById('powierzchnia').innerText = powierzchnia.toFixed(1) + ' cm²' + ' (' + (powierzchnia / 10000).toFixed(2) + ' m²)';
+        document.getElementById('cena').innerText = (cena * 1.23).toFixed(2) + ' zł';
+        document.getElementById('cena-netto').innerText = cena.toFixed(2) + ' zł';
+      }
+    }
+
+    document.getElementById('rodzajParapetu').addEventListener('change', function(event) {
+      console.log('Zmiana rodzaju parapetu', event.target.value);
+      if (event.target.value === 'wilgoc') {
+        cenaZaCm2 = cenaZaCm2Wilgoc;
+        gruboscSelect = gruboscSelectWilgoc;
+        grubosciStandard.classList.add('hidden');
+        grubosciWilgoc.classList.remove('hidden');
+        console.log('Wilgocioodporny', grubosciStandard, grubosciWilgoc);
+      } else if (event.target.value === 'standard') {
+        cenaZaCm2 = cenaZaCm2Standard;
+        gruboscSelect = gruboscSelectStandard;
+        grubosciStandard.classList.remove('hidden');
+        grubosciWilgoc.classList.add('hidden');
+        console.log('Standard', grubosciStandard, grubosciWilgoc);
+      }
+      updatePriceFor1m2();
+      obliczCene();
+    });
+
+    gruboscSelectWilgoc.addEventListener('change', obliczCene);
+    gruboscSelectStandard.addEventListener('change', obliczCene);
+    document.getElementById('szerokosc').addEventListener('input', obliczCene);
+    document.getElementById('dlugosc').addEventListener('input', obliczCene);
+    document.getElementById('ilosc').addEventListener('input', obliczCene);
+    document.getElementById('wykonczenieKrawedzi').addEventListener('change', obliczCene);
+    document.getElementById('naroznik').addEventListener('change', obliczCene);
+    document.querySelectorAll('input[name="kapinos"]').forEach(radio => {
+      radio.addEventListener('change', obliczCene);
+    });
+
+    setTextWhenNoSizes(); // ustawia teksty przy starcie strony
+  </script>
+</body>
+</html>
