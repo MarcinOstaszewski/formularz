@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
@@ -7,8 +10,14 @@ p {
   margin: 0;
   line-height: 20px;
 }
+main {
+  width: 600px;
+  border-right: 1px solid #ddd;
+  margin-bottom: 3rem;
+}
 .top-section,
 .display-section {
+  width: 580px;
   font-size: 14px;
 }
 .top-section label {
@@ -21,8 +30,11 @@ p {
 .display-section label {
   margin-right: 10px;
 }
+.display-section strong {
+  font-size: 16px;
+}
 .calculator-form {
-  width: 700px;
+  width: 580px;
 }
 .form-group {
   display: flex;
@@ -30,13 +42,19 @@ p {
 }
 .form-group label {
   display: inline-block;
-  min-width: 200px;
+  min-width: 150px;
   margin-bottom: 5px;
 }
 input[type="number"], select {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
+}
+input.width-narrow {
+  width: 250px;
+}
+input.width-very-narrow {
+  width: 50px;
 }
 .radio-group {
   display: flex;
@@ -53,21 +71,17 @@ input[type="number"], select {
 .radio-group.radios-with-imgs {
   display: flex;
   flex-wrap: wrap;
-  width: 490px;
+  width: 550px;
   justify-content: center;
 }
 .radio-group.radios-with-imgs label {
   display: flex;
   min-width: 100px;
+  margin-right: 18px;
 }
-.radio-group.radios-with-imgs label input {
-  margin-right: 10px;
-}
-
 .radio-group.radios-with-imgs label img {
-/* .radio-group.radios-with-imgs label .corner-img { */
   display: inline-block;
-  width: 130px;
+  width: 70px;
   height: 40px;
   border: 2px solid #333;
 }
@@ -78,16 +92,31 @@ input[type="number"], select {
 }
 .corner-img, .border-img {
   display: inline-block;
-  width: 130px;
-  height: 60px;
-  border: 2px double #333;
+  width: 90px;
+  height: 45px;
+  border: 2px solid #666;
+}
+.corner-img {
+  border: 5px double #666;
+  border-top: 2px solid #666;
 }
 .corner-r6 { border-radius: 0 0 6px 6px; }
 .corner-r15 { border-radius: 0 0 15px 15px; }
 .corner-r25 { border-radius: 0 0 25px 25px; }
-.corner-r50 { border-radius: 0 0 50px 50px; }
+.corner-r50 { border-radius: 0 0 40px 40px; }
 .corner-stone { border-radius: 0 0 3px 3px; }
-.border-img { background-color: #ddd; }
+.border-img {
+  background-color: #ddd;
+  background: rgb(221,221,221);
+  background: repeating-linear-gradient(
+    -45deg,
+    #ddd,
+    #ddd 5mm,
+    #000 5.1mm,
+    #000 5.3mm
+  );
+/* background: linear-gradient(-45deg, #ddd 0%, #ddd 10%, #000 11%, #ddd 12%, #ddd 20%); */
+}
 .border-r3 { border-radius: 5px 0 0 0; }
 .border-r6 { border-radius: 9px 0 0 0; }
 .border-r12 { border-radius: 18px 0 0 0; }
@@ -99,6 +128,13 @@ input[type="number"], select {
 }
 .result p {
   margin: 5px 0;
+}
+.button-to-cart {
+  padding: 6px 90px;
+  background-color: #c0c;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
 }
 /* UTILS */
 .col-1 { width: 8.33%; }
