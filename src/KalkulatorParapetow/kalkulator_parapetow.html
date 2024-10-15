@@ -126,18 +126,7 @@
           <label>
             <input type="radio" name="wykonczenieKrawedzi" value="faza">
             <div>
-              <svg width="130" height="60" xmlns="http://www.w3.org/2000/svg">
-                <g>
-                <title>Layer 1</title>
-                <defs>
-                <pattern id="pattern-stripe" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <rect width="20" height="20" fill="#ddd"></rect>
-                  <rect width="0.75" height="20" transform="translate(0,0)" fill="#000"></rect>
-                </pattern>
-                </defs>
-                <path id="svg_3" d="m128,2l0,57l-127,0l0,-47l23,-11l104,0z" opacity="1" stroke="#000" fill="url(#pattern-stripe)"/>
-                </g>
-              </svg>
+              <img src="krawedz_faza.svg" alt="faza" class="border-img border-svg">
               <p>Krawędź faza</p>
             </div>
           </label>
@@ -150,6 +139,83 @@
           </label>
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="ksztalt">Kształt</label>
+        <div id="ksztalt" class="radio-group radios-with-imgs shape-radios">
+          <label>
+            <input type="radio" name="ksztalt" value="R6">
+            <div>
+              <div class="corner-img corner-r6"></div>
+              <p>Standard</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R15">
+            <div>
+              <div class="corner-img right-to-join"></div>
+              <p>Prawy do łączenia</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R25">
+            <div>
+              <div class="corner-img left-to-join"></div>
+              <p>Lewy do łączenia</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R50">
+            <div>
+              <div class="corner-img center-to-join"></div>
+              <p>Środkowy</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="STONE">
+            <div>
+              <img src="sciety_prawy.svg" alt="Ścięty prawy" class="corner-svg">
+              <p>Ścięty prawy</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="STONE">
+            <div>
+              <img src="sciety_prawy.svg" alt="Ścięty prawy" class="corner-svg" style="transform: scaleX(-1);">
+              <p>Ścięty lewy</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="STONE">
+            <div>
+              <img src="sciety_srodkowy.svg" alt="Ścięty środkowy" class="corner-svg">
+              <p>Ścięty środkowy</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R15">
+            <div>
+              <img src="prawy_z_lacznikami.svg" alt="Ścięty środkowy" class="corner-svg">
+              <p>Prawy z łącznikami</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R25">
+            <div>
+              <img src="prawy_z_lacznikami.svg" alt="Ścięty środkowy" class="corner-svg" style="transform: scaleX(-1);">
+              <p>Lewy z łącznikami</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R50">
+            <div>
+              <img src="srodkowy_z_lacznikami.svg" alt="Ścięty środkowy" class="corner-svg">
+              <p>Środkowy z łącznikami</p>
+            </div>
+          </label>
+        </div>
+      </div>
+
       <div class="form-group">
         <label for="ilosc">Ilość sztuk:</label>
         <input type="number" id="ilosc" name="ilosc" value="1" class="width-very-narrow">

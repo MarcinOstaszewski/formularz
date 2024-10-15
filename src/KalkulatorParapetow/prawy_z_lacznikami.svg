@@ -1,0 +1,17 @@
+<svg width="90" height="45" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>Prawy z łącznikami</title>
+  <path fill="#fff" stroke="#000" opacity="NaN" d="m493.39999,510.79999" id="svg_3"/>
+  <path fill="#fff" stroke="#000" opacity="NaN" d="m1.4,597.79999" id="svg_4"/>
+  <path fill="#fff" opacity="NaN" d="m-0.19548,44.57994c11.69864,0 81.04484,0.30009 84.1402,0.2252c3.09536,-0.0749 5.39937,-1.72486 5.51186,-3.82028c0.11249,-2.09542 0,-41.04391 -0.04499,-41.10383" id="svg_5" stroke="#000"/>
+  <path fill="#fff" opacity="NaN" d="m-0.19548,42.78826c11.40557,0 79.0145,0.28807 82.03232,0.21617c3.01781,-0.0719 5.2641,-1.65572 5.37378,-3.66715c0.10967,-2.01143 0,-39.39873 -0.04386,-39.45625" id="svg_6" stroke="#000"/>
+  <path fill="none" stroke="#000" opacity="NaN" d="m-0.30328,44.47748l0.528,-44.47748l88.98858,-0.22472" id="svg_7"/>
+  <path id="svg_1" d="m0.74739,44.29107c0,0 0.19231,-43.65385 0.19231,-43.65385c0,0 88.84615,-0.19231 88.84615,-0.19231" opacity="NaN" stroke="#000" fill="none"/>
+  <ellipse stroke="#000" stroke-width="0.5" ry="1.73077" rx="1.73077" id="svg_2" cy="18.42307" cx="4.00133" fill="none"/>
+  <rect stroke="#000" stroke-width="0.5" id="svg_8" height="1.73077" width="1.31419" y="17.59946" x="1.12388" fill="none"/>
+  <rect stroke="null" id="svg_9" height="1.20823" width="1.78644" y="17.81135" x="1.58215" fill="#ffffff"/>
+  <ellipse stroke="#000" stroke-width="0.5" ry="1.73077" rx="1.73077" id="svg_10" cy="29.64852" cx="4.00133" fill="none"/>
+  <rect stroke="#000" stroke-width="0.5" id="svg_12" height="1.73077" width="1.31419" y="28.8249" x="1.12388" fill="none"/>
+  <rect stroke="null" id="svg_11" height="1.20823" width="1.78644" y="29.0368" x="1.58215" fill="#ffffff"/>
+ </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg width="90" height="45" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>Rounded corner</title>
+  <rect id="svg_13" height="44.24696" width="89.52292" y="0.25023" x="0.39323" stroke="#000" fill="none"/>
+  <rect stroke="#000" id="svg_14" height="41.81478" width="89.52292" y="0.65482" x="0.23854" fill="none"/>
+  <path fill="#fff" stroke="#000" opacity="NaN" d="m493.39999,510.79999" id="svg_3"/>
+  <path fill="#fff" stroke="#000" opacity="NaN" d="m1.4,597.79999" id="svg_4"/>
+  <g id="svg_21">
+   <ellipse stroke="#000" stroke-width="0.5" ry="1.73077" rx="1.73077" id="svg_2" cy="18.42307" cx="3.15942" fill="none"/>
+   <rect stroke="#000" stroke-width="0.5" id="svg_8" height="1.73077" width="1.31419" y="17.59946" x="0.28198" fill="none"/>
+   <rect stroke="null" id="svg_9" height="1.20823" width="1.78644" y="17.81135" x="0.74024" fill="#ffffff"/>
+   <ellipse stroke="#000" stroke-width="0.5" ry="1.73077" rx="1.73077" id="svg_10" cy="29.64852" cx="3.15942" fill="none"/>
+   <rect stroke="#000" stroke-width="0.5" id="svg_12" height="1.73077" width="1.31419" y="28.8249" x="0.28198" fill="none"/>
+   <rect stroke="null" id="svg_11" height="1.20823" width="1.78644" y="29.0368" x="0.74024" fill="#ffffff"/>
+  </g>
+  <g transform="rotate(180 87.2626 24.0358)" id="svg_28">
+   <ellipse stroke="#000" stroke-width="0.5" ry="1.73077" rx="1.73077" id="svg_22" cy="18.42307" cx="87.83597" fill="none"/>
+   <rect stroke="#000" stroke-width="0.5" id="svg_23" height="1.73077" width="1.31419" y="17.59946" x="84.95852" fill="none"/>
+   <rect stroke="null" id="svg_24" height="1.20823" width="1.78644" y="17.81135" x="85.41679" fill="#ffffff"/>
+   <ellipse stroke="#000" stroke-width="0.5" ry="1.73077" rx="1.73077" id="svg_25" cy="29.64852" cx="87.83597" fill="none"/>
+   <rect stroke="#000" stroke-width="0.5" id="svg_26" height="1.73077" width="1.31419" y="28.8249" x="84.95852" fill="none"/>
+   <rect stroke="null" id="svg_27" height="1.20823" width="1.78644" y="29.0368" x="85.41679" fill="#ffffff"/>
+  </g>
+ </g>
+
+</svg>

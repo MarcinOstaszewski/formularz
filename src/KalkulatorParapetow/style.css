@@ -79,12 +79,6 @@ input.width-very-narrow {
   min-width: 100px;
   margin-right: 18px;
 }
-.radio-group.radios-with-imgs label img {
-  display: inline-block;
-  width: 70px;
-  height: 40px;
-  border: 2px solid #333;
-}
 .radio-group.radios-with-imgs label div p {
   width: 100%;
   margin-top: 3px;
@@ -95,6 +89,10 @@ input.width-very-narrow {
   width: 90px;
   height: 45px;
   border: 2px solid #666;
+}
+.border-img.border-svg {
+  border: none;
+  background: #fff;
 }
 .corner-img {
   border: 5px double #666;
@@ -115,7 +113,6 @@ input.width-very-narrow {
     #000 5.1mm,
     #000 5.3mm
   );
-/* background: linear-gradient(-45deg, #ddd 0%, #ddd 10%, #000 11%, #ddd 12%, #ddd 20%); */
 }
 .border-r3 { border-radius: 5px 0 0 0; }
 .border-r6 { border-radius: 9px 0 0 0; }
@@ -123,6 +120,22 @@ input.width-very-narrow {
 .border-r20 { border-radius: 28px 0 0 0; }
 .border-faza { clip-path: 0 0 0 100; }
 
+.shape-radios p {
+  font-size: 13px;
+}
+.right-to-join {
+  border-radius: 0 0 6px 0;
+  border-left: 2px solid #666;
+}
+.left-to-join {
+  border-radius: 0 0 0 6px;
+  border-right: 2px solid #666;
+}
+.center-to-join {
+  border-radius: 0;
+  border-left: 2px solid #666;
+  border-right: 2px solid #666;
+}
 .result {
   margin-top: 20px;
 }
