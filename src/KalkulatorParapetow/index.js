@@ -50,6 +50,7 @@ document.getElementById('rodzajParapetu').addEventListener('change', function (e
     grubosciStandard.classList.remove('hidden');
     grubosciWilgoc.classList.add('hidden');
   }
+  mnoznikGrubosc = parseFloat(gruboscSelect.value);
   obliczCene();
 });
 
