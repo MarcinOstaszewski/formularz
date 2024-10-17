@@ -11,7 +11,7 @@
       row.querySelector('.row-number-cell').textContent = i + '.';
       ["length", "width", "quantity", "shape"].forEach((name) => {
         const cell = row.querySelector("#" + name + "-column");
-        cell.id = "row" + i + "-" + name; // maybe not needed !!!!!!!
+        cell.id = "row" + i + "-" + name;
         cell.name = "row" + i + "-" + name;
         cell.setAttribute("aria-labelledby", name + "-label");
       });
