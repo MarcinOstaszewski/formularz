@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORMULARZ NA PARAPETY WEWNĘTRZNE MDF</title>
+  <link rel="icon" href="./favicon.png">
+  <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="./parapety_styles.css">
+</head>
+<body>
+  <section class="page-a4">
+    <header>
+      <div class="info-by-receiver pointer-events-none">
+        <label for="date-of-receive">Data przyjęcia:</label>
+        <input id="date-of-receive" name="date-of-receive" class="control-cell bottom-dotted w-20mm" type="text">
+        <label for="date-of-receipt">Data odbioru:</label>
+        <input id="date-of-receipt" name="date-of-receipt" class="control-cell bottom-dotted w-20mm" type="text">
+        <label for="advance-payment">Zaliczka:</label>
+        <input id="advance-payment" name="advance-payment" class="control-cell bottom-dotted w-20mm" type="number">
+        <label for="client-number"><strong>NR KLIENTA:</strong></label>
+        <input id="client-number" name="client-number" class="control-cell bottom-dotted w-20mm" type="number">
+      </div>
+      <div class="align-center flex-column">
+        <h4 class="order-heading">
+          <label for="order-number">FORMULARZ NA PARAPETY WEWNĘTRZNE MDF NR</label>
+          <input id="order-number" name="order-number" type="text" class="control-cell w-20mm bottom-dotted pointer-events-none">
+          <div class="display-inline no-print ml-1">
+            <button id="zoom-in" class="form-button text-xs mr-05">Powiększ (+)</button>
+            <button id="zoom-out" class="form-button text-xs"no-print >Pomniejsz (-)</button>
+          </div>
+          <div class="text-sm">( wypełnia przyjmujący zamówienie )</div>
+        </h4>
+      </div>
+    </header>
+
+    <main>
+      <form id="parapet-mdf-order">
+        <section>
+          <table id="top-table" class="top-table col-12 border-bold">
+            <tr>
+              <td class="w-25mm title-cell"><label for="article">NAROŻNIK</label></td>
+              <td class="w-50mm">
+                <input id="article" name="article" class="control-cell" type="text" min="0" max="999" required>
+              </td>
+              <td class="w-30mm title-cell"><label for="rodzajParapetu">RODZAJ I GRUBOŚĆ<i class="text-xs">(mm)</i></label></td>
+              <td colspan="2">
+                <div class="display-flex">
+                  <select id="rodzajParapetu" name="rodzajParapetu" class="control-cell col-6 border-right">
+                    <option value="standard">Standard</option>
+                    <option value="wilgoc">Wilgocioodporny</option>
+                  </select>
+
+                  <select id="grubosc-standard" name="grubosc-standard" class="control-cell col-6">
+                    <option value="1">18mm</option>
+                    <option value="1.2">22mm</option>
+                    <option value="1.4">28mm</option>
+                  </select>
+                  <select id="grubosc-wilgoc" name="grubosc-wilgoc" class="control-cell col-6 hidden">
+                    <option value="1.1">19mm</option>
+                    <option value="1.3">25mm</option>
+                    <option value="1.5">30mm</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="title-cell"><label for="border-finish">KRAWĘDŹ <i>(symbol-nr)</i></label></td>
+              <td>
+                <input id="border-finish" name="border-finish" class="control-cell" type="text" required>
+              </td>
+              <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY</td>
+              <td class="w-40mm title-cell"><label for="shipment">WYSYŁKA</label></td>
+              <td class="w-5mm align-center">
+                <input id="shipment" name="delivery" class="form-check-input" type="radio" value="shipment" required>
+              </td>
+            </tr>
+            <tr>
+              <td class="title-cell"><label for="color">KOLOR <i>(folia, lakier)</i></label></td>
+              <td class="display-flex">
+                <select id="color" name="color" class="control-cell col-6 border-right" required>
+                  <option value="">wybierz kolor</option>
+                  <option value="folia">FOLIA</option>
+                  <option value="lakier">LAKIER</option>
+                </select>
+                <input id="color-symbol" name="color-symbol" class="control-cell col-6 text-md border-left" type="text" required>
+              </td>
+              <td class="title-cell"><label for="personal-collection">ODBIÓR OSOBISTY</label></td>
+              <td class="align-center">
+                <input id="personal-collection" name="delivery" class="form-check-input" type="radio" value="personal-collection" required>
+              </td>
+            </tr>
+            
+            <tr>
+              <td colspan="2" class="title-cell"><label for="lacquer">LAKIER <i>(mat, mat strukturalny, połysk)</i></label></td>
+              <td colspan="3">
+                <select id="lacquer" name="lacquer" class="control-cell" required>
+                  <option value="brak">BRAK</option>
+                  <option value="mat">MAT</option>
+                  <option value="mat-strukturalny">MAT STRUKTURALNY</option>
+                  <option value="polysk">POŁYSK</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="central-table-legend display-flex justify-between align-bottom text-sm p-02">
+          <strong>
+            UWAGA! Wymiary proszę podawać w mm. Standardowe usłojenie wzdłuż długości.
+          </strong>
+          <button class="form-button no-print reset-button">WYCZYŚC FORMULARZ</button>
+        </section>
+
+        <section class="display-flex gap-075 col-12">
+          <div class="central-table-left-container display-flex border-bold col-6"></div>
+          <div class="flex-column gap-075 col-6">
+            <div class="right-container border-bold flex-column align-center p-03">
+              <strong>NAROŻNIKI</strong>
+              <img src="assets/narozniki.png" alt="Narożniki do wyboru" class="col-8 mx-auto my-1">
+              <small><i>* narożnik STONE występuje wyłącznie w krawędzi FAZA</i></small>
+            </div>
+
+            <div class="right-container border-bold flex-column align-center p-03">
+              <strong>KRAWĘDZIE</strong>
+              <img src="assets/krawedzie.png" alt="Krawędzie do wyboru" class="col-8 mx-auto my-1">
+            </div>
+
+            <table class="col-12 border-bold">
+              <tbody>
+                <tr>
+                  <td class="border-bold text-sm align-center h-9mm">
+                    <label for="notes" class="display-block"><strong>MIEJSCE NA DODATKOWE INFORMACJE</strong></label>
+                  </td>
+                </tr>
+                <tr class="textarea">
+                  <td colspan="8" class="border-none p-0">
+                    <textarea class="control-cell h-full" rows="9" name="notes" id="notes"></textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table id="orderer-table" class="orderer text-sm border-bold">
+              <tr>
+                  <td colspan="2" class="h-9mm align-center border-bold"><strong>ZAMAWIAJĄCY</strong></td>
+              </tr>
+              <tr>
+                <td class="w-20mm h-12mm"><label for="name-surname">Nazwa<br />Imię i nazwisko<sup>*</sup></label></td>
+                <td class="w-80mm p-0 h-12mm">
+                  <textarea id="name-surname" name="name-surname"class="control-cell" type="text" required rows="5"></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td class="h-12mm"><label for="address">Adres<sup>*</sup></label></td>
+                <td>
+                  <textarea id="address" name="address" class="control-cell" type="text" required rows="5"></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td class="w-18mm h-6mm"><label for="nip">NIP</label></td>
+                <td class="w-70mm">
+                  <input id="nip" name="nip" class="control-cell" type="number" required>
+                </td>
+              </tr>
+              <tr>
+                <td class="h-6mm"><label for="email">E-mail<sup>*</sup></label></td>
+                <td>
+                  <input id="email" name="email" class="control-cell" type="email" required>
+                </td>
+              </tr>
+              <tr>
+                <td class="h-6mm"><label for="phone">Nr tel.<sup>*</sup></label></td>
+                <td>
+                  <input id="phone" name="phone" class="control-cell" type="number" required>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </section>
+        <label id="length-label" class="hidden">Długość</label>
+        <label id="width-label" class="hidden">Szerokość</label>
+        <label id="quantity-label" class="hidden">Ilość</label>
+        <label id="shape-label" class="hidden">Kształt</label>
+      </form>
+    </main>
+
+    <footer>
+      <div class="signatures display-flex justify-between align-bottom">
+        <div class="flex-column align-center">
+          <input id="orderer-signature" name="orderer-signature" class="control-cell bottom-dotted w-40mm" type="text">
+          <small>( podpis zamawiającego )</small>
+        </div>
+        <button id="print-page" name="print-page" class="form-button no-print">WYDRUKUJ</button>
+        <button id="send-order" name="send-order" class="form-button no-print" type="submit">WYŚLIJ</button>
+        <div class="flex-column align-center">
+          <input id="receipient-signature" name="receipient-signature" class="control-cell bottom-dotted w-40mm pointer-events-none" type="text">
+          <small>( podpis przyjmującego )</small>
+        </div>
+      </div>
+      <div class="footnotes">
+        <div>
+          <small>Za błędne wypełnienie formularza odpowiedzialność ponosi zamawiający</small><br />
+          <div class="display-flex justify-between">
+            <small>Złożenie zamówienia jest równoznaczne z zapoznaniem się z warunkami gwarancji i reklamacji firmy KOBAX</small>
+            <small><sup>*</sup>pola obowiązkowe do uzupełnienia</small>
+          </div>
+        </div>
+        <div class="align-right pt-02">
+          <small>Zakład Handlowo-Produkcyjny „KOBAX” Pająk Krzysztof | Zebrzydowice 289A, 34-130 Kalwaria Zebrzydowska</small><br />
+          <small>NIP 551-000-42-29 | <a href="mailto:zakupy@kobax.pl" >zakupy@kobax.pl</a> | <a href="www.kobax.pl">www.kobax.pl</a> | tel. +48 33 876 70 83, +48 604 152 240</small>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+  <template id="central-table-header">
+    <table id="central-table" class="col-12">
+      <thead>
+        <tr class="title-cell text-sm">
+          <th class="h-7mm">Lp.</th>
+          <th>DŁUGOŚĆ</th>
+          <th>SZEROKOŚĆ</th>
+          <th class="w-9mm">SZT.</th>
+          <th>KSZTAŁT</th>
+        </tr>
+      </thead>
+    </table>
+  </template>
+
+  <template id="central-table-row">
+    <tr>
+      <td class="row-number-cell text-bold text-sm align-center h-7mm"></td>
+      <td>
+        <input id="length-column" class="control-cell" type="number" min="5" max="1200" aria-describedby="length-label">
+      </td>
+      <td>
+        <input id="width-column" class="control-cell" type="number" min="5" max="1200" aria-describedby="width-label">
+      </td>
+      <td>
+        <input id="quantity-column" class="control-cell" type="number" min="0" max="500" aria-describedby="quantity-label">
+      </td>
+      <td class="add-caret-icon">
+        <select id="shape-column" class="control-cell narrow-selector">
+          <option value=""></option>
+          <option value="standard">standard</option>
+          <option value="lewy do laczenia">lewy do łączenia</option>
+          <option value="prawy do laczenia">prawy do łączenia</option>
+          <option value="srodkowy">środkowy</option>
+          <option value="sciety lewy">ścięty lewy</option>
+          <option value="sciety srodkowy">ścięty środkowy</option>
+          <option value="sciety prawy">ścięty prawy</option>
+          <option value="lewy do laczenia">lewy do łączenia</option>
+          <option value="prawy do laczenia">prawy do łączenia</option>
+          <option value="srodkowy z lacznikami">środkowy z łącznikami</option>
+        </select>
+      </td>
+    </tr>
+  </template>
+
+  <dialog class="warning-dialog" id="invalid-form-warning">
+    <div class="dialog-content align-center">
+      <strong class="dialog-info">Prosimy o wypełnienie wszystkich wymaganych pól.</strong>
+      <p>Pola wymagane zostały zaznaczone kolorem czerwonym.</p>
+      <button class="form-button">OK</button>
+    </div>
+  </dialog>
+
+  <dialog class="warning-dialog" id="reset-form-warning">
+    <div class="dialog-content align-center flex-column">
+      <div class="display-flex justify-end">&times;</div>
+      <strong class="dialog-info">Wyczyścić wszystkie pola formularza?</strong>
+      <button id="confirm-form-reset" class="form-button reset-button ">WYCZYŚĆ</button>
+    </div>
+  </dialog>
+
+  <script src="./parapety_wewnetrzne.js"></script>
+</body>
+</html>
+
