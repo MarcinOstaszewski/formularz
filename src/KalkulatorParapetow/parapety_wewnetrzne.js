@@ -185,7 +185,22 @@
     }
   }
 
+  function changeThicknessOptions(optionSelected) {
+    const thicknessSelect = document.getElementById("thickness");
+    thicknessSelect.value = "";
+    const thicknessOptions = thicknessSelect.querySelectorAll("option");
+    thicknessOptions.forEach(function(option) {
+      if (option.classList.contains(optionSelected)) {
+        option.classList.remove("hidden");
+      } else {
+        option.classList.add("hidden");
+      }
+    });
+  }
+
   function setEventListeners() {
+    const kindSelect = document.getElementById("kind");
+    kindSelect.addEventListener("change", function(event) { changeThicknessOptions(event.target.value) });
     requiredFieldIds.forEach(function(entry) {
       const element = document.querySelector("[name=" + entry + "]");
       element.addEventListener("click", removeWarningOnClick);
