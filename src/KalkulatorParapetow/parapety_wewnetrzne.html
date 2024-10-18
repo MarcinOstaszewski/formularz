@@ -35,13 +35,14 @@
     </header>
 
     <main>
-      <form id="parapet-mdf-order">
+      <form id="parapety-mdf-order">
         <section>
           <table id="top-table" class="top-table col-12 border-bold">
             <tr>
               <td class="w-25mm title-cell"><label for="corner">NAROŻNIK</label></td>
               <td class="w-50mm">
                 <select id="corner" name="corner" class="control-cell">
+                  <option value=""></option>
                   <option value="STONE">STONE</option>
                   <option value="R6">R6</option>
                   <option value="R15">R15</option>
@@ -49,23 +50,22 @@
                   <option value="R50">R50</option>
                 </select>
               </td>
-              <td class="w-30mm title-cell"><label for="rodzajParapetu">RODZAJ I GRUBOŚĆ<i class="text-xs">(mm)</i></label></td>
-              <td colspan="2">
+              <td class="w-30mm title-cell"><label for="kind">RODZAJ I GRUBOŚĆ<i class="text-xs">(mm)</i></label></td>
+              <td colspan="2" class="add-caret-icon">
                 <div class="display-flex">
-                  <select id="rodzajParapetu" name="rodzajParapetu" class="control-cell col-8 border-right">
-                    <option value="standard">STANDARD</option>
-                    <option value="wilgoc">WILGOCIOODPORNY</option>
+                  <select id="kind" name="kind" class="control-cell col-9 border-right text-md pl-0">
+                    <option value=""></option>
+                    <option value="standard">STANDARD</option> 
+                    <option value="wilgoc">WILGOCIOUODPORNIONY</option>
                   </select>
-
-                  <select id="grubosc-standard" name="grubosc-standard" class="control-cell col-4">
-                    <option value="1">18mm</option>
-                    <option value="1.2">22mm</option>
-                    <option value="1.4">28mm</option>
-                  </select>
-                  <select id="grubosc-wilgoc" name="grubosc-wilgoc" class="control-cell col-4 hidden">
-                    <option value="1.1">19mm</option>
-                    <option value="1.3">25mm</option>
-                    <option value="1.5">30mm</option>
+                  <select id="thickness" name="thickness" class="control-cell col-3 narrow-selector text-md">
+                    <option value=""></option>
+                    <option class="standard" value="1">18mm</option>
+                    <option class="standard" value="1.2">22mm</option>
+                    <option class="standard" value="1.2">28mm</option>
+                    <option class="humidity hidden" value="1.1" >19mm</option>
+                    <option class="humidity hidden" value="1.3" >25mm</option>
+                    <option class="humidity hidden" value="1.5" >30mm</option>
                   </select>
                 </div>
               </td>
@@ -74,6 +74,7 @@
               <td class="title-cell"><label for="border-finish">KRAWĘDŹ <i>(symbol-nr)</i></label></td>
               <td>
                 <select id="border-finish" name="border-finish" class="control-cell" required>
+                  <option value=""></option>
                   <option value="R3">R3</option>
                   <option value="R6">R6</option>
                   <option value="R12">R12</option>
@@ -121,7 +122,7 @@
           <strong>
             UWAGA! Wymiary proszę podawać w mm. Standardowe usłojenie wzdłuż długości.
           </strong>
-          <button class="form-button no-print reset-button" type="button" aria-label="Wyczyść formularz">WYCZYŚĆ FORMULARZ</button>
+          <button id="reset-form-button" class="form-button no-print reset-button" type="button" aria-label="Wyczyść formularz">WYCZYŚĆ FORMULARZ</button>
         </section>
 
         <section class="display-flex gap-075 col-12">
@@ -129,13 +130,13 @@
           <div class="flex-column gap-075 col-6">
             <div class="right-container border-bold flex-column align-center p-03">
               <strong>NAROŻNIKI</strong>
-              <img src="assets/narozniki.png" alt="Narożniki do wyboru" class="col-8 mx-auto my-1">
+              <img src="assets/narozniki.png" alt="Narożniki do wyboru" class="col-10 mx-auto my-05">
               <small><i>* narożnik STONE występuje wyłącznie w krawędzi FAZA</i></small>
             </div>
 
             <div class="right-container border-bold flex-column align-center p-03">
               <strong>KRAWĘDZIE</strong>
-              <img src="assets/krawedzie.png" alt="Krawędzie do wyboru" class="col-8 mx-auto my-1">
+              <img src="assets/krawedzie.png" alt="Krawędzie do wyboru" class="col-10 mx-auto my-05">
             </div>
 
             <table class="col-12 border-bold">
@@ -212,15 +213,23 @@
       </div>
       <div class="footnotes">
         <div>
-          <small>Za błędne wypełnienie formularza odpowiedzialność ponosi zamawiający</small><br />
           <div class="display-flex justify-between">
-            <small>Złożenie zamówienia jest równoznaczne z zapoznaniem się z warunkami gwarancji i reklamacji firmy KOBAX</small>
+            <small>Za błędne wypełnienie formularza odpowiedzialność ponosi zamawiający</small><br />
             <small><sup>*</sup>pola obowiązkowe do uzupełnienia</small>
           </div>
+          <small>Złożenie zamówienia jest równoznaczne z zapoznaniem się z warunkami gwarancji i reklamacji firmy KOBAX</small>
         </div>
-        <div class="align-right pt-02">
-          <small>Zakład Handlowo-Produkcyjny „KOBAX” Pająk Krzysztof | Zebrzydowice 289A, 34-130 Kalwaria Zebrzydowska</small><br />
-          <small>NIP 551-000-42-29 | <a href="mailto:zakupy@kobax.pl" >zakupy@kobax.pl</a> | <a href="www.kobax.pl">www.kobax.pl</a> | tel. +48 33 876 70 83, +48 604 152 240</small>
+        <div class="display-flex justify-between align-center mt-05 ">
+          <div class="align-center col-12">
+            <small>Zakład Handlowo-Produkcyjny „KOBAX” Pająk Krzysztof | Zebrzydowice 289A, 34-130 Kalwaria Zebrzydowska</small><br />
+            <small>NIP 551-000-42-29 | <a href="mailto:zakupy@kobax.pl" >zakupy@kobax.pl</a> | <a href="www.kobax.pl">www.kobax.pl</a> | tel. +48 33 876 70 83, +48 604 152 240</small>
+          </div>
+          <div class="display-flex">
+            <div class="display-flex">
+              <input type="text" class="control-cell one-digit-input border-bold">
+              <input type="text" class="control-cell one-digit-input border-bold">
+            </div>
+          </div>
         </div>
       </div>
     </footer>
@@ -282,7 +291,7 @@
     <div class="dialog-content align-center flex-column">
       <div class="display-flex justify-end">&times;</div>
       <strong class="dialog-info">Wyczyścić wszystkie pola formularza?</strong>
-      <button id="confirm-form-reset" class="form-button reset-button ">WYCZYŚĆ</button>
+      <button id="confirm-form-reset" class="form-button reset-button">WYCZYŚĆ</button>
     </div>
   </dialog>
 

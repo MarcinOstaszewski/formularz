@@ -139,7 +139,6 @@ input, select {
 
 .control-cell.narrow-selector {
   position: relative;
-  width: 100%;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -151,11 +150,11 @@ input, select {
 }
 .add-caret-icon::after {
   content: "𝅏";
-  font-size: 16px;
+  font-size: 20px;
   position: absolute;
   pointer-events: none;
   color: #333;
-  top: 1mm;
+  top: 0mm;
   right: 1px;
 }
 
@@ -243,6 +242,11 @@ textarea.control-cell {
   color: var(--text-color-warning)
 }
 
+.one-digit-input {
+  width: 1.5rem;
+  text-align: center;
+}
+
 .visible-when-locked {
   display: none;
 }
@@ -262,20 +266,25 @@ textarea.control-cell {
 .p-0 { padding: 0; }
 .p-02 { padding: 0.2rem; }
 .p-03 { padding: 0.3rem; }
+.pl-0 { padding-left: 0; }
 
 .gap-075 { gap: 0.75rem; }
 
 .mr-05 { margin-right: 0.5rem; }
 .ml-1 { margin-left: 1rem; }
 .mx-auto { margin-left: auto; margin-right: auto; }
+.my-05 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
 .my-1 { margin-top: 1rem; margin-bottom: 1rem; }
+.mt-05 { margin-top: 0.5rem; }
 
 /* UTILS */
 .border-right { border-right: 1px solid var(--border-color); }
-.text-md { font-size: 15px; }
+.text-lg { font-size: 14px; }
+.text-md { font-size: 12px; }
 .text-sm { font-size: 10px; }
 .text-xs { font-size: 8px; }
 .text-bold { font-weight: bold; }
+.text-warning { color: var(--text-color-warning); }
 
 .align-center { text-align: center; }
 .align-right { text-align: right; }
@@ -292,9 +301,12 @@ textarea.control-cell {
 .h-12mm { height: 12mm; }
 
 /* WIDTHS */
+.col-3 { width: 25%; }
 .col-4 { width: 33.33333333%; }
 .col-6 { width: 50%; }
 .col-8 { width: 66.66666667%; }
+.col-9 { width: 75%; }
+.col-10 { width: 83.33333333%; }
 .col-12 { width: 100%; }
 
 .w-5mm { width: 5mm; }
