@@ -7,6 +7,6 @@
     <rect width="0.75" height="30" transform="translate(0,0)" fill="#000"></rect>
   </pattern>
   </defs>
-  <path id="svg_3" d="m128,2l0,57l-127,0l0,-47l23,-11l104,0z" opacity="1" stroke="#000" fill="url(#pattern-stripe)"/>
+  <path id="svg_3" d="m128,2l0,57l-127,0l0,-37l20,-20l104,0z" opacity="1" stroke="#000" fill="url(#pattern-stripe)"/>
   </g>
 </svg>
