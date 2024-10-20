@@ -1,3 +1,18 @@
+:root {
+  --white-color: var(--white-color);
+  --black-color: #000;
+  --text-color: #333;
+  --text-color-warning: #e00;
+  --border-color: #333;
+  --img-border-color: #666;
+  --light-grey-color: #ddd;
+  --bg-checked-color: #007bff;
+  --bg-control-color: #eef;
+  --bg-error-color: #fdd;
+  --bg-warning-color: #ffc;
+  --bg-locked-color: #ffe;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -12,7 +27,7 @@ p {
 }
 main {
   width: 600px;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid var(--border-color);
   margin-bottom: 3rem;
 }
 .top-section,
@@ -88,15 +103,15 @@ input.width-very-narrow {
   display: inline-block;
   width: 90px;
   height: 45px;
-  border: 2px solid #666;
+  border: 2px solid var(--img-border-color);
 }
 .border-img.border-svg {
   border: none;
-  background: #fff;
+  background: var(--white-color);
 }
 .corner-img {
-  border: 5px double #666;
-  border-top: 2px solid #666;
+  border: 5px double var(--img-border-color);
+  border-top: 2px solid var(--img-border-color);
 }
 .corner-r6 { border-radius: 0 0 6px 6px; }
 .corner-r15 { border-radius: 0 0 15px 15px; }
@@ -104,14 +119,14 @@ input.width-very-narrow {
 .corner-r50 { border-radius: 0 0 40px 40px; }
 .corner-stone { border-radius: 0 0 3px 3px; }
 .border-img {
-  background-color: #ddd;
+  background-color: var(--light-grey-color);
   background: rgb(221,221,221);
   background: repeating-linear-gradient(
     -45deg,
-    #ddd,
-    #ddd 5mm,
-    #000 5.1mm,
-    #000 5.3mm
+    var(--light-grey-color),
+    var(--light-grey-color) 5mm,
+    var(--black-color) 5.1mm,
+    var(--black-color) 5.3mm
   );
 }
 .border-r3 { border-radius: 5px 0 0 0; }
@@ -125,20 +140,21 @@ input.width-very-narrow {
 }
 .right-to-join {
   border-radius: 0 0 6px 0;
-  border-left: 2px solid #666;
+  border-left: 2px solid var(--img-border-color);
 }
 .left-to-join {
   border-radius: 0 0 0 6px;
-  border-right: 2px solid #666;
+  border-right: 2px solid var(--img-border-color);
 }
 .center-to-join {
   border-radius: 0;
+  border-left: 2px solid var(--img-border-color);
   border-right: 2px solid var(--img-border-color);
 }
 .button-to-cart {
   padding: 6px 90px;
   background-color: #c0c;
-  color: #fff;
+  color: var(--white-color);
   border: none;
   border-radius: 24px;
 }
