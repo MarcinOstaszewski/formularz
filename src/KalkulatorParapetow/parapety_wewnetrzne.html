@@ -39,8 +39,8 @@
         <section>
           <table id="top-table" class="top-table col-12 border-bold">
             <tr>
-              <td class="w-25mm title-cell"><label for="corner">NAROŻNIK</label></td>
-              <td class="w-50mm">
+              <td class="col-2 title-cell"><label for="corner">NAROŻNIK</label></td>
+              <td class="col-4" colspan="2">
                 <select id="corner" name="corner" class="control-cell">
                   <option value=""></option>
                   <option value="STONE">STONE</option>
@@ -50,29 +50,35 @@
                   <option value="R50">R50</option>
                 </select>
               </td>
-              <td class="w-30mm title-cell"><label for="kind">RODZAJ I GRUBOŚĆ<i class="text-xs">(mm)</i></label></td>
-              <td colspan="2" class="add-caret-icon">
+              <td class="title-cell w-20proc">
+                <label for="kind">RODZAJ I GRUBOŚĆ<i class="text-xs">(mm)</i></label>
+              </td>
+              <td class="col-3">
                 <div class="display-flex">
-                  <select id="kind" name="kind" class="control-cell col-9 border-right text-md pl-0">
+                  <select id="kind" name="kind" class="control-cell text-md pl-0">
                     <option value=""></option>
-                    <option value="standard">STANDARD</option> 
+                    <option value="standard">STANDARD</option>
                     <option value="humid">WILGOCIOUODPORNIONY</option>
                   </select>
-                  <select id="thickness" name="thickness" class="control-cell col-3 narrow-selector text-md">
+                </div>
+              </td>
+              <td class="add-caret-icon w-5proc">
+                <div>
+                  <select id="thickness" name="thickness" class="control-cell narrow-selector text-md">
                     <option value=""></option>
                     <option class="standard" value="1">18mm</option>
                     <option class="standard" value="1.2">22mm</option>
                     <option class="standard" value="1.2">28mm</option>
-                    <option class="humid hidden" value="1.1" >19mm</option>
-                    <option class="humid hidden" value="1.3" >25mm</option>
-                    <option class="humid hidden" value="1.5" >30mm</option>
+                    <option class="humid hidden" value="1.1">19mm</option>
+                    <option class="humid hidden" value="1.3">25mm</option>
+                    <option class="humid hidden" value="1.5">30mm</option>
                   </select>
                 </div>
               </td>
             </tr>
             <tr>
               <td class="title-cell"><label for="border-finish">KRAWĘDŹ <i>(symbol-nr)</i></label></td>
-              <td>
+              <td colspan="2">
                 <select id="border-finish" name="border-finish" class="control-cell" required>
                   <option value=""></option>
                   <option value="R3">R3</option>
@@ -83,29 +89,33 @@
                 </select>
               </td>
               <td rowspan="2" class="title-cell">SPOSÓB DOSTAWY</td>
-              <td class="w-40mm title-cell"><label for="shipment">WYSYŁKA</label></td>
-              <td class="w-5mm align-center">
+              <td class="title-cell"><label for="shipment">WYSYŁKA</label></td>
+              <td class="align-center">
                 <input id="shipment" name="delivery" class="form-check-input" type="radio" value="shipment" required>
               </td>
             </tr>
             <tr>
               <td class="title-cell"><label for="color">KOLOR <i>(folia, lakier)</i></label></td>
-              <td class="display-flex">
-                <select id="color" name="color" class="control-cell col-6 border-right" required aria-label="Kolor">
-                  <option value="">wybierz...</option>
+              <td class="col-2">
+                <select id="color" name="color" class="control-cell" required aria-label="Kolor">
+                  <option value=""></option>
                   <option value="folia">FOLIA</option>
                   <option value="lakier">LAKIER</option>
                 </select>
-                <input id="color-symbol" name="color-symbol" class="control-cell col-6 text-md border-left" type="text" required aria-label="Symbol koloru">
               </td>
-              <td class="title-cell"><label for="personal-collection">ODBIÓR OSOBISTY</label></td>
+              <td class="col-2" rowspan="2">
+                <input id="color-symbol" name="color-symbol" class="control-cell double-height" type="text" required aria-label="Symbol koloru">
+              </td>
+              <td class="title-cell">
+                <label for="personal-collection">ODBIÓR OSOBISTY</label>
+              </td>
               <td class="align-center">
                 <input id="personal-collection" name="delivery" class="form-check-input" type="radio" value="personal-collection" required>
               </td>
             </tr>
             
             <tr>
-              <td colspan="2" class="title-cell"><label for="lacquer">LAKIER <i>(mat, mat strukturalny, połysk)</i></label></td>
+              <td colspan="3" class="title-cell"><label for="lacquer">LAKIER <i>(mat, mat strukturalny, połysk)</i></label></td>
               <td colspan="3">
                 <select id="lacquer" name="lacquer" class="control-cell" required>
                   <option value="brak">BRAK</option>
@@ -159,31 +169,31 @@
                   <td colspan="2" class="h-9mm align-center border-bold"><strong>ZAMAWIAJĄCY</strong></td>
               </tr>
               <tr>
-                <td class="w-20mm h-12mm"><label for="name-surname">Nazwa<br />Imię i nazwisko<sup>*</sup></label></td>
-                <td class="w-80mm p-0 h-12mm">
+                <td class="col-3"><label for="name-surname">Nazwa<br />Imię i nazwisko<sup>*</sup></label></td>
+                <td class="col-8">
                   <textarea id="name-surname" name="name-surname"class="control-cell" type="text" required rows="5"></textarea>
                 </td>
               </tr>
               <tr>
-                <td class="h-12mm"><label for="address">Adres<sup>*</sup></label></td>
+                <td><label for="address">Adres<sup>*</sup></label></td>
                 <td>
                   <textarea id="address" name="address" class="control-cell" type="text" required rows="5"></textarea>
                 </td>
               </tr>
               <tr>
-                <td class="w-18mm h-6mm"><label for="nip">NIP</label></td>
-                <td class="w-70mm">
+                <td><label for="nip">NIP</label></td>
+                <td>
                   <input id="nip" name="nip" class="control-cell" type="number" required>
                 </td>
               </tr>
               <tr>
-                <td class="h-6mm"><label for="email">E-mail<sup>*</sup></label></td>
+                <td><label for="email">E-mail<sup>*</sup></label></td>
                 <td>
                   <input id="email" name="email" class="control-cell" type="email" required>
                 </td>
               </tr>
               <tr>
-                <td class="h-6mm"><label for="phone">Nr tel.<sup>*</sup></label></td>
+                <td><label for="phone">Nr tel.<sup>*</sup></label></td>
                 <td>
                   <input id="phone" name="phone" class="control-cell" type="number" required>
                 </td>
@@ -201,13 +211,13 @@
     <footer>
       <div class="signatures display-flex justify-between align-bottom">
         <div class="flex-column align-center">
-          <input id="orderer-signature" name="orderer-signature" class="control-cell bottom-dotted w-40mm" type="text">
+          <input id="orderer-signature" name="orderer-signature" class="control-cell bottom-dotted" type="text">
           <small>( podpis zamawiającego )</small>
         </div>
         <button id="print-page" name="print-page" class="form-button no-print">WYDRUKUJ</button>
         <button id="send-order" name="send-order" class="form-button no-print" type="submit">WYŚLIJ</button>
         <div class="flex-column align-center">
-          <input id="receipient-signature" name="receipient-signature" class="control-cell bottom-dotted w-40mm pointer-events-none" type="text">
+          <input id="receipient-signature" name="receipient-signature" class="control-cell bottom-dotted pointer-events-none" type="text">
           <small>( podpis przyjmującego )</small>
         </div>
       </div>
@@ -265,15 +275,15 @@
         <select id="shape-column" class="control-cell narrow-selector">
           <option value=""></option>
           <option value="standard">standard</option>
-          <option value="lewy do laczenia">lewy do łączenia</option>
-          <option value="prawy do laczenia">prawy do łączenia</option>
+          <option value="lewy-do-laczenia">lewy do łączenia</option>
+          <option value="prawy-do-laczenia">prawy do łączenia</option>
           <option value="srodkowy">środkowy</option>
-          <option value="sciety lewy">ścięty lewy</option>
-          <option value="sciety srodkowy">ścięty środkowy</option>
-          <option value="sciety prawy">ścięty prawy</option>
-          <option value="lewy do laczenia">lewy do łączenia</option>
-          <option value="prawy do laczenia">prawy do łączenia</option>
-          <option value="srodkowy z lacznikami">środkowy z łącznikami</option>
+          <option value="sciety-lewy">ścięty-lewy</option>
+          <option value="sciety-prawy">ścięty prawy</option>
+          <option value="sciety-srodkowy">ścięty środkowy</option>
+          <option value="lewy-do-laczenia">lewy z łącznikami</option>
+          <option value="prawy-do-laczenia">prawy z łącznikami</option>
+          <option value="srodkowy-0z-lacznikami">środkowy z łącznikami</option>
         </select>
       </td>
     </tr>

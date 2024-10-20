@@ -185,8 +185,16 @@
     }
   }
 
-  function changeThicknessOptions(optionSelected) {
-    const thicknessSelect = document.getElementById("thickness");
+  function flashElementBackground(id) {
+    const element = document.getElementById(id);
+    element.classList.add("changed");
+    setTimeout(function() {
+      element.classList.remove("changed");
+    }, 1500);
+  }
+
+  function changeThicknessOptions(optionSelected, id) {
+    const thicknessSelect = document.getElementById(id);
     thicknessSelect.value = "";
     const thicknessOptions = thicknessSelect.querySelectorAll("option");
     thicknessOptions.forEach(function(option) {
@@ -196,11 +204,25 @@
         option.classList.add("hidden");
       }
     });
+    flashElementBackground(id);
+  }
+
+  function setElementToValueAndFlash(id, value) {
+    const borderFinish = document.getElementById(id);
+    borderFinish.value = value;
+    flashElementBackground(id);
   }
 
   function setEventListeners() {
     const kindSelect = document.getElementById("kind");
-    kindSelect.addEventListener("change", function(event) { changeThicknessOptions(event.target.value) });
+    kindSelect.addEventListener("change", function(event) {
+      changeThicknessOptions(event.target.value, "thickness");
+      flashElementBackground("thickness");
+    });
+    const cornerSelect = document.getElementById("corner");
+    cornerSelect.addEventListener("change", function(event) {
+      if (event.target.value === "STONE") { setElementToValueAndFlash("border-finish", "FAZA")};
+    });
     requiredFieldIds.forEach(function(entry) {
       const element = document.querySelector("[name=" + entry + "]");
       element.addEventListener("click", removeWarningOnClick);
