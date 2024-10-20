@@ -112,11 +112,6 @@ table {
   transform: scale(1);
 }
 
-.bottom-table {
-  margin: 0 3mm 0 0;
-  display: inline;
-}
-
 td,
 th {
   border: 1px solid var(--border-color);
@@ -311,7 +306,6 @@ textarea.control-cell {
 .flex-column { display: flex; flex-direction: column; }
 .h-full { height: 100%; }
 .h-7mm { height: 7mm; }
-.h-12mm { height: 12mm; }
 
 /* WIDTHS */
 .col-1 { width: 8.33333333%; }
