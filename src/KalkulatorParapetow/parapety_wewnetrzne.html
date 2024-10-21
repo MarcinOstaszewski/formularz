@@ -169,15 +169,15 @@
                   <td colspan="2" class="h-9mm align-center border-bold"><strong>ZAMAWIAJĄCY</strong></td>
               </tr>
               <tr>
-                <td class="col-3"><label for="name-surname">Nazwa<br />Imię i nazwisko<sup>*</sup></label></td>
+                <td class="col-3"><label for="nazwa">Nazwa<br />Imię i nazwisko<sup>*</sup></label></td>
                 <td class="col-8">
-                  <textarea id="name-surname" name="name-surname"class="control-cell" type="text" required rows="5"></textarea>
+                  <textarea id="nazwa" name="nazwa"class="control-cell" type="text" required rows="5"></textarea>
                 </td>
               </tr>
               <tr>
-                <td><label for="address">Adres<sup>*</sup></label></td>
+                <td><label for="adres">Adres<sup>*</sup></label></td>
                 <td>
-                  <textarea id="address" name="address" class="control-cell" type="text" required rows="5"></textarea>
+                  <textarea id="adres" name="adres" class="control-cell" type="text" required rows="5"></textarea>
                 </td>
               </tr>
               <tr>
@@ -193,18 +193,18 @@
                 </td>
               </tr>
               <tr>
-                <td><label for="phone">Nr tel.<sup>*</sup></label></td>
+                <td><label for="telefon">Nr tel.<sup>*</sup></label></td>
                 <td>
-                  <input id="phone" name="phone" class="control-cell" type="number" required>
+                  <input id="telefon" name="telefon" class="control-cell" type="number" required>
                 </td>
               </tr>
             </table>
           </div>
         </section>
-        <label id="length-label" class="hidden">Długość</label>
-        <label id="width-label" class="hidden">Szerokość</label>
-        <label id="quantity-label" class="hidden">Ilość sztuk</label>
-        <label id="shape-label" class="hidden">Kształt</label>
+        <label id="dlugosc-label" class="hidden">Długość</label>
+        <label id="szerokosc-label" class="hidden">Szerokość</label>
+        <label id="ilosc-label" class="hidden">Ilość sztuk</label>
+        <label id="ksztalt-label" class="hidden">Kształt</label>
       </form>
     </main>
 
@@ -263,16 +263,16 @@
     <tr>
       <td class="row-number-cell text-bold text-sm align-center h-7mm"></td>
       <td>
-        <input id="length-column" class="control-cell" type="number" min="5" max="1200" aria-describedby="length-label">
+        <input id="dlugosc-column" class="control-cell" type="number" min="5" max="1200" aria-describedby="dlugosc-label">
       </td>
       <td>
-        <input id="width-column" class="control-cell" type="number" min="5" max="1200" aria-describedby="width-label">
+        <input id="szerokosc-column" class="control-cell" type="number" min="5" max="1200" aria-describedby="szerokosc-label">
       </td>
       <td>
-        <input id="quantity-column" class="control-cell" type="number" min="0" max="500" aria-describedby="quantity-label">
+        <input id="ilosc-column" class="control-cell" type="number" min="0" max="500" aria-describedby="ilosc-label">
       </td>
       <td class="add-caret-icon">
-        <select id="shape-column" class="control-cell narrow-selector">
+        <select id="ksztalt-column" class="control-cell narrow-selector">
           <option value=""></option>
           <option value="standard">standard</option>
           <option value="lewy-do-laczenia">lewy do łączenia</option>

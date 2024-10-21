@@ -1,7 +1,6 @@
 (function init() {
   const DOSTAWA = "dostawa";
-  const requiredFieldIds = ["name-surname", "address", "email", "phone", 
-    "naroznik", "krawedz", "kolor", "kolor-symbol", "rodzaj", "grubosc", DOSTAWA];
+  const requiredFieldIds = ["nazwa", "adres", "email", "telefon", "naroznik", "krawedz", "kolor", "kolor-symbol", "rodzaj", "grubosc", DOSTAWA];
 
   function buildLeftTable() {
     const leftContainer = document.querySelector('.central-table-left-container');
@@ -12,10 +11,10 @@
     for (let i = 1; i <= 20; i++) {
       const row = leftTableRow.content.cloneNode(true);
       row.querySelector('.row-number-cell').textContent = i + '.';
-      ["length", "width", "quantity", "shape"].forEach((name) => {
+      ["dlugosc", "szerokosc", "ilosc", "ksztalt"].forEach((name) => {
         const cell = row.querySelector("#" + name + "-column");
-        cell.id = "row" + i + "-" + name;
-        cell.name = "row" + i + "-" + name;
+        cell.id =  name  + "-row" + "-" + i;
+        cell.name =  name  + "-row" + "-" + i;
         cell.setAttribute("aria-labelledby", name + "-label");
       });
       centralTable.appendChild(row);
