@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Parapetów</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="kalkulator_parapety_wewnetrzne_styles.css">
+</head>
+<body>
+  <main>
+    <section class="top-section">
+      <p><label>Dostępność:</label><strong>Produkt na zamówienie od 6 do 14 dni roboczych</strong></p>
+      <p><label>Wysyłka w:</label><strong>3 do 7 dni roboczych (łączny czas produkcji i dostawy)</strong></p>
+    </section>
+    <section class="display-section mt-md">
+      <p><label for="powierzchnia">Powierzchnia:</label><strong id="powierzchnia"></strong></p>
+      <p><label>Cena:</label><strong id="cena-brutto"></strong></p>
+      <p><small>( 1 m² = <span id="cena-m2-brutto">[wybierz rodzaj]</span> )</small> <small class="text-gray">zawiera 23.00% VAT, bez kosztów dostawy</small></p>
+      <p><label>Cena netto:</label><strong id="cena-netto"></strong></p>
+      <p><small>( 1 m² = <span id="cena-m2-netto">[wybierz rodzaj]</span> )</small> <small class="text-gray">bez 23.00% VAT i kosztów dostawy</small></p>
+    </section>
+    <form id="kalkulator-parapetow" class="calculator-form mt-md">
+      <div class="form-group">
+        <label for="klient-detal-hurt">Klient:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="klient-detal-hurt" value="detal">Detaliczny</label>
+          <label><input type="radio" name="klient-detal-hurt" value="hurt">Hurtowy</label>
+        </div>
+        <div id="hurt-rabat" class="discount hidden">
+          <label for="rabat-value">Rabat w %:</label>
+          <input type="number" id="rabat-value" name="rabat-value" class="width-very-narrow">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="rodzaj">Rodzaj parapetu:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="rodzaj" value="standard">Standard</label>
+          <label><input type="radio" name="rodzaj" value="wilgoc">Wilgociouodporniony</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="standard">Grubość:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="standard" value="18">18mm</label>
+          <label><input type="radio" name="standard" value="22">22mm</label>
+          <label><input type="radio" name="standard" value="28">28mm</label>
+        
+          <label class="hidden"><input type="radio" name="wilgoc" value="19">19mm</label>
+          <label class="hidden"><input type="radio" name="wilgoc" value="25">25mm</label>
+          <label class="hidden"><input type="radio" name="wilgoc" value="30">30mm</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Wykończenie:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="wykonczenie" value="folia">Folia pvc</label>
+          <label><input type="radio" name="wykonczenie" value="lakier">Lakierowanie</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="szerokosc">Szerokość (cm):</label>
+        <input type="number" id="szerokosc" name="szerokosc" min="10" max="150" class="width-narrow">
+      </div>
+      <div class="form-group">
+        <label for="dlugosc">Długość (cm):</label>
+        <input type="number" id="dlugosc" name="dlugosc" min="20" max="260"class="width-narrow">
+      </div>
+      <div class="form-group">
+        <label for="ilosc">Ilość sztuk:</label>
+        <input type="number" id="ilosc" name="ilosc" value="1" min="1" max="100" class="width-very-narrow">
+      </div>
+
+      <div class="form-group">
+        <label for="naroznik">Narożnik</label>
+        <div id="naroznik" class="radio-group radios-with-imgs">
+          <label>
+            <input type="radio" name="naroznik" value="R6">
+            <div>
+              <div class="corner-img corner-r6"></div>
+              <p>Narożnik R6</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="naroznik" value="R15">
+            <div>
+              <div class="corner-img corner-r15"></div>
+              <p>Narożnik R15</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="naroznik" value="R25">
+            <div>
+              <div class="corner-img corner-r25"></div>
+              <p>Narożnik R25</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="naroznik" value="R50">
+            <div>
+              <div class="corner-img corner-r50"></div>
+              <p>Narożnik R50</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="naroznik" value="STONE">
+            <div>
+              <div class="corner-img corner-stone"></div>
+              <p>Narożnik STONE</p>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="wykonczenieKrawedzi">Krawędzie</label>
+        <div id="wykonczenieKrawedzi" class="radio-group radios-with-imgs">
+          <label>
+            <input type="radio" name="wykonczenieKrawedzi" value="R3">
+            <div>
+              <div class="border-img border-r3"></div>
+              <p>Krawędź R3</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="wykonczenieKrawedzi" value="R6">
+            <div>
+              <div class="border-img border-r6"></div>
+              <p>Krawędź R6</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="wykonczenieKrawedzi" value="R12">
+            <div>
+              <div class="border-img border-r12"></div>
+              <p>Krawędź R12</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="wykonczenieKrawedzi" value="faza">
+            <div>
+              <img src="krawedz_faza.svg" alt="faza" class="border-img border-svg">
+              <p>Krawędź faza</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="wykonczenieKrawedzi" value="R20">
+            <div>
+              <div class="border-img border-r20"></div>
+              <p>Krawędź R20</p>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ksztalt">Kształt</label>
+        <div id="ksztalt" class="radio-group radios-with-imgs shape-radios">
+          <label>
+            <input type="radio" name="ksztalt" value="R6">
+            <div>
+              <div class="corner-img corner-r6"></div>
+              <p>Standard</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R15">
+            <div>
+              <div class="corner-img right-to-join"></div>
+              <p>Prawy do łączenia</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R25">
+            <div>
+              <div class="corner-img left-to-join"></div>
+              <p>Lewy do łączenia</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R50">
+            <div>
+              <div class="corner-img center-to-join"></div>
+              <p>Środkowy</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="STONE">
+            <div>
+              <img src="sciety_prawy.svg" alt="Ścięty prawy" class="corner-svg">
+              <p>Ścięty prawy</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="STONE">
+            <div>
+              <img src="sciety_prawy.svg" alt="Ścięty prawy" class="corner-svg" style="transform: scaleX(-1);">
+              <p>Ścięty lewy</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="STONE">
+            <div>
+              <img src="sciety_srodkowy.svg" alt="Ścięty środkowy" class="corner-svg">
+              <p>Ścięty środkowy</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R15">
+            <div>
+              <img src="prawy_z_lacznikami.svg" alt="Ścięty środkowy" class="corner-svg">
+              <p>Prawy z łącznikami</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R25">
+            <div>
+              <img src="prawy_z_lacznikami.svg" alt="Ścięty środkowy" class="corner-svg" style="transform: scaleX(-1);">
+              <p>Lewy z łącznikami</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="ksztalt" value="R50">
+            <div>
+              <img src="srodkowy_z_lacznikami.svg" alt="Ścięty środkowy" class="corner-svg">
+              <p>Środkowy z łącznikami</p>
+            </div>
+          </label>
+        </div>
+      </div>
+      <button class="button-add-order" type="button" type="button">Dodaj do listy zamówień</button>
+    </form>
+  </main>
+  <script src="kalkulator_parapety_wewnetrzne.js"></script>
+</body>
+</html>
