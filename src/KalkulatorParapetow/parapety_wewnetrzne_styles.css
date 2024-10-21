@@ -321,8 +321,8 @@ textarea.control-cell {
 .w-9mm { width: 9mm; }
 .w-20mm { width: 20mm; }
 .w-50mm { width: 50mm; }
-.w-5proc { width: 6%; }
-.w-20proc { width: 20%; }
+.w-7proc { width: 7%; }
+.w-18proc { width: 18%; }
 /* BORDERS */
 .border-bold {
   border: 2px solid var(--border-color);

@@ -1,7 +1,7 @@
 (function init() {
-  const DELIVERY = "delivery";
+  const DOSTAWA = "dostawa";
   const requiredFieldIds = ["name-surname", "address", "email", "phone", 
-    "corner", "border-finish", "color", "color-symbol", "kind", "thickness", DELIVERY];
+    "naroznik", "krawedz", "kolor", "kolor-symbol", "rodzaj", "grubosc", DOSTAWA];
 
   function buildLeftTable() {
     const leftContainer = document.querySelector('.central-table-left-container');
@@ -23,7 +23,7 @@
   }
 
   function getFormElement() {
-    return document.getElementById("parapety-mdf-order");
+    return document.getElementById("parapety-wewnetrzne-order");
   }
 
   function getFormData() {
@@ -53,8 +53,8 @@
   function validateForm(data) {
     const missingFieldsList = getMissingRequiredFieldsList(data);
     missingFieldsList.forEach(function(field) {
-      if (field === DELIVERY) {
-        const deliveryRadioButtons = document.querySelectorAll('[name="' + DELIVERY + '"]');
+      if (field === DOSTAWA) {
+        const deliveryRadioButtons = document.querySelectorAll('[name="' + DOSTAWA + '"]');
         deliveryRadioButtons.forEach(function(radio) {
           radio.classList.add("required-field-error");
           radio.addEventListener("click", function() {
@@ -84,8 +84,9 @@
       queries.forEach(function(value, key) {
         const element = form.querySelector("[name=" + key + "]");
         if (element) {
-          if (element.type === "checkbox") {
-            element.checked = true;
+          if (element.type === "radio") {
+            const radio = form.querySelector("[name=" + key + "][value=" + value + "]");
+            radio.checked = true;
           } else {
             element.value = value;
           }
@@ -106,7 +107,7 @@
         notEmptyEntries[entry] = entries[entry];
       }
     }
-    localStorage.setItem("parapety-mdf", JSON.stringify(notEmptyEntries));
+    localStorage.setItem("parapety-wewnetrzne", JSON.stringify(notEmptyEntries));
   }
 
   function removeWarningOnClick(e) {
@@ -151,12 +152,12 @@
 
   function resetForm() {
     form.reset();
-    localStorage.removeItem("parapety-mdf");
+    localStorage.removeItem("parapety-wewnetrzne");
     closeModal("reset-form-warning");
   }
 
   function addZoomButtons() {
-    document.body.style.zoom = localStorage.getItem("zoom") || "1";
+    document.body.style.zoom = localStorage.getItem("parapety-wewnetrzne-zoom") || "1";
     document.getElementById("zoom-in").addEventListener("click", function() {
       const zoomLevel = (parseFloat(document.body.style.zoom) + 0.1).toString();
       localStorage.setItem("zoom", zoomLevel);
@@ -164,19 +165,20 @@
     });
     document.getElementById("zoom-out").addEventListener("click", function() {
       const zoomLevel = (parseFloat(document.body.style.zoom) - 0.1).toString();
-      localStorage.setItem("zoom", zoomLevel);
+      localStorage.setItem("parapety-wewnetrzne-zoom", zoomLevel);
       document.body.style.zoom = zoomLevel;
     });
   }
   
   function checkForDataInLocalStorage() {
-    const entries = JSON.parse(localStorage.getItem("parapety-mdf"));
+    const entries = JSON.parse(localStorage.getItem("parapety-wewnetrzne"));
     if (entries) {
       for (entry in entries) {
         const element = form.querySelector("[name=" + entry + "]");
         if (element) {
-          if (element.type === "checkbox") {
-            element.checked = true;
+          if (element.type === "radio") {
+            const radio = form.querySelector("[name=" + entry + "][value=" + entries[entry] + "]");
+            radio.checked = true;
           } else {
             element.value = entries[entry];
           }
@@ -214,14 +216,14 @@
   }
 
   function setEventListeners() {
-    const kindSelect = document.getElementById("kind");
+    const kindSelect = document.getElementById("rodzaj");
     kindSelect.addEventListener("change", function(event) {
-      changeThicknessOptions(event.target.value, "thickness");
-      flashElementBackground("thickness");
+      changeThicknessOptions(event.target.value, "grubosc");
+      flashElementBackground("grubosc");
     });
-    const cornerSelect = document.getElementById("corner");
+    const cornerSelect = document.getElementById("naroznik");
     cornerSelect.addEventListener("change", function(event) {
-      if (event.target.value === "STONE") { setElementToValueAndFlash("border-finish", "FAZA")};
+      if (event.target.value === "STONE") { setElementToValueAndFlash("krawedz", "FAZA")};
     });
     requiredFieldIds.forEach(function(entry) {
       const element = document.querySelector("[name=" + entry + "]");
