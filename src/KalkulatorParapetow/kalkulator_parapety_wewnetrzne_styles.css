@@ -5,8 +5,8 @@
   --medium-grey-color: #666;
   --grey-color: #999;
   --light-grey-color: #ddd;
-  --text-warning: #e00;
-  --bg-checked-color: #007bff;
+  --bg-checked-color: #9e1981 ;
+  --bg-flash-color: #f7e ;
   --bg-control-color: #eef;
   --bg-error-color: #fdd;
   --bg-warning-color: #ffc;
@@ -25,6 +25,14 @@ p {
   margin: 0;
   line-height: 20px;
 }
+h1 {
+  font-size: 24px;
+  margin: 0 0 0.5rem 0;
+}
+h2 {
+  font-size: 20px;
+  margin: 1rem 0 0 0;
+}
 main {
   width: 600px;
   border-right: 1px solid var(--dark-grey-color);
@@ -32,7 +40,7 @@ main {
 }
 .top-section,
 .display-section {
-  width: 580px;
+  width: 600px;
   font-size: 14px;
 }
 .top-section label {
@@ -53,7 +61,7 @@ main {
 }
 .form-group {
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 .form-group label {
   display: inline-block;
@@ -74,6 +82,12 @@ input[type="number"], select {
   width: 100%;
   padding: 4px;
 }
+input[type="radio"] {
+  height: 16px;
+  width: 16px;
+  accent-color: var(--bg-checked-color);
+}
+
 input.width-narrow {
   width: 250px;
 }
@@ -94,10 +108,13 @@ input.width-very-narrow {
   margin-right: 5px;
 }
 .radio-group.radios-with-imgs {
-  display: flex;
   flex-wrap: wrap;
-  width: 550px;
+  width: 540px;
   justify-content: center;
+}
+.radio-group,
+.radios-with-imgs {
+  padding: 4px 2px;
 }
 .radio-group.radios-with-imgs label {
   display: flex;
@@ -161,19 +178,41 @@ input.width-very-narrow {
   border-left: 2px solid var(--medium-grey-color);
   border-right: 2px solid var(--medium-grey-color);
 }
-.button-add-order {
+.add-order-button {
   padding: 6px 90px;
   background-color: var(--bg-checked-color);
   color: var(--white-color);
   border: none;
   border-radius: 24px;
+  margin-top: 1rem;
 }
+
+.current-order {
+  margin: 1rem auto
+}
+.current-order-description {
+  margin: 0;
+  font-size: 14px;
+}
+
+.changed {
+  border-radius: 6px;
+  animation: flash 1.5s;
+}
+@keyframes flash {
+  0% { background-color: var(--white-color); }
+  20% { background-color: var(--bg-flash-color); }
+  100% { background-color: var(--white-color); }
+}
+
 /* UTILS */
 .display-flex { display: flex; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.flex-column { flex-direction: column; }
 .hidden { display: none !important; }
 
 .mt-sm { margin-top: 1rem; }
 .mt-md { margin-top: 2rem; }
 
 .text-gray { color: var(--grey-color); }
-.text-warning { color: var(--text-warning); }

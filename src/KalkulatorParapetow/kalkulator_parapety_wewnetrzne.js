@@ -4,7 +4,7 @@ function init() {
   }
 
   const cenyZa1m2 = {
-    hurt: {
+    Hurtowy: {
       folia: {
         standard: {
           18: 260.2,
@@ -30,7 +30,7 @@ function init() {
         }
       }
     },
-    detal: {
+    Detaliczny: {
       folia: {
         standard: {
           18: getNetto(365),
@@ -59,6 +59,7 @@ function init() {
   };
 
   const formId = 'kalkulator-parapetow';
+  const form = document.getElementById(formId);
   const klientDetalHurt = document.querySelectorAll('[name="klient-detal-hurt"]');
   const hurtRabat = document.getElementById('hurt-rabat');
   const rabatInput = document.getElementById('rabat-value');
@@ -69,51 +70,73 @@ function init() {
   const szerokoscInput = document.getElementById('szerokosc');
   const dlugoscInput = document.getElementById('dlugosc');
   const iloscInput = document.getElementById('ilosc');
+  const naroznik = document.querySelectorAll('[name="naroznik"]');
+  const krawedz = document.querySelectorAll('[name="krawedz"]');
+  const ksztalt = document.querySelectorAll('[name="ksztalt"]');
   let rabat = 1;
   
   function getRodzajValue() {
-    return document.querySelector('[name="rodzaj"]:checked').value;
+    const rodzaj = document.querySelector('[name="rodzaj"]:checked');
+    return rodzaj ? rodzaj.value : null;
+  }
+
+  function flashChangedRadioGroup(namesList) {
+    namesList.forEach(function(name) {
+      const radio = document.querySelector('[name="' + name + '"]');
+      radio.closest('.radio-group').classList.add('changed');
+      setTimeout(function() {
+        radio.closest('.radio-group').classList.remove('changed');
+      }, 1500);
+    });
   }
 
   function showHideGruboscOptions(event) {
     const isStandard = event ? event.target.value === 'standard' : getRodzajValue() === 'standard';
     const show = isStandard ? gruboscStandard : gruboscWilgoc;
     const hide = isStandard ? gruboscWilgoc : gruboscStandard;
-    show.forEach((radio, i) => {
+    show.forEach(function(radio, i) {
       radio.checked = i === 0;
       radio.parentElement.classList.remove('hidden');
     });
-    hide.forEach(radio => {
+    hide.forEach(function(radio) {
       radio.checked = false;
       radio.parentElement.classList.add('hidden');
     });
-    saveToLocalStorageAndUpdatePrice();
+    event && flashChangedRadioGroup(['standard', 'wilgoc']);
+    saveToLocalStorageAndUpdateDisplay();
   }
 
   function setTextWhenSizesNotSet() {
-    ["cena-brutto", "powierzchnia", "cena-netto"].forEach(id => {
+    ["cena-brutto", "powierzchnia", "cena-netto"].forEach(function(id) {
       const element = document.getElementById(id);
       element.innerText = "Wprowadź wymiary";
-      // element.classList.add('text-warning');
     });
   }
 
-  function getDetalHurtValue() {
-    return document.querySelector('[name="klient-detal-hurt"]:checked').value;
+  function getKlientKind() {
+    const klientKind = document.querySelector('[name="klient-detal-hurt"]:checked');
+    return klientKind ? klientKind.value : null;
   }
 
   function updatePrice() {
-    const klientDetalHurtValue = getDetalHurtValue();
+    const klientKind = getKlientKind();
     const rodzajValue = getRodzajValue();
-    const gruboscValue = rodzajValue === 'standard' ?
-      document.querySelector('[name="standard"]:checked').value : 
-      document.querySelector('[name="wilgoc"]:checked').value;
-    const wykonczenieValue = document.querySelector('[name="wykonczenie"]:checked').value;
-    console.log(klientDetalHurtValue, wykonczenieValue, rodzajValue, gruboscValue);
-    const cenaZa1m2 = cenyZa1m2[klientDetalHurtValue][wykonczenieValue][rodzajValue][gruboscValue];
-    document.getElementById('cena-m2-netto').innerText = cenaZa1m2.toFixed(2) + ' zł';
-    document.getElementById('cena-m2-brutto').innerText = (cenaZa1m2 * 1.23).toFixed(2) + ' zł';
-    return cenaZa1m2;
+    const gruboscValue = rodzajValue ?
+      (rodzajValue === 'standard' ?
+        document.querySelector('[name="standard"]:checked').value : 
+        document.querySelector('[name="wilgoc"]:checked').value) :
+      null;
+    const wykonczenie = document.querySelector('[name="wykonczenie"]:checked');
+    const wykonczenieValue = wykonczenie ? wykonczenie.value : null;
+
+    if (klientKind && rodzajValue && gruboscValue && wykonczenieValue) {
+      const cenaZa1m2 = cenyZa1m2[klientKind][wykonczenieValue][rodzajValue][gruboscValue];
+      document.getElementById('cena-m2-netto').innerText = cenaZa1m2.toFixed(2) + ' zł';
+      document.getElementById('cena-m2-brutto').innerText = (cenaZa1m2 * 1.23).toFixed(2) + ' zł';
+      return cenaZa1m2;
+    } else {
+      return null;
+    }
   }
 
   function obliczCene() {
@@ -122,10 +145,9 @@ function init() {
     const dlugosc = parseFloat(dlugoscInput.value);
     const ilosc = parseInt(iloscInput.value);
     
-    if (!isNaN(szerokosc) && !isNaN(dlugosc) && !isNaN(ilosc)) {
+    if (!isNaN(cena) && !isNaN(szerokosc) && !isNaN(dlugosc) && !isNaN(ilosc)) {
       try {
         const powierzchnia = szerokosc * dlugosc;
-        console.log('powierzchnia', powierzchnia, cena, ilosc, rabat);
         document.getElementById('powierzchnia').innerText = Math.round(powierzchnia) + ' cm²' + ' (' + (powierzchnia / 10000).toFixed(3) + ' m²)';
         document.getElementById('cena-brutto').innerText = (cena * (powierzchnia / 10000) * 1.23 * ilosc * rabat).toFixed(2) + ' zł';
         document.getElementById('cena-netto').innerText = (cena * (powierzchnia / 10000) * ilosc * rabat).toFixed(2) + ' zł';
@@ -138,11 +160,12 @@ function init() {
   }
 
   function addListenerToRadios(radios, type, callback) {
-    radios.forEach(radio => radio.addEventListener(type, callback));
+    radios.forEach(function(radio) {
+      radio.addEventListener(type, callback);
+    });
   }
 
-  function getFormData(id) {
-    const form = document.getElementById(id);
+  function getFormData() {
     const formData = new FormData(form);
     const data = {};
     for (const [key, value] of formData.entries()) {
@@ -154,6 +177,8 @@ function init() {
   function saveToLocalStorageAndUpdatePrice() {
     const data = getFormData(formId);
     console.log('set data', data);
+  function saveToLocalStorageAndUpdateDisplay() {
+    const data = getFormData();
     localStorage.setItem(formId, JSON.stringify(data));
     obliczCene();
   }
@@ -162,20 +187,18 @@ function init() {
     if (!localStorage) return;
     const data = localStorage.getItem(formId);
     if (data) {
-      const parsedData = JSON.parse(data);
-      console.log('get parsedData', parsedData);
-      for (const key in parsedData) {
-        console.log('key', key, parsedData[key]);        
-        var element = document.querySelector('[name="' + key + '"][value="' + parsedData[key] + '"]');
-        console.log('element', element);
-        
+      const entries = JSON.parse(data);
+      for (const key in entries) {
+        const element = form.querySelector('[name="' + key + '"]');
         if (!element) continue;
         if (element.type === 'radio') {
-          element.checked = true;
-        } else if (element.type === 'number') {
-          element.value = parsedData[key];
+          const radio = form.querySelector('[name="' + key + '"][value="' + entries[key] + '"]');
+          radio.checked = true;
+        } else {
+          element.value = entries[key];
         }
       }
+      updatePrice();
     }
   }
 
@@ -185,28 +208,39 @@ function init() {
 
   function setDiscountValue(value) {
     rabat = isDiscountValid(value) ? 1 - parseFloat(rabatInput.value) / 100 : 1;
-    saveToLocalStorageAndUpdatePrice();
+    saveToLocalStorageAndUpdateDisplay();
   }
 
   function showHideHurtRabat() {
-    const value = getDetalHurtValue();
-    hurtRabat.classList.toggle('hidden', value !== 'hurt');
+    const value = getKlientKind();
+    hurtRabat.classList.toggle('hidden', value !== 'Hurtowy');
     setDiscountValue(value);
   }
 
   function verifyMaxValue() {
-    console.log('this.max', this, this.max);
     if (parseInt(this.value) > this.max) this.value = this.max;
     if (parseInt(this.value) < this.min) this.value = this.min;
-    saveToLocalStorageAndUpdatePrice();
+    saveToLocalStorageAndUpdateDisplay();
   }
 
-  addListenerToRadios(klientDetalHurt, 'change', showHideHurtRabat);
-  rabatInput.addEventListener('input', setDiscountValue);
-  addListenerToRadios(rodzaj, 'change', function(event) { showHideGruboscOptions(event); });
-  [gruboscStandard, gruboscWilgoc, wykonczenie].forEach(radios => addListenerToRadios(radios, 'change', saveToLocalStorageAndUpdatePrice));
-  ['szerokosc', 'dlugosc', 'ilosc'].forEach(id => document.getElementById(id).addEventListener('change', function() { verifyMaxValue.call(this); }));
+  function checkIfStoneSelected(event) {
+    if (event.target.value === 'STONE') {
+      krawedz.forEach(function(radio) { radio.checked = radio.value === 'faza' });
+      flashChangedRadioGroup(['krawedz']);
+    }
+    saveToLocalStorageAndUpdateDisplay();
+  }
 
+  function addEventListeners() {
+    addListenerToRadios(klientDetalHurt, 'change', showHideHurtRabat);
+    rabatInput.addEventListener('input', setDiscountValue);
+    addListenerToRadios(rodzaj, 'change', function(event) { showHideGruboscOptions(event); });
+    addListenerToRadios(naroznik, 'change', function(event) { checkIfStoneSelected(event); });
+    [gruboscStandard, gruboscWilgoc, wykonczenie,  krawedz, ksztalt].forEach(function(radios) { addListenerToRadios(radios, 'change', saveToLocalStorageAndUpdateDisplay) });
+    ['szerokosc', 'dlugosc', 'ilosc'].forEach(function(id) { document.getElementById(id).addEventListener('change', function() { verifyMaxValue.call(this); }); });
+  }
+
+  addEventListeners();
   setTextWhenSizesNotSet();
   checkForDataInLocalStorage();
   showHideHurtRabat();
