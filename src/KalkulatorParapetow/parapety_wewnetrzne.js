@@ -1,7 +1,9 @@
 (function init() {
+  const formId = "parapety-wewnetrzne";
   const DOSTAWA = "dostawa";
   const requiredFieldIds = ["nazwa", "adres", "email", "telefon", "naroznik", "krawedz", "kolor", "kolor-symbol", "rodzaj", "grubosc", DOSTAWA];
-
+  const form = document.getElementById(formId);
+  
   function buildLeftTable() {
     const leftContainer = document.querySelector('.central-table-left-container');
     const leftTableHeader = document.getElementById('central-table-header').content.cloneNode(true);
@@ -21,17 +23,17 @@
     }
   }
 
-  function getFormElement() {
-    return document.getElementById("parapety-wewnetrzne-order");
-  }
-
   function getFormData() {
     return new FormData(form);
   }
 
   function getFormEntries(data) {
     const entries = {};
-    Array.from(data.entries()).forEach(function(entry) { entries[entry[0]] = entry[1] });
+    const dataEntries = data.entries();
+    let entry;
+    while (!(entry = dataEntries.next()).done) {
+      entries[entry.value[0]] = entry.value[1];
+    }
     return entries;
   }
 
@@ -79,19 +81,23 @@
 
   function recoverFromQueryParams() {
     const queries = new URLSearchParams(window.location.search);
+    let isFromCalculator = false;
     if (queries.size) {
       queries.forEach(function(value, key) {
+        if (key === "kalkulator" && value === "true") {
+          isFromCalculator = true;
+        }
         const element = form.querySelector("[name=" + key + "]");
         if (element) {
           if (element.type === "radio") {
-            const radio = form.querySelector("[name=" + key + "][value=" + value + "]");
+            const radio = form.querySelector('[name="' + key + '"][value="' + value + '"]');
             radio.checked = true;
           } else {
             element.value = value;
           }
         }
       });
-      switchToLockedForm(form);
+      !isFromCalculator && switchToLockedForm(form);
       return true;
     }
     return false;
@@ -170,16 +176,18 @@
   }
   
   function checkForDataInLocalStorage() {
-    const entries = JSON.parse(localStorage.getItem("parapety-wewnetrzne"));
-    if (entries) {
-      for (entry in entries) {
-        const element = form.querySelector("[name=" + entry + "]");
+    if (!localStorage) return;
+    const data = localStorage.getItem(formId);
+    if (data) {
+      const entries = JSON.parse(data);
+      for (const key in entries) {
+        const element = form.querySelector("[name=" + key + "]");
         if (element) {
           if (element.type === "radio") {
-            const radio = form.querySelector("[name=" + entry + "][value=" + entries[entry] + "]");
+            const radio = form.querySelector('[name="' + key + '"][value="' + entries[key] + '"]');
             radio.checked = true;
           } else {
-            element.value = entries[entry];
+            element.value = entries[key];
           }
         }
       }
@@ -222,7 +230,7 @@
     });
     const cornerSelect = document.getElementById("naroznik");
     cornerSelect.addEventListener("change", function(event) {
-      if (event.target.value === "STONE") { setElementToValueAndFlash("krawedz", "FAZA")};
+      if (event.target.value === "STONE") { setElementToValueAndFlash("krawedz", "faza")};
     });
     requiredFieldIds.forEach(function(entry) {
       const element = document.querySelector("[name=" + entry + "]");
@@ -237,15 +245,13 @@
     });
     form.addEventListener("change", saveFormInLocalStorage);
     const resetFormButton = document.getElementById("reset-form-button");
-    resetFormButton.addEventListener("click", function(e) {
+    resetFormButton && resetFormButton.addEventListener("click", function(e) {
       e.preventDefault();
       showModal("reset-form-warning")
     });
     const confirmResetFormButton = document.getElementById("confirm-form-reset");
     confirmResetFormButton.addEventListener("click", resetForm);
   }
-
-  const form = getFormElement();
 
   (function start() {
     buildLeftTable();
