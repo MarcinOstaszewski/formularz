@@ -4,7 +4,7 @@ function init() {
   }
 
   const cenyZa1m2 = {
-    Hurtowy: {
+    hurtowy: {
       folia: {
         standard: {
           18: 260.2,
@@ -30,7 +30,7 @@ function init() {
         }
       }
     },
-    Detaliczny: {
+    detaliczny: {
       folia: {
         standard: {
           18: getNetto(365),
@@ -57,12 +57,27 @@ function init() {
       }
     }
   };
+  const ksztaltMapping = {
+    "standard": "standard",
+    "prawy-do-laczenia": "prawy do łączenia",
+    "lewy-do-laczenia": "lewy do łączenia",
+    "srodkowy": "środkowy",
+    "sciety-prawy": "ścięty prawy",
+    "sciety-lewy": "ścięty lewy",
+    "sciety-srodkowy": "ścięty środkowy",
+    "prawy-z-lacznikami": "prawy z łącznikami",
+    "lewy-z-lacznikami": "lewy z łącznikami",
+    "srodkowy-z-lacznikami": "środkowy z łącznikami"
+  };
 
+  const POWIERZCHNIA = 'powierzchnia';
+  const CENA_NETTO = 'cena-netto';
+  const CENA_BRUTTO = 'cena-brutto';
   const formId = 'kalkulator-parapetow';
   const form = document.getElementById(formId);
   const klientDetalHurt = document.querySelectorAll('[name="klient-detal-hurt"]');
   const hurtRabat = document.getElementById('hurt-rabat');
-  const rabatInput = document.getElementById('rabat-value');
+  const rabatInput = document.getElementById('rabat');
   const rodzaj = document.querySelectorAll('[name="rodzaj"]');
   const gruboscStandard = document.querySelectorAll('[name="standard"]');
   const gruboscWilgoc = document.querySelectorAll('[name="wilgoc"]');
@@ -73,6 +88,8 @@ function init() {
   const naroznik = document.querySelectorAll('[name="naroznik"]');
   const krawedz = document.querySelectorAll('[name="krawedz"]');
   const ksztalt = document.querySelectorAll('[name="ksztalt"]');
+  const currentOrderDescription = document.querySelector('.current-order-description');
+  const addOrderToTableButton = document.querySelector('.add-order-button');
   let rabat = 1;
   
   function getRodzajValue() {
@@ -107,7 +124,7 @@ function init() {
   }
 
   function setTextWhenSizesNotSet() {
-    ["cena-brutto", "powierzchnia", "cena-netto"].forEach(function(id) {
+    [POWIERZCHNIA, CENA_NETTO, CENA_BRUTTO].forEach(function(id) {
       const element = document.getElementById(id);
       element.innerText = "Wprowadź wymiary";
     });
@@ -148,9 +165,9 @@ function init() {
     if (!isNaN(cena) && !isNaN(szerokosc) && !isNaN(dlugosc) && !isNaN(ilosc)) {
       try {
         const powierzchnia = szerokosc * dlugosc;
-        document.getElementById('powierzchnia').innerText = Math.round(powierzchnia) + ' cm²' + ' (' + (powierzchnia / 10000).toFixed(3) + ' m²)';
-        document.getElementById('cena-brutto').innerText = (cena * (powierzchnia / 10000) * 1.23 * ilosc * rabat).toFixed(2) + ' zł';
-        document.getElementById('cena-netto').innerText = (cena * (powierzchnia / 10000) * ilosc * rabat).toFixed(2) + ' zł';
+        document.getElementById(POWIERZCHNIA).innerText = Math.round(powierzchnia) + ' cm²' + ' (' + (powierzchnia / 10000).toFixed(3) + ' m²)';
+        document.getElementById(CENA_NETTO).innerText = (cena * (powierzchnia / 10000) * ilosc * rabat).toFixed(2) + ' zł';
+        document.getElementById(CENA_BRUTTO).innerText = (cena * (powierzchnia / 10000) * 1.23 * ilosc * rabat).toFixed(2) + ' zł';
       } catch (error) {
         console.error(error);
       }
@@ -174,13 +191,35 @@ function init() {
     return data;
   }
 
-  function saveToLocalStorageAndUpdatePrice() {
-    const data = getFormData(formId);
-    console.log('set data', data);
+  function updateCurrentOrderDescription(data) {
+    let descr = "<h2>Podsumowanie aktualnego zamówienia:</h2>";
+    descr += "<p>Typ klienta: <strong>" + data["klient-detal-hurt"] + "</strong>, ";
+    data["klient-detal-hurt"] === "hurtowy"
+      && data["rabat"] && data["rabat"] !== NaN && data["rabat"] > 0 
+      && (descr += "rabat: <strong>" + data["rabat"] + "%</strong>, ");
+    data["rodzaj"] && (descr += "rodzaj parapetu: <strong>"
+      + {standard: "standardowy", wilgoc: "wilgociouodporniony"}[data["rodzaj"]] + "</strong>, ");
+    data["standard"] && (descr += "grubość: <strong>" + data["standard"] + " mm</strong>, ");
+    data["wilgoc"] && (descr += "grubość: <strong>" + data["wilgoc"] + " mm</strong>, ");
+    data["wykonczenie"] && (descr += "wykończenie: <strong>" + {folia: "folia pvc", lakier: "lakier"}[data["wykonczenie"]] + "</strong>, ");
+    data["naroznik"] && (descr += "narożnik: <strong>" + data["naroznik"] + "</strong>, ");
+    data["krawedz"] && (descr += "krawędź: <strong>" + data["krawedz"] + "</strong>, ");
+    data["ksztalt"] && (descr += "kształt: <strong>" + ksztaltMapping[data["ksztalt"]] + "</strong>, ");
+    data["szerokosc"] && (descr += "szerokość: <strong>" + data["szerokosc"] + " mm</strong>, ");
+    data["dlugosc"] && (descr += "długość: <strong>" + data["dlugosc"] + " mm</strong>, ");
+    data["ilosc"] && (descr += "ilość sztuk: <strong>" + data["ilosc"] + "</strong>");
+    descr += ".</p>";
+    descr += "<p>Powierzchnia: <strong>" + document.getElementById(POWIERZCHNIA).innerText + "</strong>, ";
+    descr += "cena brutto: <strong>" + document.getElementById(CENA_BRUTTO).innerText + "</strong>.";
+    descr += "(netto: <strong>" + document.getElementById(CENA_NETTO).innerText + "</strong>).</p>";
+    currentOrderDescription.innerHTML = descr;
+  }
+
   function saveToLocalStorageAndUpdateDisplay() {
     const data = getFormData();
     localStorage.setItem(formId, JSON.stringify(data));
     obliczCene();
+    updateCurrentOrderDescription(data);
   }
 
   function checkForDataInLocalStorage() {
@@ -213,7 +252,7 @@ function init() {
 
   function showHideHurtRabat() {
     const value = getKlientKind();
-    hurtRabat.classList.toggle('hidden', value !== 'Hurtowy');
+    hurtRabat.classList.toggle('hidden', value !== 'hurtowy');
     setDiscountValue(value);
   }
 
