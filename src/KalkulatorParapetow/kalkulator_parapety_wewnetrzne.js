@@ -11,7 +11,7 @@ function init() {
           22: 274.8,
           28: 302.4
         },
-        wilgoc: {
+        wilgociouodporniony: {
           19: 311.4,
           25: 362.6,
           30: 399.2
@@ -23,7 +23,7 @@ function init() {
           22: 369.1,
           28: 392.7
         },
-        wilgoc: {
+        wilgociouodporniony: {
           19: 375.6,
           25: 411.4,
           30: 469.9
@@ -37,7 +37,7 @@ function init() {
           22: getNetto(433),
           28: getNetto(480)
         },
-        wilgoc: {
+        wilgociouodporniony: {
           19: getNetto(499),
           25: getNetto(580),
           30: getNetto(641)
@@ -49,7 +49,7 @@ function init() {
           22: getNetto(1542),
           28: getNetto(893)
         },
-        wilgoc: {
+        wilgociouodporniony: {
           19: getNetto(803),
           25: getNetto(878),
           30: getNetto(953)
@@ -69,19 +69,22 @@ function init() {
     "lewy-z-lacznikami": "lewy z łącznikami",
     "srodkowy-z-lacznikami": "środkowy z łącznikami"
   };
+  const entriesToAddRowNumber = ['szerokosc', 'dlugosc', 'ilosc', 'ksztalt'];
 
   const POWIERZCHNIA = 'powierzchnia';
   const CENA_NETTO = 'cena-netto';
   const CENA_BRUTTO = 'cena-brutto';
+  const AKTUALNE_ZAMOWIENIE = 'Aktualne zamówienie: ';
   const formId = 'kalkulator-parapetow';
   const form = document.getElementById(formId);
-  const klientDetalHurt = document.querySelectorAll('[name="klient-detal-hurt"]');
+  const klientDetalHurt = document.querySelectorAll('[name="klient"]');
   const hurtRabat = document.getElementById('hurt-rabat');
   const rabatInput = document.getElementById('rabat');
   const rodzaj = document.querySelectorAll('[name="rodzaj"]');
   const gruboscStandard = document.querySelectorAll('[name="standard"]');
-  const gruboscWilgoc = document.querySelectorAll('[name="wilgoc"]');
-  const wykonczenie = document.querySelectorAll('[name="wykonczenie"]');
+  const gruboscWilgoc = document.querySelectorAll('[name="wilgociouodporniony"]');
+  const kolor = document.querySelectorAll('[name="kolor"]');
+  const dostawa = document.querySelectorAll('[name="dostawa"]');
   const szerokoscInput = document.getElementById('szerokosc');
   const dlugoscInput = document.getElementById('dlugosc');
   const iloscInput = document.getElementById('ilosc');
@@ -89,7 +92,8 @@ function init() {
   const krawedz = document.querySelectorAll('[name="krawedz"]');
   const ksztalt = document.querySelectorAll('[name="ksztalt"]');
   const currentOrderDescription = document.querySelector('.current-order-description');
-  const addOrderToTableButton = document.querySelector('.add-order-button');
+  const addOrderButton = document.querySelector('.add-order-button');
+  const ordersListSection = document.querySelector('.orders-list');
   let rabat = 1;
   
   function getRodzajValue() {
@@ -107,8 +111,8 @@ function init() {
     });
   }
 
-  function showHideGruboscOptions(event) {
-    const isStandard = event ? event.target.value === 'standard' : getRodzajValue() === 'standard';
+  function showHideGruboscOptions(value) {
+    const isStandard = value ? value === 'standard' : getRodzajValue() === 'standard';
     const show = isStandard ? gruboscStandard : gruboscWilgoc;
     const hide = isStandard ? gruboscWilgoc : gruboscStandard;
     show.forEach(function(radio, i) {
@@ -119,7 +123,7 @@ function init() {
       radio.checked = false;
       radio.parentElement.classList.add('hidden');
     });
-    event && flashChangedRadioGroup(['standard', 'wilgoc']);
+    value && flashChangedRadioGroup(['standard', 'wilgociouodporniony']);
     saveToLocalStorageAndUpdateDisplay();
   }
 
@@ -131,23 +135,29 @@ function init() {
   }
 
   function getKlientKind() {
-    const klientKind = document.querySelector('[name="klient-detal-hurt"]:checked');
+    const klientKind = document.querySelector('[name="klient"]:checked');
     return klientKind ? klientKind.value : null;
+  }
+
+  function getGruboscValue(rodzajValue) {
+    if (rodzajValue) {
+      return (rodzajValue === 'standard' ?
+        (document.querySelector('[name="standard"]:checked') ? document.querySelector('[name="standard"]:checked').value : null) : 
+        (document.querySelector('[name="wilgociouodporniony"]:checked') ? document.querySelector('[name="wilgociouodporniony"]:checked').value : null)); 
+    } else {
+      return null;
+    }
   }
 
   function updatePrice() {
     const klientKind = getKlientKind();
     const rodzajValue = getRodzajValue();
-    const gruboscValue = rodzajValue ?
-      (rodzajValue === 'standard' ?
-        document.querySelector('[name="standard"]:checked').value : 
-        document.querySelector('[name="wilgoc"]:checked').value) :
-      null;
-    const wykonczenie = document.querySelector('[name="wykonczenie"]:checked');
-    const wykonczenieValue = wykonczenie ? wykonczenie.value : null;
+    const gruboscValue = getGruboscValue(rodzajValue);
+    const kolor = document.querySelector('[name="kolor"]:checked');
+    const kolorValue = kolor ? kolor.value : null;
 
-    if (klientKind && rodzajValue && gruboscValue && wykonczenieValue) {
-      const cenaZa1m2 = cenyZa1m2[klientKind][wykonczenieValue][rodzajValue][gruboscValue];
+    if (klientKind && rodzajValue && gruboscValue && kolorValue) {
+      const cenaZa1m2 = cenyZa1m2[klientKind][kolorValue][rodzajValue][gruboscValue];
       document.getElementById('cena-m2-netto').innerText = cenaZa1m2.toFixed(2) + ' zł';
       document.getElementById('cena-m2-brutto').innerText = (cenaZa1m2 * 1.23).toFixed(2) + ' zł';
       return cenaZa1m2;
@@ -183,36 +193,56 @@ function init() {
   }
 
   function getFormData() {
-    const formData = new FormData(form);
-    const data = {};
-    for (const [key, value] of formData.entries()) {
+    var formData = new FormData(form);
+    var data = {};
+    formData.forEach(function(value, key) {
       data[key] = value;
-    }
+    });
     return data;
   }
 
   function updateCurrentOrderDescription(data) {
-    let descr = "<h2>Podsumowanie aktualnego zamówienia:</h2>";
-    descr += "<p>Typ klienta: <strong>" + data["klient-detal-hurt"] + "</strong>, ";
-    data["klient-detal-hurt"] === "hurtowy"
-      && data["rabat"] && data["rabat"] !== NaN && data["rabat"] > 0 
-      && (descr += "rabat: <strong>" + data["rabat"] + "%</strong>, ");
-    data["rodzaj"] && (descr += "rodzaj parapetu: <strong>"
-      + {standard: "standardowy", wilgoc: "wilgociouodporniony"}[data["rodzaj"]] + "</strong>, ");
-    data["standard"] && (descr += "grubość: <strong>" + data["standard"] + " mm</strong>, ");
-    data["wilgoc"] && (descr += "grubość: <strong>" + data["wilgoc"] + " mm</strong>, ");
-    data["wykonczenie"] && (descr += "wykończenie: <strong>" + {folia: "folia pvc", lakier: "lakier"}[data["wykonczenie"]] + "</strong>, ");
-    data["naroznik"] && (descr += "narożnik: <strong>" + data["naroznik"] + "</strong>, ");
-    data["krawedz"] && (descr += "krawędź: <strong>" + data["krawedz"] + "</strong>, ");
-    data["ksztalt"] && (descr += "kształt: <strong>" + ksztaltMapping[data["ksztalt"]] + "</strong>, ");
-    data["szerokosc"] && (descr += "szerokość: <strong>" + data["szerokosc"] + " mm</strong>, ");
-    data["dlugosc"] && (descr += "długość: <strong>" + data["dlugosc"] + " mm</strong>, ");
-    data["ilosc"] && (descr += "ilość sztuk: <strong>" + data["ilosc"] + "</strong>");
-    descr += ".</p>";
-    descr += "<p>Powierzchnia: <strong>" + document.getElementById(POWIERZCHNIA).innerText + "</strong>, ";
-    descr += "cena brutto: <strong>" + document.getElementById(CENA_BRUTTO).innerText + "</strong>.";
-    descr += "(netto: <strong>" + document.getElementById(CENA_NETTO).innerText + "</strong>).</p>";
-    currentOrderDescription.innerHTML = descr;
+    const klient = data["klient"];
+    const rabat = data["rabat"];
+    const rodzaj = data["rodzaj"];
+    const standard = data["standard"];
+    const wilgociouodporniony = data["wilgociouodporniony"];
+    const kolor = data["kolor"];
+    const naroznik = data["naroznik"];
+    const krawedz = data["krawedz"];
+    const ksztalt = data["ksztalt"];
+    const szerokosc = data["szerokosc"];
+    const dlugosc = data["dlugosc"];
+    const ilosc = data["ilosc"];
+    let orderDescription = AKTUALNE_ZAMOWIENIE;
+    klient && (orderDescription += "Typ klienta: " + klient + ", ");
+    if (klient === "hurtowy" && rabat && !isNaN(rabat) && rabat > 0) {
+      orderDescription += "rabat: " + rabat + "%, ";
+    }
+    rodzaj && (orderDescription += "rodzaj parapetu: " + rodzaj + ", ");
+    standard && (orderDescription += "grubość: " + standard + " mm, ");
+    wilgociouodporniony && (orderDescription += "grubość: " + wilgociouodporniony + " mm, ");
+    kolor && (orderDescription += "wykończenie: " + kolor + ", ");
+    naroznik && (orderDescription += "narożnik: " + naroznik + ", ");
+    krawedz && (orderDescription += "krawędź: " + krawedz + ", ");
+    ksztalt && (orderDescription += "kształt: " + ksztaltMapping[ksztalt] + ", ");
+    szerokosc && (orderDescription += "szerokość: " + szerokosc + " mm, ");
+    dlugosc && (orderDescription += "długość: " + dlugosc + " mm, ");
+    ilosc && (orderDescription += "ilość sztuk: " + ilosc);
+    orderDescription += ".";
+    orderDescription += ' Powierzchnia: ' + document.getElementById(POWIERZCHNIA).innerText + ", ";
+    orderDescription += "cena brutto: " + document.getElementById(CENA_BRUTTO).innerText + ".";
+    orderDescription += "(netto: " + document.getElementById(CENA_NETTO).innerText + ").";
+    currentOrderDescription.innerText = orderDescription;
+    if (klient && rodzaj && (standard || wilgociouodporniony) && kolor && naroznik && krawedz && ksztalt && szerokosc && dlugosc && ilosc) {
+      addOrderButton.removeAttribute('disabled');
+      currentOrderDescription.classList.remove('data-not-full');
+      currentOrderDescription.parentElement.querySelector('button').innerText = 'Dodaj do listy zamówień';
+    } else {
+      addOrderButton.setAttribute('disabled', 'disabled');
+      currentOrderDescription.classList.add('data-not-full');
+      currentOrderDescription.parentElement.querySelector('button').innerText = 'Uzupełnij dane zamówienia';
+    }
   }
 
   function saveToLocalStorageAndUpdateDisplay() {
@@ -246,7 +276,12 @@ function init() {
   }
 
   function setDiscountValue(value) {
-    rabat = isDiscountValid(value) ? 1 - parseFloat(rabatInput.value) / 100 : 1;
+    if (!isDiscountValid(value)) {
+      rabatInput.value = 1;
+      rabat = 1;
+    } else {
+      rabat = 1 - parseFloat(rabatInput.value) / 100;
+    }
     saveToLocalStorageAndUpdateDisplay();
   }
 
@@ -270,18 +305,96 @@ function init() {
     saveToLocalStorageAndUpdateDisplay();
   }
 
+  function getOrderURL(queriesString) {
+    const lastSlashIndex = window.location.href.lastIndexOf('/');
+    return window.location.href.substring(0, lastSlashIndex) + '/parapety_wewnetrzne.html' + queriesString
+  }
+
+  function getOrdersFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('orders')) || [];
+  }
+
+  function addOrderToLocalStorage(textContent, url) {
+    textContent = textContent.replace(AKTUALNE_ZAMOWIENIE, '');
+    const orders = getOrdersFromLocalStorage();
+    ['wilgocioudporniony=', 'standard='].forEach(function(entry) {
+      url = url.replace(entry, 'grubosc=');
+    });
+    const newOrder = { textContent: textContent, url: url };
+    orders.push(newOrder);
+    localStorage.setItem('orders', JSON.stringify(orders));
+  }
+
+  function removeOrderFromLocalStorage(index) {
+    const orders = getOrdersFromLocalStorage();
+    orders.splice(index, 1);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    showOrdersListFromLocalStorage();
+  }
+
+  function showOrdersListFromLocalStorage() {
+    const orders = getOrdersFromLocalStorage();
+    if (orders.length > 0) {
+      ordersListSection.classList.remove('hidden');
+      ordersListSection.querySelector('ul').innerHTML = '';
+      orders.forEach(function(order) {
+        const open = '<a class="make-order" href="' + order.url + '" target="_blank">Zamów</a>';
+        const remove = '<button class="remove-order">Usuń</button>';
+        const summaryText = '<div>' + order.textContent + '</div>';
+        const buttonsColumn = '<div class="buttons-column">' + open + remove + '</div>';
+        const li = document.createElement('li');
+        li.innerHTML = summaryText + buttonsColumn;
+        ordersListSection.querySelector('ul').appendChild(li);
+      });
+      ordersListSection.querySelectorAll('.remove-order').forEach(function(button, index) {
+        button.addEventListener('click', function() { removeOrderFromLocalStorage(index); });
+      });
+    } else {
+      ordersListSection.classList.add('hidden');
+    }
+  }
+
+  function resetForm() {
+    form.reset();
+    localStorage.removeItem(formId);
+    setTextWhenSizesNotSet();
+    showHideHurtRabat();
+    showHideGruboscOptions();
+    saveToLocalStorageAndUpdateDisplay();
+  }
+
+  function addOrderToList() {
+    const data = getFormData();
+    let queriesString = "?kalkulator=true&";
+    for (entry in data) {
+      if (data[entry] !== "") {
+        let value = entry ;
+        if (entriesToAddRowNumber.includes(entry)) {
+          value += '-row-1'
+        }
+        queriesString += value + "=" + data[entry] + "&";
+      }
+    }
+    const url = getOrderURL(queriesString);
+    addOrderToLocalStorage(currentOrderDescription.innerText, url);
+    resetForm();
+    showOrdersListFromLocalStorage();
+  }
+
   function addEventListeners() {
     addListenerToRadios(klientDetalHurt, 'change', showHideHurtRabat);
     rabatInput.addEventListener('input', setDiscountValue);
-    addListenerToRadios(rodzaj, 'change', function(event) { showHideGruboscOptions(event); });
+    addListenerToRadios(rodzaj, 'change', function(event) { showHideGruboscOptions(event.target.value); });
     addListenerToRadios(naroznik, 'change', function(event) { checkIfStoneSelected(event); });
-    [gruboscStandard, gruboscWilgoc, wykonczenie,  krawedz, ksztalt].forEach(function(radios) { addListenerToRadios(radios, 'change', saveToLocalStorageAndUpdateDisplay) });
+    [gruboscStandard, gruboscWilgoc, kolor, dostawa, krawedz, ksztalt].forEach(function(radios) { addListenerToRadios(radios, 'change', saveToLocalStorageAndUpdateDisplay) });
     ['szerokosc', 'dlugosc', 'ilosc'].forEach(function(id) { document.getElementById(id).addEventListener('change', function() { verifyMaxValue.call(this); }); });
+    addOrderButton.addEventListener('click', addOrderToList);
   }
 
   addEventListeners();
   setTextWhenSizesNotSet();
   checkForDataInLocalStorage();
+  showOrdersListFromLocalStorage();
   showHideHurtRabat();
   showHideGruboscOptions();
 }

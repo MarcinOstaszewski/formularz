@@ -24,10 +24,10 @@
     </section>
     <form id="kalkulator-parapetow" class="calculator-form mt-md">
       <div class="form-group">
-        <label for="klient-detal-hurt">Klient:</label>
+        <label for="klient">Klient:</label>
         <div class="radio-group">
-          <label><input type="radio" name="klient-detal-hurt" value="detaliczny">Detaliczny</label>
-          <label><input type="radio" name="klient-detal-hurt" value="hurtowy">Hurtowy</label>
+          <label><input type="radio" name="klient" value="detaliczny">Detaliczny</label>
+          <label><input type="radio" name="klient" value="hurtowy">Hurtowy</label>
         </div>
         <div id="hurt-rabat" class="discount hidden">
           <label for="rabat">Rabat w %:</label>
@@ -38,7 +38,7 @@
         <label for="rodzaj">Rodzaj parapetu:</label>
         <div class="radio-group">
           <label><input type="radio" name="rodzaj" value="standard">Standard</label>
-          <label><input type="radio" name="rodzaj" value="wilgoc">Wilgociouodporniony</label>
+          <label><input type="radio" name="rodzaj" value="wilgociouodporniony">Wilgociouodporniony</label>
         </div>
       </div>
       <div class="form-group">
@@ -48,16 +48,23 @@
           <label><input type="radio" name="standard" value="22">22 mm</label>
           <label><input type="radio" name="standard" value="28">28 mm</label>
         
-          <label class="hidden"><input type="radio" name="wilgoc" value="19">19 mm</label>
-          <label class="hidden"><input type="radio" name="wilgoc" value="25">25 mm</label>
-          <label class="hidden"><input type="radio" name="wilgoc" value="30">30 mm</label>
+          <label class="hidden"><input type="radio" name="wilgociouodporniony" value="19">19 mm</label>
+          <label class="hidden"><input type="radio" name="wilgociouodporniony" value="25">25 mm</label>
+          <label class="hidden"><input type="radio" name="wilgociouodporniony" value="30">30 mm</label>
         </div>
       </div>
       <div class="form-group">
         <label>Wykończenie:</label>
         <div class="radio-group">
-          <label><input type="radio" name="wykonczenie" value="folia">Folia pvc</label>
-          <label><input type="radio" name="wykonczenie" value="lakier">Lakierowanie</label>
+          <label><input type="radio" name="kolor" value="folia">Folia pvc</label>
+          <label><input type="radio" name="kolor" value="lakier">Lakierowanie</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Sposób dostawy:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="dostawa" value="wysylka">Wysyłka</label>
+          <label><input type="radio" name="dostawa" value="odbior">Odbiór osobisty</label>
         </div>
       </div>
       <div class="form-group">
@@ -231,9 +238,13 @@
       </div>
       <div class="display-flex justify-center">
         <div class="current-order">
-          <div class="current-order-description"></div>
-          <button class="add-order-button" type="button" type="button">Dodaj do listy zamówień</button>
-          <div class="orders-list"></div>
+          <h2>Podsumowanie aktualnego zamówienia:</h2>
+          <div class="current-order-description data-not-full"></div>
+          <button class="add-order-button" type="button" type="button" disabled>Dodaj do listy zamówień</button>
+          <section class="orders-list hidden">
+            <h3>Lista zamówień:</h3>
+            <ul></ul>
+          </section>
         </div>
       </div>
     </form>
