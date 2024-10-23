@@ -130,7 +130,7 @@ function init() {
   function setTextWhenSizesNotSet() {
     [POWIERZCHNIA, CENA_NETTO, CENA_BRUTTO].forEach(function(id) {
       const element = document.getElementById(id);
-      element.innerText = "Wprowadź wymiary";
+      element.innerText = "[wprowadź wymiary]";
     });
   }
 
@@ -332,6 +332,16 @@ function init() {
     showOrdersListFromLocalStorage();
   }
 
+  function confirmRemoveOrder(index) {
+    const dialog = document.getElementById('potwierdz-usuniecie');
+    dialog.showModal();
+    dialog.querySelector('button').addEventListener('click', function() {
+      removeOrderFromLocalStorage(index);
+      dialog.close();
+    });
+    dialog.addEventListener('click', function() { dialog.close() });
+  }
+
   function showOrdersListFromLocalStorage() {
     const orders = getOrdersFromLocalStorage();
     if (orders.length > 0) {
@@ -339,7 +349,7 @@ function init() {
       ordersListSection.querySelector('ul').innerHTML = '';
       orders.forEach(function(order) {
         const open = '<a class="make-order" href="' + order.url + '" target="_blank">Zamów</a>';
-        const remove = '<button class="remove-order">Usuń</button>';
+        const remove = '<button class="remove-order" type="button">Usuń</button>';
         const summaryText = '<div>' + order.textContent + '</div>';
         const buttonsColumn = '<div class="buttons-column">' + open + remove + '</div>';
         const li = document.createElement('li');
@@ -347,7 +357,7 @@ function init() {
         ordersListSection.querySelector('ul').appendChild(li);
       });
       ordersListSection.querySelectorAll('.remove-order').forEach(function(button, index) {
-        button.addEventListener('click', function() { removeOrderFromLocalStorage(index); });
+        button.addEventListener('click', function() { confirmRemoveOrder(index); });
       });
     } else {
       ordersListSection.classList.add('hidden');

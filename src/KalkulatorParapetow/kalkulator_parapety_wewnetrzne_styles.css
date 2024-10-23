@@ -253,6 +253,26 @@ input.width-very-narrow {
   cursor: pointer;
 }
 
+dialog {
+  width: 400px;
+  padding: 2rem;
+  text-align: center;
+  color: var(--danger-color);
+  border: 2px solid var(--danger-color);
+  border-radius: 24px;
+  background-color: var(--white-color);
+}
+dialog button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  width: 50%;
+  color: var(--white-color);
+  background-color: var(--danger-color);
+  border: none;
+  border-radius: 24px;
+  display: inline-block;
+}
+
 .changed {
   border-radius: 6px;
   animation: flash 1.5s;
