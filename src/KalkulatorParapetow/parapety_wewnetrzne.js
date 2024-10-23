@@ -87,6 +87,13 @@
         if (key === "kalkulator" && value === "true") {
           isFromCalculator = true;
         }
+        if (key === "rodzaj") {
+         changeThicknessOptions(value, "grubosc");
+        }
+        if (key === "rabat" && !isNaN(value) && value > 0) {
+          key = "dodatkowe";
+          value = "rabat: " + value + "%";
+        }
         const element = form.querySelector("[name=" + key + "]");
         if (element) {
           if (element.type === "radio") {

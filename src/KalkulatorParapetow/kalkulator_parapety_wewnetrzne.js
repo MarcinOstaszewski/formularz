@@ -271,13 +271,14 @@ function init() {
     }
   }
 
-  function isDiscountValid(value) {
-    value === 'hurt' && rabatInput.value > 0;
+  function isDiscountValid(clientKind) {
+    return clientKind === 'hurtowy' && parseFloat(rabatInput.value) > 0;
   }
 
-  function setDiscountValue(value) {
-    if (!isDiscountValid(value)) {
-      rabatInput.value = 1;
+  function setDiscountValue() {
+    const clientKind = getKlientKind();
+    if (!isDiscountValid(clientKind)) {
+      rabatInput.value = 0;
       rabat = 1;
     } else {
       rabat = 1 - parseFloat(rabatInput.value) / 100;
@@ -286,9 +287,9 @@ function init() {
   }
 
   function showHideHurtRabat() {
-    const value = getKlientKind();
-    hurtRabat.classList.toggle('hidden', value !== 'hurtowy');
-    setDiscountValue(value);
+    const clientKind = getKlientKind();
+    hurtRabat.classList.toggle('hidden', clientKind !== 'hurtowy');
+    setDiscountValue();
   }
 
   function verifyMaxValue() {
@@ -393,7 +394,7 @@ function init() {
 
   function addEventListeners() {
     addListenerToRadios(klientDetalHurt, 'change', showHideHurtRabat);
-    rabatInput.addEventListener('input', setDiscountValue);
+    rabatInput.addEventListener('input', function() { setDiscountValue(); });
     addListenerToRadios(rodzaj, 'change', function(event) { showHideGruboscOptions(event.target.value); });
     addListenerToRadios(naroznik, 'change', function(event) { checkIfStoneSelected(event); });
     [gruboscStandard, gruboscWilgoc, kolor, dostawa, krawedz, ksztalt].forEach(function(radios) { addListenerToRadios(radios, 'change', saveToLocalStorageAndUpdateDisplay) });
