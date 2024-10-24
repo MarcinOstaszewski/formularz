@@ -84,21 +84,29 @@ function init() {
   const gruboscStandard = document.querySelectorAll('[name="standard"]');
   const gruboscWilgoc = document.querySelectorAll('[name="wilgociouodporniony"]');
   const kolor = document.querySelectorAll('[name="kolor"]');
-  const dostawa = document.querySelectorAll('[name="dostawa"]');
+  const naroznik = document.querySelectorAll('[name="naroznik"]');
+  const krawedz = document.querySelectorAll('[name="krawedz"]');
+  const zamowienie = document.querySelectorAll('[name="zamowienie"]');
   const szerokoscInput = document.getElementById('szerokosc');
   const dlugoscInput = document.getElementById('dlugosc');
   const iloscInput = document.getElementById('ilosc');
-  const naroznik = document.querySelectorAll('[name="naroznik"]');
-  const krawedz = document.querySelectorAll('[name="krawedz"]');
   const ksztalt = document.querySelectorAll('[name="ksztalt"]');
   const currentOrderDescription = document.querySelector('.current-order-description');
   const addOrderButton = document.querySelector('.add-order-button');
+  const addElementButton = document.querySelector('.add-element-button');
   const ordersListSection = document.querySelector('.orders-list');
+  const topPanelFields = [klientDetalHurt, rabatInput, rodzaj, gruboscStandard, gruboscWilgoc, kolor, naroznik, krawedz];
   let rabat = 1;
+  let currentNewRowNumber = 1;
+  let queriesString = '';
   
   function getRodzajValue() {
     const rodzaj = document.querySelector('[name="rodzaj"]:checked');
     return rodzaj ? rodzaj.value : null;
+  }
+
+  function isSameKindOrder() {
+    return document.querySelector('[name="zamowienie"]:checked').value === 'jednego-rodzaju';
   }
 
   function flashChangedRadioGroup(namesList) {
@@ -123,8 +131,10 @@ function init() {
       radio.checked = false;
       radio.parentElement.classList.add('hidden');
     });
-    value && flashChangedRadioGroup(['standard', 'wilgociouodporniony']);
-    saveToLocalStorageAndUpdateDisplay();
+    if (value) { // when called from change event
+      flashChangedRadioGroup(['standard', 'wilgociouodporniony']);
+      saveToLocalStorageAndUpdateDisplay();
+    }
   }
 
   function setTextWhenSizesNotSet() {
@@ -214,6 +224,7 @@ function init() {
     const szerokosc = data["szerokosc"];
     const dlugosc = data["dlugosc"];
     const ilosc = data["ilosc"];
+    const wlasciwosci = klient && rodzaj && (standard || wilgociouodporniony) && kolor && naroznik && krawedz;
     let orderDescription = AKTUALNE_ZAMOWIENIE;
     klient && (orderDescription += "Typ klienta: " + klient + ", ");
     if (klient === "hurtowy" && rabat && !isNaN(rabat) && rabat > 0) {
@@ -234,22 +245,24 @@ function init() {
     orderDescription += "cena brutto: " + document.getElementById(CENA_BRUTTO).innerText + ".";
     orderDescription += "(netto: " + document.getElementById(CENA_NETTO).innerText + ").";
     currentOrderDescription.innerText = orderDescription;
-    if (klient && rodzaj && (standard || wilgociouodporniony) && kolor && naroznik && krawedz && ksztalt && szerokosc && dlugosc && ilosc) {
-      addOrderButton.removeAttribute('disabled');
+    zamowienie[0].closest('.form-group').classList.toggle('locked', !wlasciwosci); // disabled when all required fields are not checked
+    if (wlasciwosci && ksztalt && szerokosc && dlugosc && ilosc) {
+      toggleOrderButtons(true);
       currentOrderDescription.classList.remove('data-not-full');
-      currentOrderDescription.parentElement.querySelector('button').innerText = 'Dodaj do listy zamówień';
+      currentOrderDescription.parentElement.querySelector('button').innerText = 'Dodaj nowe zamówienie';
     } else {
-      addOrderButton.setAttribute('disabled', 'disabled');
+      toggleOrderButtons(false);
       currentOrderDescription.classList.add('data-not-full');
       currentOrderDescription.parentElement.querySelector('button').innerText = 'Uzupełnij dane zamówienia';
     }
   }
 
-  function saveToLocalStorageAndUpdateDisplay() {
+  function saveToLocalStorageAndUpdateDisplay(event) {
     const data = getFormData();
     localStorage.setItem(formId, JSON.stringify(data));
     obliczCene();
     updateCurrentOrderDescription(data);
+    toggleTopPanelLock();
   }
 
   function checkForDataInLocalStorage() {
@@ -376,13 +389,15 @@ function init() {
 
   function addOrderToList() {
     const data = getFormData();
-    let queriesString = "?kalkulator=true&";
+    if (!isSameKindOrder()) {
+      queriesString = "?kalkulator=true&";
+    }
     for (entry in data) {
       if (data[entry] !== "") {
         let value = entry ;
         if (entriesToAddRowNumber.includes(entry)) {
-          value += '-row-1'
-        }
+          value += '-row-' + currentNewRowNumber;
+        } 
         queriesString += value + "=" + data[entry] + "&";
       }
     }
@@ -392,12 +407,27 @@ function init() {
     showOrdersListFromLocalStorage();
   }
 
+  function toggleOrderButtons(isValid) {
+    const isSameKind = isSameKindOrder();
+    addOrderButton.disabled = !isValid || isSameKind;
+    addElementButton.disabled = !isValid || !isSameKind;
+  };
+
+  function toggleTopPanelLock() {
+    const isSameKind = isSameKindOrder();
+    topPanelFields.forEach(function(fieldOrList) {
+      const field = fieldOrList[0] || fieldOrList;
+      const formGroup = field.closest('.form-group');
+      formGroup && formGroup.classList.toggle('locked', isSameKind);
+    });
+  }
+
   function addEventListeners() {
     addListenerToRadios(klientDetalHurt, 'change', showHideHurtRabat);
     rabatInput.addEventListener('input', function() { setDiscountValue(); });
     addListenerToRadios(rodzaj, 'change', function(event) { showHideGruboscOptions(event.target.value); });
-    addListenerToRadios(naroznik, 'change', function(event) { checkIfStoneSelected(event); });
-    [gruboscStandard, gruboscWilgoc, kolor, dostawa, krawedz, ksztalt].forEach(function(radios) { addListenerToRadios(radios, 'change', saveToLocalStorageAndUpdateDisplay) });
+    addListenerToRadios(naroznik, 'change', function(event) { checkIfStoneSelected(event); }); // chyba można usunąć Funtion(e) ???
+    [gruboscStandard, gruboscWilgoc, kolor, zamowienie, krawedz, ksztalt].forEach(function(radios) { addListenerToRadios(radios, 'change', function(event) { saveToLocalStorageAndUpdateDisplay(event) }) });
     ['szerokosc', 'dlugosc', 'ilosc'].forEach(function(id) { document.getElementById(id).addEventListener('change', function() { verifyMaxValue.call(this); }); });
     addOrderButton.addEventListener('click', addOrderToList);
   }

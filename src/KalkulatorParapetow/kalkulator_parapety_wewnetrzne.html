@@ -30,8 +30,9 @@
           <label><input type="radio" name="klient" value="hurtowy">Hurtowy</label>
         </div>
         <div id="hurt-rabat" class="discount hidden">
-          <label for="rabat">Rabat w %:</label>
-          <input type="number" id="rabat" name="rabat" class="width-very-narrow" value="0" min="0" max="75">
+          <label>Rabat w %:
+            <input type="number" id="rabat" name="rabat" class="width-very-narrow" value="0" min="0" max="75">
+          </label>
         </div>
       </div>
       <div class="form-group">
@@ -60,19 +61,6 @@
           <label><input type="radio" name="kolor" value="lakier">Lakierowanie</label>
         </div>
       </div>
-      <div class="form-group">
-        <label for="szerokosc">Szerokość (cm):</label>
-        <input type="number" id="szerokosc" name="szerokosc" min="10" max="150" class="width-narrow">
-      </div>
-      <div class="form-group">
-        <label for="dlugosc">Długość (cm):</label>
-        <input type="number" id="dlugosc" name="dlugosc" min="20" max="260"class="width-narrow">
-      </div>
-      <div class="form-group">
-        <label for="ilosc">Ilość sztuk:</label>
-        <input type="number" id="ilosc" name="ilosc" value="1" min="1" max="100" class="width-very-narrow">
-      </div>
-
       <div class="form-group">
         <label for="naroznik">Narożnik</label>
         <div id="naroznik" class="radio-group radios-with-imgs">
@@ -155,6 +143,26 @@
       </div>
 
       <div class="form-group">
+        <label>Złóż zamówienie:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="zamowienie" value="rozne-rodzaje">nowe</label>
+          <label class="ml-sm"><input type="radio" name="zamowienie" value="jednego-rodzaju">na kilka elementów jednego rodzaju</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="szerokosc">Szerokość (cm):</label>
+        <input type="number" id="szerokosc" name="szerokosc" min="10" max="150" class="width-narrow">
+      </div>
+      <div class="form-group">
+        <label for="dlugosc">Długość (cm):</label>
+        <input type="number" id="dlugosc" name="dlugosc" min="20" max="260"class="width-narrow">
+      </div>
+      <div class="form-group">
+        <label for="ilosc">Ilość sztuk:</label>
+        <input type="number" id="ilosc" name="ilosc" value="1" min="1" max="100" class="width-very-narrow">
+      </div>
+      <div class="form-group">
         <label for="ksztalt">Kształt</label>
         <div id="ksztalt" class="radio-group radios-with-imgs shape-radios">
           <label>
@@ -233,7 +241,10 @@
         <div class="current-order">
           <h2>Podsumowanie aktualnego zamówienia:</h2>
           <div class="current-order-description data-not-full"></div>
-          <button class="add-order-button" type="button" type="button" disabled>Dodaj do listy zamówień</button>
+          <div class="button-group">
+            <button class="add-order-button" type="button" disabled>Dodaj nowe zamówienie</button>
+            <button class="add-element-button" type="button" disabled>Dodawaj kolejne elementy</button>
+          </div>
           <section class="orders-list hidden">
             <h3>Lista zamówień:</h3>
             <ul></ul>
