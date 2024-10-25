@@ -142,21 +142,21 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group zamowienie-group">
         <label>Złóż zamówienie:</label>
         <div class="radio-group">
-          <label><input type="radio" name="zamowienie" value="rozne-rodzaje">nowe</label>
-          <label class="ml-sm"><input type="radio" name="zamowienie" value="jednego-rodzaju">na kilka elementów jednego rodzaju</label>
+          <label><input type="radio" name="zamowienie" value="normal">nowe</label>
+          <label class="ml-sm"><input type="radio" name="zamowienie" value="multi">na kilka elementów jednego rodzaju</label>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="szerokosc">Szerokość (cm):</label>
-        <input type="number" id="szerokosc" name="szerokosc" min="10" max="150" class="width-narrow">
-      </div>
-      <div class="form-group">
         <label for="dlugosc">Długość (cm):</label>
         <input type="number" id="dlugosc" name="dlugosc" min="20" max="260"class="width-narrow">
+      </div>
+      <div class="form-group">
+        <label for="szerokosc">Szerokość (cm):</label>
+        <input type="number" id="szerokosc" name="szerokosc" min="10" max="150" class="width-narrow">
       </div>
       <div class="form-group">
         <label for="ilosc">Ilość sztuk:</label>
@@ -237,7 +237,7 @@
           </label>
         </div>
       </div>
-      <div class="display-flex justify-center">
+      <div>
         <div class="current-order">
           <h2>Podsumowanie aktualnego zamówienia:</h2>
           <div class="current-order-description data-not-full"></div>
@@ -247,7 +247,7 @@
           </div>
           <section class="orders-list hidden">
             <h3>Lista zamówień:</h3>
-            <ul></ul>
+            <ul class="orders-list-elements"></ul>
           </section>
         </div>
       </div>

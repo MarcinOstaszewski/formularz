@@ -37,7 +37,7 @@ h2 {
 }
 h3 {
   font-size: 14px;
-  margin: 2rem 0 0 0;
+  margin: 1rem 0 0 0;
 }
 main {
   width: 600px;
@@ -135,12 +135,11 @@ input.width-very-narrow {
 .radio-group.radios-with-imgs label {
   display: flex;
   min-width: 100px;
-  margin-right: 18px;
+  margin-right: 10px;
 }
 .radio-group.radios-with-imgs label div p {
   width: 100%;
   margin-top: 3px;
-  text-align: center;
 }
 .corner-img, .border-img {
   display: inline-block;
@@ -219,7 +218,6 @@ input.width-very-narrow {
 }
 .current-order-description {
   font-style: normal;
-  font-weight: bold;
   margin: 0;
   font-size: 14px;
   color: var(--dark-grey-color);
@@ -229,22 +227,58 @@ input.width-very-narrow {
   font-weight: normal;
   color: var(--medium-grey-color);
 }
+.current-order .order-elements {
+  padding: 1rem;
+  margin: 0;
+}
+.current-order .order-elements li {
+  list-style: none;
+}
 
 .orders-list {
   font-size: 12px;
-  margin-left: 12px;
 }
-.orders-list ul {
+.orders-list .orders-list-elements {
   margin: 0;
   padding: 0 0.5rem 0 0;
 }
-.orders-list li {
-  min-height: 90px;
+.orders-list .orders-list-elements > li {
   display: flex;
-  gap: 1rem;
+  gap: 0.25rem;
   list-style: none;
-  padding: 1rem 0;
+  padding: 1rem 0.25rem;
+  margin: 0 -0.25rem;
   border-bottom: 1px solid var(--medium-grey-color);
+}
+.orders-list .order-summary {
+  display: flex;
+  flex-direction: column;
+  min-width: 80px;
+  justify-content: space-between;
+  border-radius: 6px;
+  padding: 0.5rem 0.3rem;
+  border: none;
+}
+.orders-list .order-summary.normal-order {
+  background-color: var(--bg-control-color);
+}
+.orders-list .order-summary.multi-order {
+  background-color: var(--main-color);
+  color: var(--white-color);
+}
+.orders-list .order-summary div {
+  text-align: right;
+}
+.orders-list .order-summary div:not(:last-child) {
+  padding-bottom: 0.3rem;
+}
+.orders-list .order-elements {
+  padding: 0.25rem;
+  margin: 0;
+}
+.orders-list .order-elements li {
+  margin: 0.2rem 0 0 0.5rem;
+  display: block;
 }
 .buttons-column {
   display: flex;

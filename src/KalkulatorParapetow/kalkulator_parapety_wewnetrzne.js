@@ -69,13 +69,15 @@ function init() {
     "lewy-z-lacznikami": "lewy z łącznikami",
     "srodkowy-z-lacznikami": "środkowy z łącznikami"
   };
+  const orderTypes = {normal: 'normal', multi: 'multi'};
+  const orderTypesMapping = {normal: 'Zwykłe', multi: 'Multi'};
   const entriesToAddRowNumber = ['szerokosc', 'dlugosc', 'ilosc', 'ksztalt'];
-
   const POWIERZCHNIA = 'powierzchnia';
   const CENA_NETTO = 'cena-netto';
   const CENA_BRUTTO = 'cena-brutto';
   const AKTUALNE_ZAMOWIENIE = 'Aktualne zamówienie: ';
   const formId = 'kalkulator-parapetow';
+  const elementsListOpeningTag = '<ul class="order-elements">';
   const form = document.getElementById(formId);
   const klientDetalHurt = document.querySelectorAll('[name="klient"]');
   const hurtRabat = document.getElementById('hurt-rabat');
@@ -87,6 +89,7 @@ function init() {
   const naroznik = document.querySelectorAll('[name="naroznik"]');
   const krawedz = document.querySelectorAll('[name="krawedz"]');
   const zamowienie = document.querySelectorAll('[name="zamowienie"]');
+  const zamowienieGroup = document.querySelector('.zamowienie-group');
   const szerokoscInput = document.getElementById('szerokosc');
   const dlugoscInput = document.getElementById('dlugosc');
   const iloscInput = document.getElementById('ilosc');
@@ -96,9 +99,8 @@ function init() {
   const addElementButton = document.querySelector('.add-element-button');
   const ordersListSection = document.querySelector('.orders-list');
   const topPanelFields = [klientDetalHurt, rabatInput, rodzaj, gruboscStandard, gruboscWilgoc, kolor, naroznik, krawedz];
+  const fieldsForPariatlReset = [szerokoscInput, dlugoscInput, iloscInput, ksztalt];
   let rabat = 1;
-  let currentNewRowNumber = 1;
-  let queriesString = '';
   
   function getRodzajValue() {
     const rodzaj = document.querySelector('[name="rodzaj"]:checked');
@@ -106,7 +108,8 @@ function init() {
   }
 
   function isSameKindOrder() {
-    return document.querySelector('[name="zamowienie"]:checked').value === 'jednego-rodzaju';
+    const orderKindChecked = document.querySelector('[name="zamowienie"]:checked')
+    return orderKindChecked ? orderKindChecked.value === orderTypes.multi : null;
   }
 
   function flashChangedRadioGroup(namesList) {
@@ -226,38 +229,41 @@ function init() {
     const ilosc = data["ilosc"];
     const wlasciwosci = klient && rodzaj && (standard || wilgociouodporniony) && kolor && naroznik && krawedz;
     let orderDescription = AKTUALNE_ZAMOWIENIE;
-    klient && (orderDescription += "Typ klienta: " + klient + ", ");
+    klient && (orderDescription += "Typ klienta: <strong>" + klient + "</strong>, ");
     if (klient === "hurtowy" && rabat && !isNaN(rabat) && rabat > 0) {
       orderDescription += "rabat: " + rabat + "%, ";
     }
-    rodzaj && (orderDescription += "rodzaj parapetu: " + rodzaj + ", ");
-    standard && (orderDescription += "grubość: " + standard + " mm, ");
-    wilgociouodporniony && (orderDescription += "grubość: " + wilgociouodporniony + " mm, ");
-    kolor && (orderDescription += "wykończenie: " + kolor + ", ");
-    naroznik && (orderDescription += "narożnik: " + naroznik + ", ");
-    krawedz && (orderDescription += "krawędź: " + krawedz + ", ");
-    ksztalt && (orderDescription += "kształt: " + ksztaltMapping[ksztalt] + ", ");
-    szerokosc && (orderDescription += "szerokość: " + szerokosc + " mm, ");
-    dlugosc && (orderDescription += "długość: " + dlugosc + " mm, ");
-    ilosc && (orderDescription += "ilość sztuk: " + ilosc);
-    orderDescription += ".";
-    orderDescription += ' Powierzchnia: ' + document.getElementById(POWIERZCHNIA).innerText + ", ";
-    orderDescription += "cena brutto: " + document.getElementById(CENA_BRUTTO).innerText + ".";
-    orderDescription += "(netto: " + document.getElementById(CENA_NETTO).innerText + ").";
-    currentOrderDescription.innerText = orderDescription;
-    zamowienie[0].closest('.form-group').classList.toggle('locked', !wlasciwosci); // disabled when all required fields are not checked
+    rodzaj && (orderDescription += "rodzaj parapetu: <strong>" + rodzaj + "</strong>, ");
+    standard && (orderDescription += "grubość: <strong>" + standard + " mm</strong>, ");
+    wilgociouodporniony && (orderDescription += "grubość: <strong>" + wilgociouodporniony + " mm</strong>, ");
+    kolor && (orderDescription += "wykończenie: <strong>" + kolor + "</strong>, ");
+    naroznik && (orderDescription += "narożnik: <strong>" + naroznik + "</strong>, ");
+    krawedz && (orderDescription += "krawędź: <strong>" + krawedz + "</strong><br>");
+    orderDescription += elementsListOpeningTag + '<li>';
+    ksztalt && (orderDescription += "Kształt: <strong>" + ksztaltMapping[ksztalt] + "</strong>, ");
+    dlugosc && (orderDescription += "długość: <strong>" + dlugosc + " mm</strong>, ");
+    szerokosc && (orderDescription += "szerokość: <strong>" + szerokosc + " mm</strong>, ");
+    ilosc && (orderDescription += "ilość sztuk: <strong>" + ilosc + "</strong>.");
+    orderDescription += ' powierzchnia: <strong>' + document.getElementById(POWIERZCHNIA).innerText + "</strong>, ";
+    orderDescription += "cena brutto: <strong>" + document.getElementById(CENA_BRUTTO).innerText + "</strong>, ";
+    orderDescription += " (netto: <strong>" + document.getElementById(CENA_NETTO).innerText + ").";
+    orderDescription += '</li></ul>';
+    currentOrderDescription.innerHTML = orderDescription;
+    zamowienieGroup.classList.toggle('locked', !wlasciwosci); // disabled when not all required fields are checked
     if (wlasciwosci && ksztalt && szerokosc && dlugosc && ilosc) {
       toggleOrderButtons(true);
       currentOrderDescription.classList.remove('data-not-full');
-      currentOrderDescription.parentElement.querySelector('button').innerText = 'Dodaj nowe zamówienie';
+      addOrderButton.innerText = 'Dodaj nowe zamówienie';
+      addElementButton.innerText = 'Dodawaj kolejne elementy';
     } else {
       toggleOrderButtons(false);
       currentOrderDescription.classList.add('data-not-full');
-      currentOrderDescription.parentElement.querySelector('button').innerText = 'Uzupełnij dane zamówienia';
+      addOrderButton.innerText = 'Uzupełnij dane zamówienia';
+      addElementButton.innerText = 'Uzupełnij dane zamówienia';
     }
   }
 
-  function saveToLocalStorageAndUpdateDisplay(event) {
+  function saveToLocalStorageAndUpdateDisplay() {
     const data = getFormData();
     localStorage.setItem(formId, JSON.stringify(data));
     obliczCene();
@@ -266,7 +272,7 @@ function init() {
   }
 
   function checkForDataInLocalStorage() {
-    if (!localStorage) return;
+    if (!localStorage) console.error('Brak obsługi localStorage');
     const data = localStorage.getItem(formId);
     if (data) {
       const entries = JSON.parse(data);
@@ -319,23 +325,46 @@ function init() {
     saveToLocalStorageAndUpdateDisplay();
   }
 
-  function getOrderURL(queriesString) {
+  function getOrderURL() {
     const lastSlashIndex = window.location.href.lastIndexOf('/');
-    return window.location.href.substring(0, lastSlashIndex) + '/parapety_wewnetrzne.html' + queriesString
+    return window.location.href.substring(0, lastSlashIndex) + '/parapety_wewnetrzne.html';
   }
 
   function getOrdersFromLocalStorage() {
     return JSON.parse(localStorage.getItem('orders')) || [];
   }
 
-  function addOrderToLocalStorage(textContent, url) {
-    textContent = textContent.replace(AKTUALNE_ZAMOWIENIE, '');
+  function addOrderToLocalStorage(params) {
     const orders = getOrdersFromLocalStorage();
-    ['wilgocioudporniony=', 'standard='].forEach(function(entry) {
-      url = url.replace(entry, 'grubosc=');
-    });
-    const newOrder = { textContent: textContent, url: url };
-    orders.push(newOrder);
+    let url = params.url;
+    const type = params.type;
+    let textContent = params.textContent;
+    const addToLastOrder = params.addToLastOrder;
+    let queriesString = params.queriesString;
+    if (addToLastOrder && orders.length && type === orderTypes.multi) {
+      const lastOrder = orders.shift();
+      lastOrder.textContent += textContent;
+      lastOrder.lastRowNumber = params.lastRowNumber;
+      lastOrder.queriesString = queriesString;
+      lastOrder.cenaNetto += parseFloat(document.getElementById(CENA_NETTO).innerText);
+      orders.unshift(lastOrder);
+    } else {
+      ['wilgociouodporniony=', 'standard='].forEach(function(entry) {
+        queriesString = queriesString.replace(entry, 'grubosc=');
+      }); // dostosowanie do nazw z Formularza
+      const newOrder = {
+        textContent: textContent,
+        url: url,
+        queriesString: queriesString,
+        type: type,
+        lastRowNumber: 1,
+        cenaNetto: parseFloat(document.getElementById(CENA_NETTO).innerText),
+      };
+      orders.unshift(newOrder);
+    }
+    setTimeout(function() {
+      document.querySelector('.changed').classList.remove('changed');
+    },1500);
     localStorage.setItem('orders', JSON.stringify(orders));
   }
 
@@ -362,12 +391,17 @@ function init() {
       ordersListSection.classList.remove('hidden');
       ordersListSection.querySelector('ul').innerHTML = '';
       orders.forEach(function(order) {
-        const open = '<a class="make-order" href="' + order.url + '" target="_blank">Zamów</a>';
+        const open = '<a class="make-order" href="' + order.url + order.queriesString + '" target="_blank">Zamów</a>';
         const remove = '<button class="remove-order" type="button">Usuń</button>';
+        const labelText = 'Typ: <strong>' + orderTypesMapping[order.type] + '</strong>';
+        const typeLabel = '<div class="order-type">' + labelText + '</div>';
+        const sumaNetto = '<div class="suma-netto">Suma netto:<br><strong>' + order.cenaNetto.toFixed(2) + ' zł</strong></div>';
+        const sumaBrutto = '<div class="suma-brutto">Suma brutto:<br><strong>' + (order.cenaNetto * 1.23).toFixed(2) + ' zł</strong></div>';
+        const orderSummary = '<div class="order-summary ' + order.type + '-order">' + typeLabel + sumaNetto + sumaBrutto + '</div>';
         const summaryText = '<div>' + order.textContent + '</div>';
         const buttonsColumn = '<div class="buttons-column">' + open + remove + '</div>';
         const li = document.createElement('li');
-        li.innerHTML = summaryText + buttonsColumn;
+        li.innerHTML = orderSummary + summaryText + buttonsColumn;
         ordersListSection.querySelector('ul').appendChild(li);
       });
       ordersListSection.querySelectorAll('.remove-order').forEach(function(button, index) {
@@ -387,24 +421,88 @@ function init() {
     saveToLocalStorageAndUpdateDisplay();
   }
 
-  function addOrderToList() {
+  function partialFormReset() {
+    fieldsForPariatlReset.forEach(function(field) {
+      if (field instanceof NodeList) {
+        field.forEach(field => field.checked = false);
+      } else {
+        field.value = '';
+      }
+    });
+    toggleOrderButtons(false);
+    saveToLocalStorageAndUpdateDisplay();
+  }
+
+  function addNewOrderToList(type) {
+    type = type || orderTypes.normal;
     const data = getFormData();
-    if (!isSameKindOrder()) {
-      queriesString = "?kalkulator=true&";
-    }
+    let queriesString = "?kalkulator=true&";
     for (entry in data) {
       if (data[entry] !== "") {
         let value = entry ;
         if (entriesToAddRowNumber.includes(entry)) {
-          value += '-row-' + currentNewRowNumber;
+          value += '-row-' + 1;
         } 
         queriesString += value + "=" + data[entry] + "&";
       }
     }
-    const url = getOrderURL(queriesString);
-    addOrderToLocalStorage(currentOrderDescription.innerText, url);
-    resetForm();
+    const url = getOrderURL();
+    addOrderToLocalStorage({
+      textContent: currentOrderDescription.innerHTML.replace(AKTUALNE_ZAMOWIENIE, ''),
+      url: url,
+      queriesString: queriesString,
+      type: type,
+      addToLastOrder: false
+    });
+    if (type === orderTypes.multi) {
+      partialFormReset();
+    } else {
+      resetForm();
+    }
     showOrdersListFromLocalStorage();
+    flashNewListElement();
+  }
+
+  function flashNewListElement() {
+    document.querySelector('.orders-list-elements li').classList.add('changed');
+  }
+
+  function addElementToOrder() {
+    const ordersList = getOrdersFromLocalStorage();
+    const lastOrder = ordersList[0] || {};
+    console.log('lastOrder', lastOrder);
+    const existsLastOrder = Object.keys(ordersList).length;
+    const type = existsLastOrder ? lastOrder.type : null;
+    if (existsLastOrder && type === orderTypes.multi) { // dodaje do istniejącego zamówienia
+      const newRowNumber = lastOrder.lastRowNumber ? lastOrder.lastRowNumber + 1 : 1;
+      console.log('newRowNumber', newRowNumber, 'lastRowNumber', lastOrder.lastRowNumber);
+      const data = getFormData();
+      let queriesString = lastOrder.queriesString;
+      for (entry in data) {
+        if (data[entry] !== "") {
+          if (entriesToAddRowNumber.includes(entry)) {
+            queriesString += entry + '-row-' + newRowNumber + "=" + data[entry] + "&";
+          } 
+        }
+      }
+      console.log('queriesString', queriesString);
+      const url = getOrderURL();
+      let textContent = currentOrderDescription.innerHTML;
+      textContent = textContent.substring(textContent.lastIndexOf(elementsListOpeningTag));
+      addOrderToLocalStorage({
+        textContent: textContent,
+        url: url,
+        queriesString: queriesString,
+        type: type,
+        lastRowNumber: newRowNumber,
+        addToLastOrder: true
+      });
+      partialFormReset();
+      showOrdersListFromLocalStorage();
+      flashNewListElement();
+    } else {
+      addNewOrderToList(orderTypes.multi);
+    }
   }
 
   function toggleOrderButtons(isValid) {
@@ -429,7 +527,8 @@ function init() {
     addListenerToRadios(naroznik, 'change', function(event) { checkIfStoneSelected(event); }); // chyba można usunąć Funtion(e) ???
     [gruboscStandard, gruboscWilgoc, kolor, zamowienie, krawedz, ksztalt].forEach(function(radios) { addListenerToRadios(radios, 'change', function(event) { saveToLocalStorageAndUpdateDisplay(event) }) });
     ['szerokosc', 'dlugosc', 'ilosc'].forEach(function(id) { document.getElementById(id).addEventListener('change', function() { verifyMaxValue.call(this); }); });
-    addOrderButton.addEventListener('click', addOrderToList);
+    addOrderButton.addEventListener('click', function() { addNewOrderToList() });
+    addElementButton.addEventListener('click', addElementToOrder);
   }
 
   addEventListeners();
