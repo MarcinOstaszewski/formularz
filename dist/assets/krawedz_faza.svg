@@ -1,0 +1,12 @@
+<svg width="130" height="60" xmlns="http://www.w3.org/2000/svg">
+  <g>
+  <title>Krawedz faza</title>
+  <defs>
+  <pattern id="pattern-stripe" width="28" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="30" height="30" fill="#ddd"></rect>
+    <rect width="0.75" height="30" transform="translate(0,0)" fill="#000"></rect>
+  </pattern>
+  </defs>
+  <path id="svg_3" d="m128,2l0,57l-127,0l0,-37l20,-20l104,0z" opacity="1" stroke="#000" fill="url(#pattern-stripe)"/>
+  </g>
+</svg>

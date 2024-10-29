@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Parapetów</title>
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<script defer src="main.bae4c375ba018d32a4b0.js"></script></head>
+<body>
+  <main>
+    <section class="title-section">
+      <h1>Kalkulator parapetów wewnętrznych</h1>
+      <p><label>Dostępność: </label><strong>Produkt na zamówienie</strong></p>
+      <p><label>Wysyłka: </label><strong>Wysyłamy na terenie całej Polski. Cena nie zawiera kosztów przesyłki. Wysyłka wyceniana indywidualnie.</strong></p>
+      <p><label>Nietypowe kształty: </label><strong>Nietypowe zamówienia wyceniamy indywidualnie. Napisz na <a href="mailto:zakupy@kobax.pl">zakupy@kobax.pl</a></strong></p>
+      <p><label>Dodatkowe informacje: </label><strong>Wycena nie zawiera kosztów łączników (w przypadku zamówienia parapetów do łączenia).</strong></p>
+    </section>
+    <section class="display-section mt-md">
+      <p><label for="powierzchnia">Powierzchnia:</label><strong id="powierzchnia"></strong></p>
+      <p><label>Cena:</label><strong id="cena-brutto"></strong></p>
+      <p><small>( 1 m² = <span id="cena-m2-brutto">[wybierz rodzaj]</span> )</small> <small class="text-gray">zawiera 23.00% VAT, bez kosztów dostawy</small></p>
+      <p><label>Cena netto:</label><strong id="cena-netto"></strong></p>
+      <p><small>( 1 m² = <span id="cena-m2-netto">[wybierz rodzaj]</span> )</small> <small class="text-gray">bez 23.00% VAT i kosztów dostawy</small></p>
+    </section>
+    <form id="kalkulator-parapetow" class="calculator-form mt-md">
+      <div class="form-group">
+        <label for="klient">Klient:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="klient" value="detaliczny">Detaliczny</label>
+          <label><input type="radio" name="klient" value="hurtowy">Hurtowy</label>
+        </div>
+        <div id="hurt-rabat" class="discount hidden">
+          <label>Rabat w %:
+            <input type="number" id="rabat" name="rabat" class="width-very-narrow" value="0" min="0" max="75">
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="rodzaj">Rodzaj parapetu:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="rodzaj" value="standard">Standard</label>
+          <label><input type="radio" name="rodzaj" value="wilgociouodporniony">Wilgociouodporniony</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="standard">Grubość:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="standard" value="18">18 mm</label>
+          <label><input type="radio" name="standard" value="22">22 mm</label>
+          <label><input type="radio" name="standard" value="28">28 mm</label>
+        
+          <label class="hidden"><input type="radio" name="wilgociouodporniony" value="19">19 mm</label>
+          <label class="hidden"><input type="radio" name="wilgociouodporniony" value="25">25 mm</label>
+          <label class="hidden"><input type="radio" name="wilgociouodporniony" value="30">30 mm</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Wykończenie:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="kolor" value="folia">Folia pvc</label>
+          <label><input type="radio" name="kolor" value="lakier">Lakierowanie</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="naroznik">Narożnik</label>
+        <div id="naroznik" class="radio-group radios-with-imgs">
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="naroznik" value="R6">
+              <div class="corner-img corner-r6"></div>
+            </div>
+            <p>Narożnik R6</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="naroznik" value="R15">
+              <div class="corner-img corner-r15"></div>
+            </div>
+            <p>Narożnik R15</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="naroznik" value="R25">
+              <div class="corner-img corner-r25"></div>
+            </div>
+            <p>Narożnik R25</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="naroznik" value="R50">
+              <div class="corner-img corner-r50"></div>
+            </div>
+            <p>Narożnik R50</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="naroznik" value="STONE">
+              <div class="corner-img corner-stone"></div>
+            </div>
+            <p>Narożnik STONE</p>
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="krawedz">Krawędzie</label>
+        <div id="krawedz" class="radio-group radios-with-imgs">
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="krawedz" value="R3">
+              <div class="border-img border-r3"></div>
+            </div>
+            <p>Krawędź R3</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="krawedz" value="R6">
+              <div class="border-img border-r6"></div>
+            </div>
+            <p>Krawędź R6</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="krawedz" value="R12">
+              <div class="border-img border-r12"></div>
+            </div>
+            <p>Krawędź R12</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="krawedz" value="faza">
+              <img src="assets/krawedz_faza.svg" alt="faza" class="border-img border-svg">
+            </div>
+            <p>Krawędź faza</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="krawedz" value="R20">
+              <div class="border-img border-r20"></div>
+            </div>
+            <p>Krawędź R20</p>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group order-group">
+        <label>Złóż zamówienie:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="zamowienie" value="normal">nowe</label>
+          <label class="ml-sm"><input type="radio" name="zamowienie" value="multi">na kilka elementów jednego rodzaju</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dlugosc">Długość (mm):</label>
+        <input type="number" id="dlugosc" name="dlugosc" min="200" max="3000"class="width-narrow">
+        <div class="position-relative">
+          <img src="assets/wymiary.webp" alt="Wymiary" class="img-dimensions" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="szerokosc">Szerokość (mm):</label>
+        <input type="number" id="szerokosc" name="szerokosc" min="100" max="2000" class="width-narrow">
+      </div>
+      <div class="form-group">
+        <label for="ilosc">Ilość sztuk:</label>
+        <input type="number" id="ilosc" name="ilosc" value="1" min="1" max="100" class="width-very-narrow">
+      </div>
+      <div class="form-group">
+        <label for="ksztalt">Kształt</label>
+        <div id="ksztalt" class="radio-group radios-with-imgs shape-radios">
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="ksztalt" value="standard">
+              <div class="corner-img corner-r6"></div>
+            </div>
+            <p>Standard</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="ksztalt" value="prawy-do-laczenia">
+              <div class="corner-img right-to-join"></div>
+            </div>
+            <p>Prawy do łączenia</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="ksztalt" value="lewy-do-laczenia">
+              <div class="corner-img left-to-join"></div>
+            </div>
+            <p>Lewy do łączenia</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="ksztalt" value="srodkowy">
+              <div class="corner-img center-to-join"></div>
+            </div>
+            <p>Środkowy</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="ksztalt" value="sciety-prawy">
+              <img src="assets/sciety_prawy.svg" alt="Ścięty prawy" class="corner-svg">
+            </div>
+            <p>Ścięty prawy</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="ksztalt" value="sciety-lewy">
+              <img src="assets/sciety_prawy.svg" alt="Ścięty prawy" class="corner-svg" style="transform: scaleX(-1);">
+            </div>
+            <p>Ścięty lewy</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="ksztalt" value="sciety-srodkowy">
+              <img src="assets/sciety_srodkowy.svg" alt="Ścięty środkowy" class="corner-svg">
+            </div>
+            <p>Ścięty środkowy</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="ksztalt" value="prawy-z-lacznikami">
+              <img src="assets/prawy_z_lacznikami.svg" alt="Prawy z łącznikami" class="corner-svg">
+            </div>
+            <p>Prawy z łącznikami</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="ksztalt" value="lewy-z-lacznikami">
+              <img src="assets/prawy_z_lacznikami.svg" alt="Lewy z łącznikami" class="corner-svg" style="transform: scaleX(-1);">
+            </div>
+            <p>Lewy z łącznikami</p>
+          </label>
+          <label class="flex-column">
+            <div>
+              <input type="radio" name="ksztalt" value="srodkowy-z-lacznikami">
+              <img src="assets/srodkowy_z_lacznikami.svg" alt="Środkowy z łącznikami" class="corner-svg">
+            </div>
+            <p>Środkowy z łącznikami</p>
+          </label>
+        </div>
+      </div>
+      <div>
+        <div class="current-order">
+          <h2>Podsumowanie aktualnego zamówienia:</h2>
+          <div class="current-order-description data-not-full"></div>
+          <div class="button-group">
+            <button class="add-order-button" type="button" disabled>Dodaj nowe zamówienie</button>
+            <button class="add-element-button" type="button" disabled>Dodawaj kolejne elementy</button>
+          </div>
+          <section class="orders-list hidden">
+            <div class="orders-list-header">
+              <h3>Lista zamówień:</h3>
+              <span class="summary-price"></span>
+            </div>
+            <ul class="orders-list-elements"></ul>
+          </section>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <dialog id="potwierdz-usuniecie">
+    <div class="dialog-content">
+      <h2>Usunąć zamówienie z listy?</h2>
+      <button class="confirm-order-remove-button">Usuń</button>
+    </div>
+  </dialog>
+
+</body>
+</html>
